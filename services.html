@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Custom Mobile Development Services — We build bespoke native iOS, Android, and cloud applications tailored to your business needs with 10+ years of proven craftsmanship.">
+  <title>Services | Limons</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --u: min(100vw / 1672, 100vh / 941);
+      --ease: cubic-bezier(.16, 1, .3, 1);
+      --accent: #ff5361;
+      --accent-2: #ea2b64;
+      --accent-glow: rgba(255, 83, 97, 0.35);
+      --rose: #f6a2aa;
+      --ink: #ffffff;
+      --ink-secondary: rgba(255, 255, 255, 0.78);
+      --ink-muted: rgba(255, 255, 255, 0.55);
+      --white: #ffffff;
+      --paper: #060204;
+      --bg-subtle: rgba(255, 255, 255, 0.04);
+      --bg-dark: #070204;
+      --card-border: rgba(255, 83, 97, 0.25);
+      --line: rgba(255, 255, 255, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #9A1E23 #0a0304;
+    }
+    ::-webkit-scrollbar { width: 9px; height: 9px; }
+    ::-webkit-scrollbar-track { background: #0a0304; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(#c2244a, #680202);
+      border-radius: 99px;
+      border: 2px solid #0a0304;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(#ff3d6e, #9A1E23); }
+
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+      background-color: #060204;
+      background-image: url("assets/images/shared/Product page bg.png");
+      background-position: center top;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .abs { position: absolute; }
+
+    /* ---------- SHARED HEADER / NAVBAR (same as home page) ---------- */
+    .site-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 150;
+      background: transparent;
+      border: 0;
+    }
+    .header-inner {
+      position: relative;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      height: 108px;
+      padding: 0;
+    }
+
+    .brand-logo,
+    .logo {
+      position: absolute;
+      left: calc(var(--u)*64);
+      top: calc(var(--u)*6);
+      display: flex;
+      align-items: center;
+      z-index: 100;
+      text-decoration: none;
+    }
+    .brand-logo img,
+    .logo img {
+      height: calc(var(--u)*104);
+      width: calc(var(--u)*104);
+      display: block;
+      object-fit: cover;
+      object-position: 5% center;
+      border-radius: 50%;
+      clip-path: circle(46% at 50% 50%);
+    }
+    .brand-fallback,
+    .logo .fallback {
+      display: none;
+      font-size: calc(var(--u)*25);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #fff;
+    }
+    .brand-logo img.bad,
+    .logo img.bad { display: none; }
+    .brand-logo img.bad + .brand-fallback,
+    .logo img.bad + .fallback { display: block; }
+
+    .nav-menu,
+    .nav {
+      position: absolute;
+      top: calc(var(--u)*36);
+      left: calc(var(--u)*470);
+      width: calc(var(--u)*740);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(var(--u)*36);
+      z-index: 90;
+      pointer-events: auto;
+    }
+    .nav-link {
+      font-size: calc(var(--u)*19.5);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.72);
+      text-decoration: none;
+      transition: color 0.25s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: calc(var(--u)*6);
+      cursor: pointer;
+    }
+    .nav-link:hover,
+    .nav-link.on {
+      color: #fff;
+    }
+    .nav-link.on {
+      color: var(--accent);
+    }
+    .drop-arrow {
+      width: calc(var(--u)*10);
+      height: calc(var(--u)*6);
+      transition: transform 0.25s var(--ease);
+    }
+
+    .nav-item-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: calc(var(--u)*8) 0;
+    }
+    .nav-item-dropdown:hover .drop-arrow,
+    .nav-item-dropdown:focus-within .drop-arrow { transform: rotate(180deg); }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(12px);
+      width: calc(var(--u)*360);
+      min-width: 290px;
+      background: rgba(12, 4, 7, 0.96);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 83, 97, 0.35);
+      border-radius: calc(var(--u)*18);
+      padding: calc(var(--u)*10);
+      box-shadow: 0 calc(var(--u)*24) calc(var(--u)*60) rgba(0,0,0,0.8), 0 0 calc(var(--u)*30) rgba(255,83,97,0.18);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
+      z-index: 120;
+    }
+    .nav-item-dropdown:hover .dropdown-menu,
+    .nav-item-dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--u)*12);
+      padding: calc(var(--u)*10) calc(var(--u)*14);
+      border-radius: calc(var(--u)*12);
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      transition: all 0.22s var(--ease);
+    }
+    .dropdown-item:hover {
+      background: rgba(255, 83, 97, 0.18);
+      color: #fff;
+      transform: translateX(calc(var(--u)*4));
+    }
+    .drop-badge {
+      width: calc(var(--u)*32);
+      height: calc(var(--u)*32);
+      border-radius: calc(var(--u)*9);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: grid;
+      place-items: center;
+      color: var(--rose);
+      flex-shrink: 0;
+    }
+    .drop-badge svg {
+      width: calc(var(--u)*16);
+      height: calc(var(--u)*16);
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .drop-badge path.solid,
+    .drop-badge svg.solid { fill: currentColor; stroke: none; }
+    .dropdown-item:hover .drop-badge {
+      background: linear-gradient(135deg, #ff5361, #ea2b64);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 0 calc(var(--u)*12) rgba(255,83,97,0.4);
+    }
+    .drop-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+    .drop-title {
+      font-size: calc(var(--u)*14);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .drop-desc {
+      font-size: calc(var(--u)*11);
+      color: rgba(255, 255, 255, 0.52);
+      margin-top: calc(var(--u)*2);
+      line-height: 1.2;
+    }
+
+    .header-actions,
+    .header-right {
+      position: absolute;
+      left: calc(var(--u)*1286);
+      top: calc(var(--u)*20);
+      display: flex;
+      align-items: center;
+      gap: calc(var(--u)*12);
+      z-index: 110;
+    }
+    .cta,
+    .btn-contact {
+      position: relative;
+      width: calc(var(--u)*172);
+      height: calc(var(--u)*57);
+      border: calc(var(--u)*1.6) solid #c04057;
+      border-radius: 99px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(var(--u)*9);
+      font-size: calc(var(--u)*18.5);
+      font-weight: 500;
+      color: #fff;
+      text-decoration: none;
+      background: rgba(80, 10, 20, 0.25);
+      transition: background 0.35s, box-shadow 0.35s, transform 0.2s;
+    }
+    .cta:hover,
+    .btn-contact:hover {
+      background: rgba(192, 64, 87, 0.35);
+      box-shadow: 0 0 calc(var(--u)*30) rgba(192,64,87,.45);
+      transform: translateY(-1px);
+    }
+    .cta svg,
+    .btn-contact svg,
+    .arr {
+      width: calc(var(--u)*15);
+      height: calc(var(--u)*15);
+    }
+    .gh-hover {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding-bottom: calc(var(--u)*6);
+    }
+    .gh-trigger {
+      width: calc(var(--u)*50);
+      height: calc(var(--u)*50);
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      transition: transform 0.25s var(--ease), filter 0.25s;
+    }
+    .gh-trigger img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 0 calc(var(--u)*10) rgba(243,165,173,.5));
+    }
+    .gh-hover:hover .gh-trigger,
+    .gh-hover:focus-within .gh-trigger {
+      transform: scale(1.07);
+      filter: drop-shadow(0 0 calc(var(--u)*16) rgba(243,165,173,.9));
+    }
+    .gh-modal {
+      position: absolute;
+      top: calc(100% + 2px);
+      right: 0;
+      width: calc(var(--u)*318);
+      min-width: 280px;
+      background: linear-gradient(165deg, rgba(82,16,34,.98), rgba(24,5,12,.98));
+      border: 1px solid rgba(255,83,97,.42);
+      border-radius: calc(var(--u)*18);
+      padding: calc(var(--u)*18);
+      box-shadow: 0 calc(var(--u)*22) calc(var(--u)*50) rgba(0,0,0,.75), 0 0 calc(var(--u)*28) rgba(255,83,97,.2);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
+      z-index: 200;
+    }
+    .gh-hover:hover .gh-modal,
+    .gh-hover:focus-within .gh-modal {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: none;
+    }
+    .gh-modal-mark { width: calc(var(--u)*42); height: calc(var(--u)*42); margin-bottom: calc(var(--u)*12); }
+    .gh-modal-mark img { width: 100%; height: 100%; display: block; }
+    .gh-modal h4 { font-size: calc(var(--u)*20); font-weight: 700; color: #fff; margin: 0 0 calc(var(--u)*8); letter-spacing: -0.02em; }
+    .gh-modal p { font-size: calc(var(--u)*13.5); line-height: 1.45; color: rgba(255,255,255,.62); margin: 0 0 calc(var(--u)*14); }
+    .gh-modal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: calc(var(--u)*8);
+      padding: calc(var(--u)*8) calc(var(--u)*14);
+      border-radius: calc(var(--u)*10);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #fff;
+      font-size: calc(var(--u)*13.5);
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s,border-color 0.2s;
+    }
+    .gh-modal-btn:hover { background: rgba(255,83,97,.22); border-color: rgba(255,83,97,.45); }
+    .gh-modal-btn svg { width: calc(var(--u)*16); height: calc(var(--u)*16); fill: currentColor; stroke: none; }
+
+    .mobile-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(25, 7, 12, 0.88);
+      border: 1px solid rgba(255, 83, 97, 0.35);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 210;
+    }
+    .mobile-toggle span {
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .mobile-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 1024px) {
+      .brand-logo,
+      .logo { left: calc(var(--u)*20); top: calc(var(--u)*10); }
+      .brand-logo img,
+      .logo img { height: calc(var(--u)*80); }
+      .nav-menu,
+      .nav { left: calc(var(--u)*140); width: calc(var(--u)*620); gap: calc(var(--u)*20); }
+      .header-actions,
+      .header-right { left: auto; right: calc(var(--u)*20); top: calc(var(--u)*18); gap: calc(var(--u)*10); }
+      .btn-contact,
+      .cta { display: none; }
+      .gh-modal { display: none; }
+    }
+    @media (max-width: 840px) {
+      .nav-menu,
+      .nav { display: none; }
+      .mobile-toggle { display: flex; }
+    }
+
+    /* ---------- HERO BANNER ---------- */
+    .services-hero-banner {
+      position: relative;
+      background: transparent;
+      color: #ffffff;
+      padding: 72px 24px 84px;
+      text-align: center;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 83, 97, 0.2);
+    }
+    .services-hero-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(194, 24, 75, 0.25), transparent 70%);
+      pointer-events: none;
+    }
+    .services-hero-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(1.5px 1.5px at 20% 30%, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(1.5px 1.5px at 80% 40%, rgba(255, 255, 255, 0.35), transparent),
+        radial-gradient(2px 2px at 50% 80%, rgba(255, 83, 97, 0.5), transparent);
+      pointer-events: none;
+    }
+    .hero-banner-inner {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      z-index: 3;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(255, 83, 97, 0.12);
+      border: 1px solid rgba(255, 83, 97, 0.35);
+      border-radius: 99px;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--rose);
+      margin-bottom: 20px;
+    }
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .hero-banner-title {
+      font-size: clamp(34px, 4.2vw, 54px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: #ffffff;
+      margin-bottom: 16px;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+    }
+    .hero-banner-sub {
+      font-size: clamp(16px, 1.35vw, 19px);
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 780px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+
+    /* Quick stats bar */
+    .hero-stats-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .hero-stat-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+    }
+    .hero-stat-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.68);
+      line-height: 1.25;
+    }
+
+    /* ---------- MAIN CONTENT SECTION (Two-Column Layout) ---------- */
+    .services-main {
+      background: transparent;
+      padding: 80px 24px 100px;
+    }
+    .services-container {
+      width: min(1180px, 92vw);
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* Left Column Content */
+    .services-content {
+      padding-right: 20px;
+    }
+    .content-eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .content-heading {
+      font-size: clamp(26px, 2.7vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.3;
+      color: #ffffff;
+      margin-bottom: 24px;
+    }
+    .intro-paragraph {
+      font-size: 16.5px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 20px;
+    }
+    .intro-paragraph strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Tech Stack Pills Bar */
+    .tech-pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 32px 0 46px;
+      padding: 20px 24px;
+      background: rgba(26, 5, 14, 0.65);
+      border: 1px solid rgba(255, 83, 97, 0.25);
+      border-radius: 16px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+    }
+    .tech-pill-title {
+      width: 100%;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--rose);
+      margin-bottom: 4px;
+    }
+    .tech-pill {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 99px;
+      color: rgba(255, 255, 255, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease;
+    }
+    .tech-pill:hover {
+      background: rgba(255, 83, 97, 0.2);
+      border-color: var(--accent);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 14px rgba(255, 83, 97, 0.35);
+    }
+    .tech-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+    }
+
+    /* Process & Workflow Section */
+    .workflow-divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255, 83, 97, 0.4), rgba(255, 255, 255, 0.1));
+      margin-bottom: 36px;
+    }
+    .workflow-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: #ffffff;
+      margin-bottom: 32px;
+    }
+
+    /* Process list */
+    .process-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      position: relative;
+    }
+    .process-timeline::before {
+      content: "";
+      position: absolute;
+      left: 28px;
+      top: 36px;
+      bottom: 40px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), rgba(255, 83, 97, 0.15));
+      z-index: 1;
+    }
+
+    .process-item {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 24px;
+      position: relative;
+      z-index: 2;
+      padding: 24px 26px;
+      background: rgba(26, 5, 14, 0.75);
+      border: 1px solid rgba(255, 83, 97, 0.25);
+      border-radius: 20px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: all 0.3s var(--ease);
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+    }
+    .process-item:hover {
+      border-color: rgba(255, 83, 97, 0.55);
+      background: rgba(36, 8, 20, 0.88);
+      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.65), 0 0 25px rgba(255, 83, 97, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .process-icon-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid var(--accent);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      color: var(--accent);
+      box-shadow: 0 0 18px rgba(255, 83, 97, 0.25);
+      transition: all 0.3s var(--ease);
+    }
+    .process-item:hover .process-icon-wrap {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 0 24px rgba(255, 83, 97, 0.5);
+      transform: rotate(6deg) scale(1.06);
+    }
+    .process-icon-wrap svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .process-body {
+      display: flex;
+      flex-direction: column;
+    }
+    .process-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .process-step-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose);
+      background: rgba(255, 83, 97, 0.12);
+      padding: 3px 12px;
+      border-radius: 99px;
+      border: 1px solid rgba(255, 83, 97, 0.3);
+    }
+    .process-heading {
+      font-size: 16.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #ff5361;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+    .process-item:hover .process-heading {
+      color: var(--rose);
+    }
+    .process-desc {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 14px;
+    }
+    .process-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 4px;
+    }
+    .process-chip {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* ---------- RIGHT COLUMN: STICKY FORM CARD ---------- */
+    .services-sidebar {
+      position: sticky;
+      top: 108px;
+    }
+    .contact-card {
+      background: #1a050e; /* solid burgundy matching .cta-band on products */
+      border: 1px solid rgba(255, 83, 97, 0.28);
+      border-radius: 24px;
+      padding: 36px 32px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(104, 2, 2, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 36px;
+      right: 36px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 0 0 4px 4px;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .card-subtitle {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      height: 46px;
+      padding: 0 16px;
+      font-family: inherit;
+      font-size: 13.5px;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      outline: none;
+      transition: border-color .2s, background .2s, box-shadow .2s;
+    }
+    .form-textarea {
+      height: 90px;
+      padding: 12px 16px;
+      resize: vertical;
+    }
+    .form-select option {
+      background: #14050c;
+      color: #ffffff;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: var(--accent);
+      box-shadow: 0 0 16px rgba(255, 83, 97, 0.35);
+    }
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-send {
+      width: 100%;
+      height: 48px;
+      margin-top: 10px;
+      background: linear-gradient(90deg, #ff5361, #ea2b64);
+      border: 0;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 8px 24px rgba(255, 70, 90, 0.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-send:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(255, 70, 90, 0.5);
+    }
+
+    /* Trust indicators below form */
+    .form-trust-strip {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.65);
+    }
+    .trust-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Success Toast Modal */
+    .toast-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s var(--ease);
+      padding: 20px;
+    }
+    .toast-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .toast-box {
+      background: #1a050e;
+      border: 1px solid rgba(255, 83, 97, 0.35);
+      border-radius: 24px;
+      max-width: 440px;
+      width: 100%;
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 83, 97, 0.2);
+      transform: scale(0.92);
+      transition: transform 0.3s var(--ease);
+      color: #fff;
+    }
+    .toast-overlay.active .toast-box {
+      transform: scale(1);
+    }
+    .toast-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: rgba(255, 83, 97, 0.15);
+      border: 1.5px solid rgba(255, 83, 97, 0.4);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 20px rgba(255, 83, 97, 0.3);
+    }
+    .toast-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    .toast-msg {
+      font-size: 14.5px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .toast-close-btn {
+      padding: 11px 32px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(255, 83, 97, 0.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .toast-close-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(255, 83, 97, 0.5);
+    }
+
+    /* ---------- WHY CHOOSE SECTION ---------- */
+    .why-section {
+      background: rgba(10, 3, 6, 0.6);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 80px 24px;
+      border-top: 1px solid rgba(255, 83, 97, 0.18);
+      border-bottom: 1px solid rgba(255, 83, 97, 0.18);
+    }
+    .why-container {
+      width: min(1180px, 92vw);
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .why-head {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+    .why-head h3 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+    .why-head p {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .why-card {
+      background: rgba(26, 5, 14, 0.72);
+      border: 1px solid rgba(255, 83, 97, 0.22);
+      border-radius: 18px;
+      padding: 28px 24px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .why-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 83, 97, 0.15);
+      border-color: rgba(255, 83, 97, 0.45);
+      background: rgba(36, 8, 20, 0.85);
+    }
+    .why-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 83, 97, 0.14);
+      border: 1px solid rgba(255, 83, 97, 0.3);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+    }
+    .why-card h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    .why-card p {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.68);
+      line-height: 1.6;
+    }
+
+    /* ---------- BRAND PARTNER LOGO STRIP ---------- */
+    .brand-strip {
+      background: rgba(8, 2, 4, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 42px 24px;
+      border-top: 1px solid rgba(255, 83, 97, 0.15);
+      border-bottom: 1px solid rgba(255, 83, 97, 0.15);
+      color: #fff;
+    }
+    .brand-strip-inner {
+      width: min(1180px, 92vw);
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 28px;
+    }
+    .brand-strip-text {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.65);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .brand-strip-logos {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .brand-strip-logos img {
+      height: 34px;
+      width: auto;
+      opacity: 1;
+      filter: none;
+      transition: none;
+    }
+    .brand-strip-logos img:hover {
+      opacity: 1;
+      filter: none;
+      transform: none;
+    }
+
+    /* ---------- FOOTER (Matching Theme) ---------- */
+    footer {
+      background: linear-gradient(180deg, rgba(26,6,15,0.95) 0%, rgba(16,4,9,0.98) 50%, #060103 100%);
+      border-top: 1px solid rgba(255,83,97,0.25);
+      box-shadow: 0 -20px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+      color: #fff;
+      padding: 72px 24px 36px;
+      position: relative;
+    }
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,83,97,0.7), transparent);
+      pointer-events: none;
+    }
+    .footer-grid {
+      width: min(1180px, 92vw);
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-brand h4 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+    .footer-brand p {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.55);
+      max-width: 320px;
+    }
+    .footer-col h5 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.68);
+      margin-bottom: 10px;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .footer-col a:hover {
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+    .footer-social-icons {
+      display: flex;
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .footer-social-icons a {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      display: grid;
+      place-items: center;
+      color: rgba(255, 255, 255, 0.75);
+      transition: all 0.25s ease;
+    }
+    .footer-social-icons a:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .footer-bottom {
+      width: min(1180px, 92vw);
+      max-width: 1180px;
+      margin: 48px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.45);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ---------- CUSTOM NEON CURSOR ---------- */
+    .cur {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      margin: -20px 0 0 -20px;
+      border-radius: 50%;
+      border: 1.5px solid #ff3d6e;
+      box-shadow: 0 0 12px #c2184b, 0 0 30px #9a1240, inset 0 0 14px rgba(194, 24, 75, 0.55);
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      transition: width .3s var(--ease), height .3s var(--ease), margin .3s var(--ease), background .3s, opacity .25s;
+    }
+    .cur.dot {
+      width: 8px;
+      height: 8px;
+      margin: -4px 0 0 -4px;
+      background: #ff5a86;
+      border: 0;
+      box-shadow: 0 0 8px #ff2d63, 0 0 22px #c2184b;
+    }
+    .cur.hov {
+      width: 64px;
+      height: 64px;
+      margin: -32px 0 0 -32px;
+      background: rgba(194, 24, 75, 0.16);
+    }
+    .cur.dn {
+      width: 24px;
+      height: 24px;
+      margin: -12px 0 0 -12px;
+    }
+    @media (pointer: fine) { * { cursor: none !important; } }
+    @media (pointer: coarse) { .cur { display: none; } }
+
+    /* ---------- RESPONSIVE MEDIA QUERIES ---------- */
+    @media (max-width: 1024px) {
+      .services-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+      .services-content { padding-right: 0; }
+      .services-sidebar { position: static; max-width: 600px; margin: 0 auto; width: 100%; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 820px) {
+      .mobile-toggle { display: flex; }
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(8, 2, 4, 0.98);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        padding: 40px 24px;
+        z-index: 200;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .nav-menu.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .nav-link { font-size: 19px; }
+      .dropdown-menu {
+        position: static;
+        transform: none !important;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        width: 100%;
+        margin-top: 10px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .btn-contact { display: none; }
+      .gh-modal { display: none; }
+      .brand-logo img { width: 56px; height: 56px; }
+      .services-hero-banner { padding: 50px 20px 60px; }
+      .hero-stats-strip { gap: 20px; }
+      .process-item { grid-template-columns: 1fr; gap: 16px; padding: 20px; }
+      .process-timeline::before { display: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .brand-strip-inner { justify-content: center; text-align: center; }
+      .brand-strip-logos { justify-content: center; }
+    }
+    button,a[class*="btn"],.cta,.gh-modal-btn,.pill{background-repeat:no-repeat!important;background-position:bottom!important;background-size:100% 0%!important;transition:background-size .45s cubic-bezier(.16,1,.3,1),color .25s ease,transform .25s ease}
+    button:hover,button:focus-visible,a[class*="btn"]:hover,a[class*="btn"]:focus-visible,.cta:hover,.cta:focus-visible,.gh-modal-btn:hover,.gh-modal-btn:focus-visible,.pill:hover{background-image:linear-gradient(#c51e46,#c51e46)!important;background-size:100% 100%!important}
+  </style>
+  <link rel="stylesheet" href="assets/css/site-header.css">
+  <link rel="stylesheet" href="assets/css/motion.css">
+</head>
+<body>
+
+  <!-- SHARED HEADER -->
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand-logo" href="index.html" aria-label="Limons Home">
+        <img src="assets/images/brand/Horizontal Logo.png" alt="Limons" onerror="this.classList.add('bad')">
+        <span class="brand-fallback">Limons</span>
+      </a>
+
+      <!-- UNIFIED NAVIGATION -->
+      <nav class="nav-menu" id="mainNav" aria-label="Primary navigation">
+        <a class="nav-link" href="our-apps.html">Our Work</a>
+
+        <!-- SERVICES DROPDOWN -->
+        <div class="nav-item-dropdown">
+          <a class="nav-link" href="custom-app-development.html" aria-haspopup="true" aria-expanded="false">
+            Services
+            <svg class="drop-arrow" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
+          </a>
+          <div class="dropdown-menu" role="menu">
+            <a class="dropdown-item" href="custom-app-development.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M11 18.5h2"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">Custom App Development</span>
+                <span class="drop-desc">Bespoke iOS, Android &amp; cloud apps</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="our-apps.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.2" height="7.2" rx="1.6"/><rect x="13.8" y="3" width="7.2" height="7.2" rx="1.6"/><rect x="3" y="13.8" width="7.2" height="7.2" rx="1.6"/><rect x="13.8" y="13.8" width="7.2" height="7.2" rx="1.6"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">Our Apps</span>
+                <span class="drop-desc">10+ years of mobile app case studies</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- PRODUCTS DROPDOWN -->
+        <div class="nav-item-dropdown">
+          <a class="nav-link" href="product1.html" aria-haspopup="true" aria-expanded="false">
+            Products
+            <svg class="drop-arrow" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
+          </a>
+          <div class="dropdown-menu" role="menu">
+            <a class="dropdown-item" href="product1.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="13" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">Social TV</span>
+                <span class="drop-desc">Interactive engagement platform</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="product2.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-14 5.3L4 16"/><path d="M4 20v-4h4"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">File Sync</span>
+                <span class="drop-desc">Real-time mobile file synchronization</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="product3.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">On-Demand</span>
+                <span class="drop-desc">Real-time matching &amp; dispatch</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="product4.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path class="solid" d="M10 9.2v5.6l5-2.8-5-2.8z"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">Video Player</span>
+                <span class="drop-desc">Monetization &amp; streaming SDK</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a class="nav-link" href="our-apps.html">Resources</a>
+        <a class="nav-link" href="index.html#trust">About</a>
+        <a class="mobile-contact nav-link" href="#contact-form">Get in Touch<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13L13 3M5 3h8v8"/></svg></a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="gh-hover">
+          <a class="gh-trigger" href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="Open Source on GitHub">
+            <img src="assets/images/brand/github-icon.png" alt="">
+          </a>
+          <div class="gh-modal" role="tooltip">
+            <div class="gh-modal-mark"><img src="assets/images/brand/github-icon.png" alt=""></div>
+            <h4>Open Source</h4>
+            <p>Check out our GitHub profile to explore our development tools, frameworks and open source contributions.</p>
+            <a class="gh-modal-btn" href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.23 0 1.61-.01 2.91-.01 3.31 0 .32.22.7.83.58C20.56 22.1 24 17.6 24 12.3 24 5.67 18.63.3 12 .3z"/></svg>
+              View on Github
+            </a>
+          </div>
+        </div>
+        <a class="btn-contact" href="#contact-form">
+          Get in Touch
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13L13 3M5 3h8v8"/></svg>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO BANNER (Matches Screenshot 1 Banner) -->
+  <section class="services-hero-banner">
+    <div class="hero-banner-inner">
+      <div class="hero-badge mo-badge">
+        <span class="hero-badge-dot"></span>
+        Services · Engineering &amp; Strategy
+      </div>
+      <h1 class="hero-banner-title mo-reveal">Custom Mobile Development Services</h1>
+      <p class="hero-banner-sub mo-reveal mo-s2">
+        End-to-end bespoke mobile application architecture, UI/UX craftsmanship, and scalable cloud engineering for ambitious enterprises worldwide.
+      </p>
+
+      <div class="hero-stats-strip" data-mo-stagger>
+        <div class="hero-stat-item mo-reveal">
+          <div class="hero-stat-num">100+</div>
+          <div class="hero-stat-label">Mobile &amp; Cloud<br>Projects Shipped</div>
+        </div>
+        <div class="hero-stat-item mo-reveal">
+          <div class="hero-stat-num">2009</div>
+          <div class="hero-stat-label">Riding The Mobile Wave<br>Since App Store Inception</div>
+        </div>
+        <div class="hero-stat-item mo-reveal">
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">Native &amp; Cross-Platform<br>Technical Excellence</div>
+        </div>
+        <div class="hero-stat-item mo-reveal">
+          <div class="hero-stat-num">24/7</div>
+          <div class="hero-stat-label">Dedicated SLA<br>&amp; Long-Term Evolution</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT & FORM (Matches Screenshot 1 Body) -->
+  <main class="services-main">
+    <div class="services-container">
+      
+      <!-- LEFT COLUMN -->
+      <div class="services-content">
+        <span class="content-eyebrow mo-reveal">Bespoke Engineering Solutions</span>
+        <h2 class="content-heading mo-reveal mo-s1">
+          Is your company looking to create an app that's not part of our existing product lineup?
+        </h2>
+
+        <p class="intro-paragraph mo-reveal mo-s2">
+          No worries, we've got you covered. We're not bragging but we've seen and built pretty much everything. We started riding the mobile wave back in 2009 right after the App Store's launch and since then we've been directly involved with over 100 mobile and cloud projects of all shapes and sizes.
+        </p>
+
+        <p class="intro-paragraph mo-reveal mo-s2">
+          We've constantly iterated on our process, engaged with the latest, best in class technologies and stacks to get the best results for you.
+        </p>
+
+        <!-- Tech Stack Pill Group (UX Boost) -->
+        <div class="tech-pill-group mo-reveal">
+          <div class="tech-pill-title">Core Technology Ecosystem &amp; Stacks</div>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>iOS (Swift &amp; SwiftUI)</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>Android (Kotlin &amp; Compose)</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>Cross-Platform (Flutter / React Native)</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>Real-Time WebSockets</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>HLS &amp; DASH Media Streaming</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>Node.js &amp; Go Backends</span>
+          <span class="tech-pill"><span class="tech-pill-dot"></span>AWS / Google Cloud Infrastructure</span>
+        </div>
+
+        <div class="workflow-divider"></div>
+        <h3 class="workflow-title mo-reveal">Our process and workflow:</h3>
+
+        <!-- 4 Process Steps -->
+        <div class="process-timeline">
+          
+          <!-- Step 1 -->
+          <article class="process-item mo-reveal mo-card" id="step-1">
+            <div class="process-icon-wrap" aria-hidden="true">
+              <!-- Edit/Pen Circle Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+            </div>
+            <div class="process-body">
+              <div class="process-header-row">
+                <h4 class="process-heading">DEFINING THE APP'S GOAL &amp; FEATURE SET</h4>
+                <span class="process-step-tag">Phase 01</span>
+              </div>
+              <p class="process-desc">
+                The first phase of your project is to clearly define the app's scope, shape and functionality. We believe in lean approaches where features are carefully chosen and tested with users instead of throwing everything and the kitchen sink into the app from day one. Our years of experience makes this step painless for you and organization.
+              </p>
+              <div class="process-chips">
+                <span class="process-chip">Scope Definition</span>
+                <span class="process-chip">Lean MVP Matrix</span>
+                <span class="process-chip">Technical Feasibility</span>
+                <span class="process-chip">Target User Personas</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Step 2 -->
+          <article class="process-item mo-reveal mo-card" id="step-2">
+            <div class="process-icon-wrap" aria-hidden="true">
+              <!-- UI/UX Crop/Artboard Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2v14a2 2 0 0 0 2 2h14"/>
+                <path d="M18 22V8a2 2 0 0 0-2-2H2"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <div class="process-body">
+              <div class="process-header-row">
+                <h4 class="process-heading">UI / UX DESIGN</h4>
+                <span class="process-step-tag">Phase 02</span>
+              </div>
+              <p class="process-desc">
+                Once we have the app structure in place the next step is sketching the design. Our dedicated UI / UX team will deliver a beautiful design with carefully selected graphics, fonts and colors – trust us, it will be so good you'll actually want to lick it! After we agree on the final form of the design and you approve it – we're ready to start building the app.
+              </p>
+              <div class="process-chips">
+                <span class="process-chip">Interactive Prototypes</span>
+                <span class="process-chip">Design System</span>
+                <span class="process-chip">Fluid Micro-Animations</span>
+                <span class="process-chip">User Testing &amp; Sign-off</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Step 3 -->
+          <article class="process-item mo-reveal mo-card" id="step-3">
+            <div class="process-icon-wrap" aria-hidden="true">
+              <!-- Code brackets Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            <div class="process-body">
+              <div class="process-header-row">
+                <h4 class="process-heading">APP DEVELOPMENT</h4>
+                <span class="process-step-tag">Phase 03</span>
+              </div>
+              <p class="process-desc">
+                Successful apps are well built apps that need a high quality code base and excellent code architecture. Our tech wizards team is capable of delivering native mobile applications for iOS, Android and Windows platforms that are incredible performant, fast and reliable.
+              </p>
+              <div class="process-chips">
+                <span class="process-chip">Native Swift &amp; Kotlin</span>
+                <span class="process-chip">Clean Modular Architecture</span>
+                <span class="process-chip">Automated CI/CD Builds</span>
+                <span class="process-chip">Security &amp; Encryption</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Step 4 -->
+          <article class="process-item mo-reveal mo-card" id="step-4">
+            <div class="process-icon-wrap" aria-hidden="true">
+              <!-- Circular Sync/Maintenance Icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"/>
+                <polyline points="1 20 1 14 7 14"/>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+              </svg>
+            </div>
+            <div class="process-body">
+              <div class="process-header-row">
+                <h4 class="process-heading">MAINTENANCE</h4>
+                <span class="process-step-tag">Phase 04</span>
+              </div>
+              <p class="process-desc">
+                Having an app launched doesn't mean that our mission has ended. In order to provide a consistent experience to your users throughout the app's life it is important to keep the app updated for continuously OS changes while refreshing its feature set based on the data points collected from analytics. We're committed to long term relationships so once you launch an app with us you know that you'll never have to face mobile challenges alone.
+              </p>
+              <div class="process-chips">
+                <span class="process-chip">Zero-Downtime OS Support</span>
+                <span class="process-chip">Analytics &amp; KPI Tracking</span>
+                <span class="process-chip">Performance Optimization</span>
+                <span class="process-chip">SLA &amp; Cloud Monitoring</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: STICKY FORM -->
+      <aside class="services-sidebar">
+        <div class="contact-card mo-reveal mo-card" id="contact-form">
+          <h3 class="card-title">GET IN TOUCH</h3>
+          <p class="card-subtitle">Tell us about your project requirements and receive a detailed consultation.</p>
+
+          <form id="projectInquiryForm" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+              <label for="client_name">Name *</label>
+              <input type="text" id="client_name" name="name" class="form-input" placeholder="Your full name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="client_email">E-mail address *</label>
+              <input type="email" id="client_email" name="email" class="form-input" placeholder="name@company.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="client_phone">Phone number</label>
+              <input type="tel" id="client_phone" name="phone" class="form-input" placeholder="+1 (555) 000-0000">
+            </div>
+
+            <div class="form-group">
+              <label for="client_company">Company name</label>
+              <input type="text" id="client_company" name="company" class="form-input" placeholder="Your company or organization">
+            </div>
+
+            <div class="form-group">
+              <label for="client_employees">Number of employees</label>
+              <select id="client_employees" name="employees" class="form-select">
+                <option value="" disabled selected>Select company size</option>
+                <option value="1-10">1 – 10 employees</option>
+                <option value="11-50">11 – 50 employees</option>
+                <option value="51-200">51 – 200 employees</option>
+                <option value="201-500">201 – 500 employees</option>
+                <option value="500+">500+ employees (Enterprise)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="client_country">Country</label>
+              <select id="client_country" name="country" class="form-select">
+                <option value="" disabled selected>Select country</option>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Germany">Germany</option>
+                <option value="France">France</option>
+                <option value="Romania">Romania</option>
+                <option value="Slovakia">Slovakia</option>
+                <option value="Sweden">Sweden</option>
+                <option value="Norway">Norway</option>
+                <option value="Austria">Austria</option>
+                <option value="Switzerland">Switzerland</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+                <option value="Other">Other Country</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="client_details">Project Overview (Optional)</label>
+              <textarea id="client_details" name="details" class="form-textarea" placeholder="Tell us briefly about your app goals, timeline or budget..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-send" id="sendBtn">
+              <span>SEND</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M10 4l4 4-4 4"/></svg>
+            </button>
+          </form>
+
+          <div class="form-trust-strip">
+            <div class="trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>100% Confidential · Strict NDA protection</span>
+            </div>
+            <div class="trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Prompt response within 24 business hours</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- WHY CHOOSE SECTION -->
+  <section class="why-section" id="why-us">
+    <div class="why-container">
+      <div class="why-head mo-reveal">
+        <span class="content-eyebrow">Enterprise Advantage</span>
+        <h3>Why Leading Brands Choose Limons</h3>
+        <p>We blend deep native engineering proficiency with relentless focus on UI design and client collaboration.</p>
+      </div>
+
+      <div class="why-grid" data-mo-stagger>
+        <div class="why-card mo-reveal mo-card">
+          <div class="why-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h4>Full Senior Team</h4>
+          <p>Direct interaction with seasoned mobile architects, senior UI/UX directors, and cloud DevOps specialists.</p>
+        </div>
+
+        <div class="why-card mo-reveal mo-card">
+          <div class="why-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h4>Sub-Second Latency</h4>
+          <p>Engineered for high-concurrency live voting, real-time media synchronization, and massive broadcast peaks.</p>
+        </div>
+
+        <div class="why-card mo-reveal mo-card">
+          <div class="why-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h4>Multi-Platform Mastery</h4>
+          <p>Flawless native iOS, Android, and Windows delivery with consistent design language and unified backend APIs.</p>
+        </div>
+
+        <div class="why-card mo-reveal mo-card">
+          <div class="why-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h4>Full IP Ownership</h4>
+          <p>You retain 100% of the code, intellectual property, documentation, design files, and deployment keys from day one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND CLIENT LOGO STRIP -->
+  <section class="brand-strip mo-reveal">
+    <div class="brand-strip-inner">
+      <span class="brand-strip-text">Trusted by premier broadcasters and media networks</span>
+      <div class="brand-strip-logos">
+        <img src="assets/images/testimonials/testimonial_p7s1.png" alt="ProSiebenSat.1">
+        <img src="assets/images/testimonials/testimonial_sport1.png" alt="Sport1">
+        <img src="assets/images/testimonials/testimonial_markiza.png" alt="Markiza">
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIFIED FOOTER (Matches Theme and Screenshot) -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Limons</h4>
+        <p>Premium mobile applications, second screen entertainment architectures, and cloud solutions engineered for millions of users.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Products</h5>
+        <a href="product1.html">Social TV (Telly)</a>
+        <a href="product2.html">File Sync</a>
+        <a href="product3.html">On-Demand</a>
+        <a href="product4.html">Video Player (Veeplay)</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="custom-app-development.html" style="color: #fff; font-weight: 600;">Custom App Development</a>
+        <a href="our-apps.html">Our Apps</a>
+        <a href="our-apps.html#portfolio">Case Studies</a>
+        <a href="#contact-form">Consulting</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>About</h5>
+        <a href="index.html#trust">Company</a>
+        <a href="index.html#trust">Partners</a>
+        <a href="index.html">Press Room</a>
+        <a href="#contact-form">Contact Us</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">Find us on:</p>
+        <div class="footer-social-icons">
+          <a href="#" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Limons (Appscend). All rights reserved.</span>
+      <span>Custom Mobile Development Services · Engineered for High Concurrency</span>
+    </div>
+  </footer>
+
+  <!-- SUBMISSION FEEDBACK MODAL -->
+  <div class="toast-overlay" id="successToast">
+    <div class="toast-box">
+      <div class="toast-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3 class="toast-title">Inquiry Received!</h3>
+      <p class="toast-msg">
+        Thank you for reaching out. Our solution architects are reviewing your specifications and will respond within 24 business hours.
+      </p>
+      <button class="toast-close-btn" onclick="closeToast()">Done</button>
+    </div>
+  </div>
+
+  <!-- CUSTOM NEON FOLLOWER CURSOR -->
+  <div class="cur" id="cur"></div>
+  <div class="cur dot" id="dot"></div>
+
+  <script>
+    // Form handling with feedback modal
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('sendBtn');
+      btn.innerHTML = '<span>SENDING...</span>';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = '<span>SENT!</span>';
+        document.getElementById('successToast').classList.add('active');
+        document.getElementById('projectInquiryForm').reset();
+        setTimeout(() => {
+          btn.innerHTML = '<span>SEND</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M10 4l4 4-4 4"/></svg>';
+          btn.disabled = false;
+        }, 1500);
+      }, 700);
+    }
+
+    function closeToast() {
+      document.getElementById('successToast').classList.remove('active');
+    }
+
+    // Mobile nav toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mainNav = document.getElementById('mainNav');
+    if (mobileToggle && mainNav) {
+      mobileToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('open');
+        mobileToggle.classList.toggle('open');
+      });
+    }
+
+    // Neon Cursor Follower
+    (() => {
+      let px = innerWidth / 2, py = innerHeight / 2, cx = px, cy = py;
+      const cur = document.getElementById('cur'), dot = document.getElementById('dot');
+      const showCursor = v => { if (cur && dot) cur.style.opacity = dot.style.opacity = v; };
+
+      addEventListener('pointermove', e => {
+        px = e.clientX; py = e.clientY; showCursor(1);
+        if (dot) dot.style.transform = `translate(${px}px,${py}px)`;
+        if (cur) cur.classList.toggle('hov', !!(e.target.closest && e.target.closest('a,button,input,select,textarea,.process-item,.why-card')));
+      });
+      addEventListener('pointerdown', () => cur && cur.classList.add('dn'));
+      addEventListener('pointerup', () => cur && cur.classList.remove('dn'));
+      document.documentElement.addEventListener('mouseleave', () => showCursor(0));
+      document.documentElement.addEventListener('mouseenter', () => showCursor(1));
+
+      (function follow() {
+        cx += (px - cx) * 0.16; cy += (py - cy) * 0.16;
+        if (cur) cur.style.transform = `translate(${cx}px,${cy}px)`;
+        requestAnimationFrame(follow);
+      })();
+    })();
+  </script>
+  <script src="assets/js/motion.js"></script>
+</body>
+</html>

@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Our Apps — Over 10 years of experience in building mobile applications for tier-1 broadcasters, telecoms, logistics leaders, and digital enterprises.">
+  <title>Our Apps | 10 Years Building Mobile Apps | Limons</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --u: min(100vw / 1672, 100vh / 941);
+      --ease: cubic-bezier(.16, 1, .3, 1);
+      --accent: #ff5361;
+      --accent-2: #ea2b64;
+      --accent-glow: rgba(255, 83, 97, 0.35);
+      --rose: #f6a2aa;
+      --ink: #ffffff;
+      --ink-secondary: rgba(255, 255, 255, 0.78);
+      --ink-muted: rgba(255, 255, 255, 0.52);
+      --white: #ffffff;
+      --paper: #060204;
+      --bg-subtle: rgba(255, 255, 255, 0.04);
+      --bg-dark: #060204;
+      --card-border: rgba(255, 83, 97, 0.25);
+      --line: rgba(255, 255, 255, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #9A1E23 #0a0304;
+    }
+    ::-webkit-scrollbar { width: 9px; height: 9px; }
+    ::-webkit-scrollbar-track { background: #0a0304; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(#c2244a, #680202);
+      border-radius: 99px;
+      border: 2px solid #0a0304;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(#ff3d6e, #9A1E23); }
+
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+      background-color: #060204;
+      background-image: url("assets/images/shared/Product page bg.png");
+      background-attachment: fixed;
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .abs { position: absolute; }
+
+    /* ---------- SHARED HEADER / NAVBAR (same as home page) ---------- */
+    .site-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 150;
+      background: transparent;
+      border: 0;
+    }
+    .header-inner {
+      position: relative;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      height: 108px;
+      padding: 0;
+    }
+
+    .brand-logo,
+    .logo {
+      position: absolute;
+      left: calc(var(--u)*64);
+      top: calc(var(--u)*6);
+      display: flex;
+      align-items: center;
+      z-index: 100;
+      text-decoration: none;
+    }
+    .brand-logo img,
+    .logo img {
+      height: calc(var(--u)*104);
+      width: calc(var(--u)*104);
+      display: block;
+      object-fit: cover;
+      object-position: 5% center;
+      border-radius: 50%;
+      clip-path: circle(46% at 50% 50%);
+    }
+    .brand-fallback,
+    .logo .fallback {
+      display: none;
+      font-size: calc(var(--u)*25);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #fff;
+    }
+    .brand-logo img.bad,
+    .logo img.bad { display: none; }
+    .brand-logo img.bad + .brand-fallback,
+    .logo img.bad + .fallback { display: block; }
+
+    .nav-menu,
+    .nav {
+      position: absolute;
+      top: calc(var(--u)*36);
+      left: calc(var(--u)*470);
+      width: calc(var(--u)*740);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(var(--u)*36);
+      z-index: 90;
+      pointer-events: auto;
+    }
+    .nav-link {
+      font-size: calc(var(--u)*19.5);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.72);
+      text-decoration: none;
+      transition: color 0.25s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: calc(var(--u)*6);
+      cursor: pointer;
+    }
+    .nav-link:hover,
+    .nav-link.on {
+      color: #fff;
+    }
+    .nav-link.on {
+      color: var(--accent);
+    }
+    .drop-arrow {
+      width: calc(var(--u)*10);
+      height: calc(var(--u)*6);
+      transition: transform 0.25s var(--ease);
+    }
+
+    .nav-item-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: calc(var(--u)*8) 0;
+    }
+    .nav-item-dropdown:hover .drop-arrow,
+    .nav-item-dropdown:focus-within .drop-arrow { transform: rotate(180deg); }
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(12px);
+      width: calc(var(--u)*360);
+      min-width: 290px;
+      background: rgba(12, 4, 7, 0.96);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 83, 97, 0.35);
+      border-radius: calc(var(--u)*18);
+      padding: calc(var(--u)*10);
+      box-shadow: 0 calc(var(--u)*24) calc(var(--u)*60) rgba(0,0,0,0.8), 0 0 calc(var(--u)*30) rgba(255,83,97,0.18);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
+      z-index: 120;
+    }
+    .nav-item-dropdown:hover .dropdown-menu,
+    .nav-item-dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--u)*12);
+      padding: calc(var(--u)*10) calc(var(--u)*14);
+      border-radius: calc(var(--u)*12);
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      transition: all 0.22s var(--ease);
+    }
+    .dropdown-item:hover {
+      background: rgba(255, 83, 97, 0.18);
+      color: #fff;
+      transform: translateX(calc(var(--u)*4));
+    }
+    .drop-badge {
+      width: calc(var(--u)*32);
+      height: calc(var(--u)*32);
+      border-radius: calc(var(--u)*9);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: grid;
+      place-items: center;
+      color: var(--rose);
+      flex-shrink: 0;
+    }
+    .drop-badge svg {
+      width: calc(var(--u)*16);
+      height: calc(var(--u)*16);
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .drop-badge path.solid,
+    .drop-badge svg.solid { fill: currentColor; stroke: none; }
+    .dropdown-item:hover .drop-badge {
+      background: linear-gradient(135deg, #ff5361, #ea2b64);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 0 calc(var(--u)*12) rgba(255,83,97,0.4);
+    }
+    .drop-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+    .drop-title {
+      font-size: calc(var(--u)*14);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .drop-desc {
+      font-size: calc(var(--u)*11);
+      color: rgba(255, 255, 255, 0.52);
+      margin-top: calc(var(--u)*2);
+      line-height: 1.2;
+    }
+
+    .header-actions,
+    .header-right {
+      position: absolute;
+      left: calc(var(--u)*1286);
+      top: calc(var(--u)*20);
+      display: flex;
+      align-items: center;
+      gap: calc(var(--u)*12);
+      z-index: 110;
+    }
+    .cta,
+    .btn-contact {
+      position: relative;
+      width: calc(var(--u)*172);
+      height: calc(var(--u)*57);
+      border: calc(var(--u)*1.6) solid #c04057;
+      border-radius: 99px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(var(--u)*9);
+      font-size: calc(var(--u)*18.5);
+      font-weight: 500;
+      color: #fff;
+      text-decoration: none;
+      background: rgba(80, 10, 20, 0.25);
+      transition: background 0.35s, box-shadow 0.35s, transform 0.2s;
+    }
+    .cta:hover,
+    .btn-contact:hover {
+      background: rgba(192, 64, 87, 0.35);
+      box-shadow: 0 0 calc(var(--u)*30) rgba(192,64,87,.45);
+      transform: translateY(-1px);
+    }
+    .cta svg,
+    .btn-contact svg,
+    .arr {
+      width: calc(var(--u)*15);
+      height: calc(var(--u)*15);
+    }
+    .gh-hover {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding-bottom: calc(var(--u)*6);
+    }
+    .gh-trigger {
+      width: calc(var(--u)*50);
+      height: calc(var(--u)*50);
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      transition: transform 0.25s var(--ease), filter 0.25s;
+    }
+    .gh-trigger img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 0 calc(var(--u)*10) rgba(243,165,173,.5));
+    }
+    .gh-hover:hover .gh-trigger,
+    .gh-hover:focus-within .gh-trigger {
+      transform: scale(1.07);
+      filter: drop-shadow(0 0 calc(var(--u)*16) rgba(243,165,173,.9));
+    }
+    .gh-modal {
+      position: absolute;
+      top: calc(100% + 2px);
+      right: 0;
+      width: calc(var(--u)*318);
+      min-width: 280px;
+      background: linear-gradient(165deg, rgba(82,16,34,.98), rgba(24,5,12,.98));
+      border: 1px solid rgba(255,83,97,.42);
+      border-radius: calc(var(--u)*18);
+      padding: calc(var(--u)*18);
+      box-shadow: 0 calc(var(--u)*22) calc(var(--u)*50) rgba(0,0,0,.75), 0 0 calc(var(--u)*28) rgba(255,83,97,.2);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0.25s;
+      z-index: 200;
+    }
+    .gh-hover:hover .gh-modal,
+    .gh-hover:focus-within .gh-modal {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: none;
+    }
+    .gh-modal-mark { width: calc(var(--u)*42); height: calc(var(--u)*42); margin-bottom: calc(var(--u)*12); }
+    .gh-modal-mark img { width: 100%; height: 100%; display: block; }
+    .gh-modal h4 { font-size: calc(var(--u)*20); font-weight: 700; color: #fff; margin: 0 0 calc(var(--u)*8); letter-spacing: -0.02em; }
+    .gh-modal p { font-size: calc(var(--u)*13.5); line-height: 1.45; color: rgba(255,255,255,.62); margin: 0 0 calc(var(--u)*14); }
+    .gh-modal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: calc(var(--u)*8);
+      padding: calc(var(--u)*8) calc(var(--u)*14);
+      border-radius: calc(var(--u)*10);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #fff;
+      font-size: calc(var(--u)*13.5);
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s,border-color 0.2s;
+    }
+    .gh-modal-btn:hover { background: rgba(255,83,97,.22); border-color: rgba(255,83,97,.45); }
+    .gh-modal-btn svg { width: calc(var(--u)*16); height: calc(var(--u)*16); fill: currentColor; stroke: none; }
+
+    .mobile-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(25, 7, 12, 0.88);
+      border: 1px solid rgba(255, 83, 97, 0.35);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 210;
+    }
+    .mobile-toggle span {
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .mobile-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .mobile-toggle.open span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 1024px) {
+      .brand-logo,
+      .logo { left: calc(var(--u)*20); top: calc(var(--u)*10); }
+      .brand-logo img,
+      .logo img { height: calc(var(--u)*80); }
+      .nav-menu,
+      .nav { left: calc(var(--u)*140); width: calc(var(--u)*620); gap: calc(var(--u)*20); }
+      .header-actions,
+      .header-right { left: auto; right: calc(var(--u)*20); top: calc(var(--u)*18); gap: calc(var(--u)*10); }
+      .btn-contact,
+      .cta { display: none; }
+      .gh-modal { display: none; }
+    }
+    @media (max-width: 840px) {
+      .nav-menu,
+      .nav { display: none; }
+      .mobile-toggle { display: flex; }
+    }
+
+    /* ---------- HERO BANNER ---------- */
+    .apps-hero-banner {
+      position: relative;
+      background: transparent;
+      color: #ffffff;
+      padding: 76px 24px 84px;
+      text-align: center;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 83, 97, 0.2);
+    }
+    .apps-hero-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(194, 24, 75, 0.25), transparent 70%);
+      pointer-events: none;
+    }
+    .apps-hero-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(1.5px 1.5px at 15% 35%, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(1.5px 1.5px at 85% 45%, rgba(255, 255, 255, 0.35), transparent),
+        radial-gradient(2px 2px at 50% 75%, rgba(255, 83, 97, 0.5), transparent);
+      pointer-events: none;
+    }
+    .hero-banner-inner {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      z-index: 3;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(255, 83, 97, 0.12);
+      border: 1px solid rgba(255, 83, 97, 0.35);
+      border-radius: 99px;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--rose);
+      margin-bottom: 20px;
+    }
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .hero-banner-title {
+      font-size: clamp(32px, 3.8vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      color: #ffffff;
+      margin-bottom: 16px;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+    }
+    .hero-banner-sub {
+      font-size: clamp(15px, 1.25vw, 18px);
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 760px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+    }
+
+    .hero-stats-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .hero-stat-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+    }
+    .hero-stat-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.68);
+      line-height: 1.25;
+    }
+
+    /* ---------- MAIN PORTFOLIO SECTION ---------- */
+    .apps-main {
+      background: transparent;
+      padding: 72px 24px 100px;
+    }
+    .apps-container {
+      width: min(1180px, 92vw);
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .main-heading {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .main-heading-badge {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(255, 83, 97, 0.12);
+      padding: 4px 12px;
+      border-radius: 99px;
+      border: 1px solid rgba(255, 83, 97, 0.3);
+    }
+
+    /* Interactive Filters & Search */
+    .filter-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 99px;
+      border: 1px solid rgba(255, 83, 97, 0.25);
+      background: rgba(26, 5, 14, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.78);
+      cursor: pointer;
+      transition: all 0.25s var(--ease);
+    }
+    .filter-btn:hover {
+      border-color: var(--accent);
+      color: #ffffff;
+      background: rgba(255, 83, 97, 0.2);
+    }
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(255, 83, 97, 0.4);
+    }
+
+    .search-input-wrap {
+      position: relative;
+      min-width: 260px;
+    }
+    .search-input {
+      width: 100%;
+      height: 40px;
+      padding: 0 16px 0 38px;
+      font-family: inherit;
+      font-size: 13.5px;
+      color: #ffffff;
+      background: rgba(10, 2, 6, 0.7);
+      border: 1px solid rgba(255, 83, 97, 0.25);
+      border-radius: 99px;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.45);
+    }
+    .search-input:focus {
+      background: rgba(18, 4, 11, 0.9);
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(255, 83, 97, 0.35);
+    }
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      color: rgba(255, 255, 255, 0.45);
+      pointer-events: none;
+    }
+
+    /* ---------- 2-COLUMN APP SHOWCASE GRID ---------- */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px 36px;
+      margin-bottom: 72px;
+    }
+
+    .app-card {
+      background: rgba(26, 5, 14, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s var(--ease);
+      border: 1px solid rgba(255, 83, 97, 0.22);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+    }
+    .app-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 83, 97, 0.5);
+      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.7), 0 0 24px rgba(255, 83, 97, 0.2);
+    }
+
+    .app-card-visual {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #080204;
+      border-bottom: 1px solid rgba(255, 83, 97, 0.15);
+    }
+    .app-card-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease);
+    }
+    .app-card:hover .app-card-visual img {
+      transform: scale(1.04);
+    }
+
+    .app-card-category-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(13, 4, 8, 0.88);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 83, 97, 0.35);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0;
+      transform: translateY(-6px);
+      transition: all 0.25s ease;
+    }
+    .app-card:hover .app-card-category-tag {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .app-card-content {
+      padding: 24px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .app-card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.015em;
+      margin-bottom: 8px;
+      transition: color 0.2s ease;
+    }
+    .app-card:hover .app-card-title {
+      color: var(--accent);
+    }
+    .app-card-desc {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.65;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+
+    .app-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .btn-read-more {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      transition: all 0.2s ease;
+    }
+    .btn-read-more:hover {
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+    .btn-read-more svg {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.2s ease;
+    }
+    .btn-read-more:hover svg {
+      transform: translateX(3px);
+    }
+
+    .client-tag {
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    /* ---------- BOTTOM CTA BOX ---------- */
+    .cta-dashed-box {
+      border: 1.5px dashed rgba(255, 83, 97, 0.45);
+      border-radius: 16px;
+      background: rgba(26, 5, 14, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 48px 32px;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 83, 97, 0.12);
+      transition: all 0.3s var(--ease);
+    }
+    .cta-dashed-box:hover {
+      border-color: var(--accent);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 32px rgba(255, 83, 97, 0.28);
+      transform: translateY(-2px);
+    }
+    .cta-dashed-icon {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 16px;
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      animation: gentleFloat 3s infinite ease-in-out;
+    }
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .cta-dashed-icon svg {
+      width: 38px;
+      height: 38px;
+    }
+    .cta-dashed-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+    .cta-dashed-desc {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.75);
+      max-width: 480px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+    .btn-describe-project {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 34px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: 1.5px solid transparent;
+      border-radius: 99px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      box-shadow: 0 6px 20px rgba(255, 83, 97, 0.35);
+    }
+    .btn-describe-project:hover {
+      background: linear-gradient(135deg, #ff6b77, #f73871);
+      box-shadow: 0 8px 28px rgba(234, 43, 100, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- MODAL FOR "READ MORE" ---------- */
+    .app-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      padding: 24px;
+      transition: all 0.3s var(--ease);
+    }
+    .app-modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .app-modal-content {
+      background: linear-gradient(180deg, #1b050f 0%, #100308 100%);
+      border: 1px solid rgba(255, 83, 97, 0.35);
+      border-radius: 20px;
+      max-width: 780px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 83, 97, 0.2);
+      position: relative;
+      transform: translateY(20px) scale(0.96);
+      transition: all 0.3s var(--ease);
+      color: #fff;
+    }
+    .app-modal-overlay.open .app-modal-content {
+      transform: translateY(0) scale(1);
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(13, 4, 8, 0.75);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      z-index: 10;
+      transition: all 0.2s ease;
+    }
+    .modal-close-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .modal-banner {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #080305;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 83, 97, 0.2);
+    }
+    .modal-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .modal-body {
+      padding: 32px 36px;
+    }
+    .modal-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .modal-client {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .modal-tags {
+      display: flex;
+      gap: 8px;
+    }
+    .modal-tag {
+      font-size: 11.5px;
+      padding: 3px 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 99px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .modal-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .modal-text {
+      font-size: 15px;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 24px;
+    }
+    .modal-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 83, 97, 0.2);
+    }
+    .modal-metric-num {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+    .modal-metric-label {
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 4px;
+    }
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 14px;
+    }
+    .btn-modal-inquire {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      border: none;
+      border-radius: 99px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(255, 83, 97, 0.35);
+      transition: all 0.25s ease;
+    }
+    .btn-modal-inquire:hover {
+      box-shadow: 0 8px 24px rgba(234, 43, 100, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- BRAND PARTNER LOGO STRIP ---------- */
+    .brand-strip {
+      background: rgba(10, 2, 6, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 42px 24px;
+      border-top: 1px solid rgba(255, 83, 97, 0.15);
+      border-bottom: 1px solid rgba(255, 83, 97, 0.15);
+      color: #fff;
+    }
+    .brand-strip-inner {
+      width: min(1180px, 92vw);
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 28px;
+    }
+    .brand-strip-text {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.65);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .brand-strip-logos {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .brand-strip-logos img {
+      height: 30px;
+      width: auto;
+      opacity: 1;
+      filter: none;
+      transition: none;
+    }
+    .brand-strip-logos img:hover {
+      opacity: 1;
+      filter: none;
+      transform: none;
+    }
+
+    /* ---------- FOOTER (Matching Theme) ---------- */
+    footer {
+      background: #020001;
+      color: #fff;
+      padding: 72px 24px 36px;
+      border-top: 1px solid rgba(255, 83, 97, 0.15);
+    }
+    .footer-grid {
+      width: min(1180px, 92vw);
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-brand h4 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+    .footer-brand p {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.55);
+      max-width: 320px;
+    }
+    .footer-col h5 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.68);
+      margin-bottom: 10px;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .footer-col a:hover {
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+    .footer-social-icons {
+      display: flex;
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .footer-social-icons a {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      display: grid;
+      place-items: center;
+      color: rgba(255, 255, 255, 0.75);
+      transition: all 0.25s ease;
+    }
+    .footer-social-icons a:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .footer-bottom {
+      width: min(1180px, 92vw);
+      max-width: 1180px;
+      margin: 48px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.45);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ---------- CUSTOM NEON CURSOR ---------- */
+    .cur {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      margin: -20px 0 0 -20px;
+      border-radius: 50%;
+      border: 1.5px solid #ff3d6e;
+      box-shadow: 0 0 12px #c2184b, 0 0 30px #9a1240, inset 0 0 14px rgba(194, 24, 75, 0.55);
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      transition: width .3s var(--ease), height .3s var(--ease), margin .3s var(--ease), background .3s, opacity .25s;
+    }
+    .cur.dot {
+      width: 8px;
+      height: 8px;
+      margin: -4px 0 0 -4px;
+      background: #ff5a86;
+      border: 0;
+      box-shadow: 0 0 8px #ff2d63, 0 0 22px #c2184b;
+    }
+    .cur.hov {
+      width: 64px;
+      height: 64px;
+      margin: -32px 0 0 -32px;
+      background: rgba(194, 24, 75, 0.16);
+    }
+    .cur.dn {
+      width: 24px;
+      height: 24px;
+      margin: -12px 0 0 -12px;
+    }
+    @media (pointer: fine) { * { cursor: none !important; } }
+    @media (pointer: coarse) { .cur { display: none; } }
+
+    /* ---------- RESPONSIVE MEDIA QUERIES ---------- */
+    @media (max-width: 900px) {
+      .apps-grid { grid-template-columns: 1fr; gap: 40px; }
+      .modal-metrics-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 820px) {
+      .mobile-toggle { display: flex; }
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(8, 2, 4, 0.98);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        padding: 40px 24px;
+        z-index: 200;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .nav-menu.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .nav-link { font-size: 19px; }
+      .dropdown-menu {
+        position: static;
+        transform: none !important;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        width: 100%;
+        margin-top: 10px;
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .btn-contact { display: none; }
+      .gh-modal { display: none; }
+      .brand-logo img { width: 56px; height: 56px; }
+      .apps-hero-banner { padding: 50px 20px 60px; }
+      .hero-stats-strip { gap: 20px; }
+      .brand-strip-inner { justify-content: center; text-align: center; }
+      .brand-strip-logos { justify-content: center; }
+      .filter-controls { flex-direction: column; align-items: stretch; }
+      .search-input-wrap { width: 100%; }
+    }
+    button,a[class*="btn"],.cta,.gh-modal-btn,.pill{background-repeat:no-repeat!important;background-position:bottom!important;background-size:100% 0%!important;transition:background-size .45s cubic-bezier(.16,1,.3,1),color .25s ease,transform .25s ease}
+    button:hover,button:focus-visible,a[class*="btn"]:hover,a[class*="btn"]:focus-visible,.cta:hover,.cta:focus-visible,.gh-modal-btn:hover,.gh-modal-btn:focus-visible,.pill:hover{background-image:linear-gradient(#c51e46,#c51e46)!important;background-size:100% 100%!important}
+  </style>
+  <link rel="stylesheet" href="assets/css/site-header.css">
+  <link rel="stylesheet" href="assets/css/motion.css">
+</head>
+<body>
+
+  <!-- SHARED HEADER -->
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand-logo" href="index.html" aria-label="Limons Home">
+        <img src="assets/images/brand/Horizontal Logo.png" alt="Limons" onerror="this.classList.add('bad')">
+        <span class="brand-fallback">Limons</span>
+      </a>
+
+      <!-- UNIFIED NAVIGATION -->
+      <nav class="nav-menu" id="mainNav" aria-label="Primary navigation">
+        <a class="nav-link" href="our-apps.html">Our Work</a>
+
+        <!-- SERVICES DROPDOWN -->
+        <div class="nav-item-dropdown">
+          <a class="nav-link on" href="custom-app-development.html" aria-haspopup="true" aria-expanded="false">
+            Services
+            <svg class="drop-arrow" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
+          </a>
+          <div class="dropdown-menu" role="menu">
+            <a class="dropdown-item" href="custom-app-development.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M11 18.5h2"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">Custom App Development</span>
+                <span class="drop-desc">Bespoke iOS, Android &amp; cloud apps</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="our-apps.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7.2" height="7.2" rx="1.6"/><rect x="13.8" y="3" width="7.2" height="7.2" rx="1.6"/><rect x="3" y="13.8" width="7.2" height="7.2" rx="1.6"/><rect x="13.8" y="13.8" width="7.2" height="7.2" rx="1.6"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">Our Apps</span>
+                <span class="drop-desc">10+ years of mobile app case studies</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- PRODUCTS DROPDOWN -->
+        <div class="nav-item-dropdown">
+          <a class="nav-link" href="product1.html" aria-haspopup="true" aria-expanded="false">
+            Products
+            <svg class="drop-arrow" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
+          </a>
+          <div class="dropdown-menu" role="menu">
+            <a class="dropdown-item" href="product1.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="13" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">Social TV</span>
+                <span class="drop-desc">Interactive engagement platform</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="product2.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-14 5.3L4 16"/><path d="M4 20v-4h4"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">File Sync</span>
+                <span class="drop-desc">Real-time mobile file synchronization</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="product3.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">On-Demand</span>
+                <span class="drop-desc">Real-time matching &amp; dispatch</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="product4.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path class="solid" d="M10 9.2v5.6l5-2.8-5-2.8z"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">Video Player</span>
+                <span class="drop-desc">Monetization &amp; streaming SDK</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a class="nav-link" href="our-apps.html">Resources</a>
+        <a class="nav-link" href="index.html#trust">About</a>
+        <a class="mobile-contact nav-link" href="custom-app-development.html#contact-form">Get in Touch<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13L13 3M5 3h8v8"/></svg></a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="gh-hover">
+          <a class="gh-trigger" href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="Open Source on GitHub">
+            <img src="assets/images/brand/github-icon.png" alt="">
+          </a>
+          <div class="gh-modal" role="tooltip">
+            <div class="gh-modal-mark"><img src="assets/images/brand/github-icon.png" alt=""></div>
+            <h4>Open Source</h4>
+            <p>Check out our GitHub profile to explore our development tools, frameworks and open source contributions.</p>
+            <a class="gh-modal-btn" href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.23 0 1.61-.01 2.91-.01 3.31 0 .32.22.7.83.58C20.56 22.1 24 17.6 24 12.3 24 5.67 18.63.3 12 .3z"/></svg>
+              View on Github
+            </a>
+          </div>
+        </div>
+        <a class="btn-contact" href="custom-app-development.html#contact-form">
+          Get in Touch
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13L13 3M5 3h8v8"/></svg>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO BANNER (Matches Screenshot 2 Banner) -->
+  <section class="apps-hero-banner">
+    <div class="hero-banner-inner">
+      <div class="hero-badge mo-badge">
+        <span class="hero-badge-dot"></span>
+        Portfolio &amp; Showcase
+      </div>
+      <h1 class="hero-banner-title mo-reveal">10 years of experience in building mobile apps</h1>
+      <p class="hero-banner-sub mo-reveal mo-s2">
+        Explore a curated selection of our high-concurrency broadcast companion apps, enterprise logistics tools, and digital consumer products.
+      </p>
+
+      <div class="hero-stats-strip" data-mo-stagger>
+        <div class="hero-stat-item mo-reveal">
+          <div class="hero-stat-num">10+</div>
+          <div class="hero-stat-label">Years of Mobile<br>Craftsmanship</div>
+        </div>
+        <div class="hero-stat-item mo-reveal">
+          <div class="hero-stat-num">100+</div>
+          <div class="hero-stat-label">Production Apps<br>Deployed Globally</div>
+        </div>
+        <div class="hero-stat-item mo-reveal">
+          <div class="hero-stat-num">50M+</div>
+          <div class="hero-stat-label">Active Audience<br>Engagements</div>
+        </div>
+        <div class="hero-stat-item mo-reveal">
+          <div class="hero-stat-num">&lt;100ms</div>
+          <div class="hero-stat-label">Real-Time Sync<br>&amp; Voting Tallies</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN APPS SHOWCASE (Matches Screenshot 2 Grid) -->
+  <main class="apps-main" id="portfolio">
+    <div class="apps-container">
+      
+      <!-- Section Header -->
+      <div class="section-header-row mo-reveal">
+        <h2 class="main-heading">
+          Our apps
+          <span class="main-heading-badge" id="appCountBadge">10 Applications</span>
+        </h2>
+      </div>
+
+      <!-- Filter Controls & Search (UX Boost) -->
+      <div class="filter-controls mo-reveal">
+        <div class="filter-pills">
+          <button class="filter-btn active" data-filter="all">All Apps (10)</button>
+          <button class="filter-btn" data-filter="broadcast">Broadcast &amp; TV (4)</button>
+          <button class="filter-btn" data-filter="enterprise">Enterprise &amp; Sales (2)</button>
+          <button class="filter-btn" data-filter="lifestyle">Lifestyle &amp; Media (2)</button>
+          <button class="filter-btn" data-filter="events">Events &amp; Conferences (2)</button>
+        </div>
+
+        <div class="search-input-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="appSearchInput" class="search-input" placeholder="Search apps or clients...">
+        </div>
+      </div>
+
+      <!-- 2-Column Grid of 10 Cards -->
+      <div class="apps-grid" id="appsGrid" data-mo-stagger>
+        
+        <!-- 1. Markiza -->
+        <article class="app-card" data-category="broadcast" data-keywords="markiza tv second screen broadcast live voting tv markiza show">
+          <div class="app-card-visual">
+            <img src="assets/images/portfolio/app_markiza.jpg" alt="Markiza second screen mobile application" loading="lazy">
+            <span class="app-card-category-tag">Broadcast &amp; TV</span>
+          </div>
+          <div class="app-card-content">
+            <h3 class="app-card-title">Markiza</h3>
+            <p class="app-card-desc">
+              A second screen mobile application which helps TV Markiza to better engage their audiences during live TV shows. The application can support more than one show with its own [...]
+            </p>
+            <div class="app-card-footer">
+              <button class="btn-read-more" onclick="openAppModal(0)">
+                READ MORE
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8M9 4l4 4-4 4"/></svg>
+              </button>
+              <span class="client-tag">MARKÍZA TV</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Telekom -->
+        <article class="app-card" data-category="enterprise" data-keywords="telekom voip telecom calling subscription deutsche telekom call">
+          <div class="app-card-visual">
+            <img src="assets/images/portfolio/app_telekom.jpg" alt="Telekom VoIP mobile application" loading="lazy">
+            <span class="app-card-category-tag">Enterprise &amp; Telecom</span>
+          </div>
+          <div class="app-card-content">
+            <h3 class="app-card-title">Telekom</h3>
+            <p class="app-card-desc">
+              A VoIP mobile application developed for Telekom's customers that have a mobile subscription plan with the company. It's really easy to use the app, you just need to login with your [...]
+            </p>
+            <div class="app-card-footer">
+              <button class="btn-read-more" onclick="openAppModal(1)">
+                READ MORE
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8M9 4l4 4-4 4"/></svg>
+              </button>
+              <span class="client-tag">TELEKOM</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Voice of Romania -->
+        <article class="app-card" data-category="broadcast" data-keywords="voice of romania vocea romaniei pro tv singing franchise live vote concert show">
+          <div class="app-card-visual">
+            <img src="assets/images/portfolio/app_voice_romania.jpg" alt="Voice of Romania second screen app" loading="lazy">
+            <span class="app-card-category-tag">Broadcast &amp; TV</span>
+          </div>
+          <div class="app-card-content">
+            <h3 class="app-card-title">Voice of Romania</h3>
+            <p class="app-card-desc">
+              Part of the The Voice franchise, The Voice of Romania is a second screen app for one of the most popular shows in Romania. The app allows users to interact with the show [...]
+            </p>
+            <div class="app-card-footer">
+              <button class="btn-read-more" onclick="openAppModal(2)">
+                READ MORE
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8M9 4l4 4-4 4"/></svg>
+              </button>
+              <span class="client-tag">PRO TV</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Gebrüder Weiss -->
+        <article class="app-card" data-category="enterprise" data-keywords="gebrueder weiss logistics sales transport truck cargo crm manager">
+          <div class="app-card-visual">
+            <img src="assets/images/portfolio/app_gebrueder_weiss.jpg" alt="Gebrüder Weiss sales and logistics application" loading="lazy">
+            <span class="app-card-category-tag">Logistics &amp; Sales</span>
+          </div>
+          <div class="app-card-content">
+            <h3 class="app-card-title">Gebrüder Weiss</h3>
+            <p class="app-card-desc">
+              The Gebrüder Weiss app is a tool for sales agents and sales managers. The app allows its users to enhance their sales techniques, organize their clients, appointments [...]
+            </p>
+            <div class="app-card-footer">
+              <button class="btn-read-more" onclick="openAppModal(3)">
+                READ MORE
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8M9 4l4 4-4 4"/></svg>
+              </button>
+              <span class="client-tag">GEBRÜDER WEISS</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Romania's Got Talent -->
+        <article class="app-card" data-category="broadcast" data-keywords="romania's got talent romanii au talent pro tv entertainment voting stage judges">
+          <div class="app-card-visual">
+            <img src="assets/images/portfolio/app_romani_talent.jpg" alt="Romania's Got Talent mobile companion app" loading="lazy">
+            <span class="app-card-category-tag">Broadcast &amp; TV</span>
+          </div>
+          <div class="app-card-content">
+            <h3 class="app-card-title">Romania's Got Talent</h3>
+            <p class="app-card-desc">
+              Part of the Got Talent franchise, Romania's Got Talent is a second screen app for the most popular show in Romania. The app allows users to interact with the show, vote on [...]
+            </p>
+            <div class="app-card-footer">
+              <button class="btn-read-more" onclick="openAppModal(4)">
+                READ MORE
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8M9 4l4 4-4 4"/></svg>
+              </button>
+              <span class="client-tag">PRO TV</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. IABM -->
+        <article class="app-card" data-category="events" data-keywords="iabm broadcast media technology conference attendees summit event q&a">
+          <div class="app-card-visual">
+            <img src="assets/images/portfolio/app_iabm.jpg" alt="IABM event companion mobile application" loading="lazy">
+            <span class="app-card-category-tag">Events &amp; Summits</span>
+          </div>
+          <div class="app-card-content">
+            <h3 class="app-card-title">IABM</h3>
+            <p class="app-card-desc">
+              A second screen mobile application that helps IABM to better interact with their members and conferences' attendees they participate and organize. The app allows the users to participate [...]
+            </p>
+            <div class="app-card-footer">
+              <button class="btn-read-more" onclick="openAppModal(5)">
+                READ MORE
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8M9 4l4 4-4 4"/></svg>
+              </button>
+              <span class="client-tag">IABM</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. VN Rezepte -->
+        <article class="app-card" data-category="lifestyle" data-keywords="vn rezepte cooking recipes food gourmet kitchen russ media culinary">
+          <div class="app-card-visual">
+            <img src="assets/images/portfolio/app_vn_rezepte.jpg" alt="VN Rezepte cooking and gourmet recipes application" loading="lazy">
+            <span class="app-card-category-tag">Lifestyle &amp; Food</span>
+          </div>
+          <div class="app-card-content">
+            <h3 class="app-card-title">VN Rezepte</h3>
+            <p class="app-card-desc">
+              VN rezepte is an app that helps users find cooking recipes and acts as a resource tool for gourmets around the world. There are lots of amazing free and paid recipes [...]
+            </p>
+            <div class="app-card-footer">
+              <button class="btn-read-more" onclick="openAppModal(6)">
+                READ MORE
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8M9 4l4 4-4 4"/></svg>
+              </button>
+              <span class="client-tag">RUSS MEDIA</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8. Viasat Golf Card -->
+        <article class="app-card" data-category="lifestyle" data-keywords="viasat golf card scandinavia norway sweden courses sports score map">
+          <div class="app-card-visual">
+            <img src="assets/images/portfolio/app_viasat_golf.jpg" alt="Viasat Golf Card mobile app" loading="lazy">
+            <span class="app-card-category-tag">Sports &amp; Lifestyle</span>
+          </div>
+          <div class="app-card-content">
+            <h3 class="app-card-title">Viasat Golf Card</h3>
+            <p class="app-card-desc">
+              If you are a golf player from Norway or Sweden you might love this app. There are all the golf courses described, details about their location, video clips that present the golf [...]
+            </p>
+            <div class="app-card-footer">
+              <button class="btn-read-more" onclick="openAppModal(7)">
+                READ MORE
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8M9 4l4 4-4 4"/></svg>
+              </button>
+              <span class="client-tag">VIASAT</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 9. Romania TV -->
+        <article class="app-card" data-category="broadcast" data-keywords="romania tv rtv streaming news articles media live video broadcast">
+          <div class="app-card-visual">
+            <img src="assets/images/portfolio/app_romania_tv.jpg" alt="Romania TV live news streaming application" loading="lazy">
+            <span class="app-card-category-tag">Media &amp; Streaming</span>
+          </div>
+          <div class="app-card-content">
+            <h3 class="app-card-title">Romania TV</h3>
+            <p class="app-card-desc">
+              Romania TV is a streaming app for media content news and special articles. From getting the latest news, browsing content categories and sharing favorite articles, Romania TV [...]
+            </p>
+            <div class="app-card-footer">
+              <button class="btn-read-more" onclick="openAppModal(8)">
+                READ MORE
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8M9 4l4 4-4 4"/></svg>
+              </button>
+              <span class="client-tag">ROMANIA TV</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 10. Webit Congress -->
+        <article class="app-card" data-category="events" data-keywords="webit congress international tech event digital summit conference design.bg">
+          <div class="app-card-visual">
+            <img src="assets/images/portfolio/app_webit_congress.jpg" alt="Webit Congress event and summit app" loading="lazy">
+            <span class="app-card-category-tag">Events &amp; Conferences</span>
+          </div>
+          <div class="app-card-content">
+            <h3 class="app-card-title">Webit Congress</h3>
+            <p class="app-card-desc">
+              Webit Congress is an event application dedicated for one of the most important events of the year. Webit Congress is an international event for the digital, technology [...]
+            </p>
+            <div class="app-card-footer">
+              <button class="btn-read-more" onclick="openAppModal(9)">
+                READ MORE
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8M9 4l4 4-4 4"/></svg>
+              </button>
+              <span class="client-tag">DESIGN.BG</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- BOTTOM DASHED CTA CARD (Matches Screenshot 2 Bottom Card) -->
+      <div class="cta-dashed-box mo-reveal mo-card">
+        <div class="cta-dashed-icon">
+          <!-- Crossed Wrench / Tool Icon in Orange -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <h3 class="cta-dashed-title">LOOKING TO HAVE A CUSTOM APP BUILT?</h3>
+        <p class="cta-dashed-desc">
+          If you're looking to build something and need an experienced team, drop us a note and we'll be sure to answer quickly.
+        </p>
+        <a href="custom-app-development.html#contact-form" class="btn-describe-project">
+          DESCRIBE YOUR PROJECT
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- BRAND CLIENT LOGO STRIP -->
+  <section class="brand-strip mo-reveal">
+    <div class="brand-strip-inner">
+      <span class="brand-strip-text">Trusted by premier broadcasters and media networks</span>
+      <div class="brand-strip-logos">
+        <img src="assets/images/testimonials/testimonial_p7s1.png" alt="ProSiebenSat.1">
+        <img src="assets/images/testimonials/testimonial_sport1.png" alt="Sport1">
+        <img src="assets/images/testimonials/testimonial_markiza.png" alt="Markiza">
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIFIED FOOTER (Matches Theme and Screenshot) -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Limons</h4>
+        <p>Premium mobile applications, second screen entertainment architectures, and cloud solutions engineered for millions of users.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Products</h5>
+        <a href="product1.html">Social TV (Telly)</a>
+        <a href="product2.html">File Sync</a>
+        <a href="product3.html">On-Demand</a>
+        <a href="product4.html">Video Player (Veeplay)</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="custom-app-development.html">Custom App Development</a>
+        <a href="our-apps.html" style="color: #fff; font-weight: 600;">Our Apps</a>
+        <a href="#portfolio">Case Studies</a>
+        <a href="custom-app-development.html#contact-form">Consulting</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>About</h5>
+        <a href="index.html#trust">Company</a>
+        <a href="index.html#trust">Partners</a>
+        <a href="index.html">Press Room</a>
+        <a href="custom-app-development.html#contact-form">Contact Us</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">Find us on:</p>
+        <div class="footer-social-icons">
+          <a href="#" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Limons (Appscend). All rights reserved.</span>
+      <span>10 Years of Experience in Building Mobile Apps</span>
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE APP DETAIL QUICK VIEW MODAL (UX Enhancement) -->
+  <div class="app-modal-overlay" id="appModalOverlay" onclick="closeAppModal(event)">
+    <div class="app-modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeAppModal()" aria-label="Close modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="modal-banner">
+        <img id="modalImg" src="" alt="App Preview">
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-meta-row">
+          <span class="modal-client" id="modalClient">CLIENT</span>
+          <div class="modal-tags" id="modalTags"></div>
+        </div>
+
+        <h3 class="modal-title" id="modalTitle">App Title</h3>
+        <p class="modal-text" id="modalDesc">Detailed description...</p>
+
+        <div class="modal-metrics-grid">
+          <div>
+            <div class="modal-metric-num" id="modalMetric1">500k+</div>
+            <div class="modal-metric-label" id="modalMetricLabel1">Live Concurrent Users</div>
+          </div>
+          <div>
+            <div class="modal-metric-num" id="modalMetric2">&lt; 150ms</div>
+            <div class="modal-metric-label" id="modalMetricLabel2">Live Voting Latency</div>
+          </div>
+          <div>
+            <div class="modal-metric-num" id="modalMetric3">4.8 ★</div>
+            <div class="modal-metric-label" id="modalMetricLabel3">Store Rating</div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <a href="custom-app-development.html#contact-form" class="btn-modal-inquire">
+            <span>Inquire About A Similar App</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M10 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM NEON FOLLOWER CURSOR -->
+  <div class="cur" id="cur"></div>
+  <div class="cur dot" id="dot"></div>
+
+  <script>
+    // App Case Studies Data for Modal
+    const appData = [
+      {
+        title: "Markiza TV Second Screen",
+        client: "Markíza TV (CME Group)",
+        category: "Broadcast & TV",
+        image: "assets/images/portfolio/app_markiza.jpg",
+        tags: ["iOS", "Android", "WebSockets", "Live Polling"],
+        description: "A comprehensive second-screen mobile companion application engineered for TV Markiza. The platform allows hundreds of thousands of live viewers to vote simultaneously on contestants, participate in synchronized multi-round trivia games, and browse exclusive backstage video content during live prime-time broadcasts.",
+        m1: "1.2M+", ml1: "Active App Downloads",
+        m2: "< 95ms", ml2: "Vote Aggregation Speed",
+        m3: "99.99%", ml3: "Live Show Broadcast Uptime"
+      },
+      {
+        title: "Telekom VoIP Mobile Solution",
+        client: "Telekom",
+        category: "Enterprise & Telecom",
+        image: "assets/images/portfolio/app_telekom.jpg",
+        tags: ["WebRTC", "SIP Trunking", "iOS", "Android"],
+        description: "A robust carrier-grade Voice-over-IP mobile application developed for Deutsche Telekom mobile plan subscribers. Featuring seamless background call reception, low-bandwidth HD audio compression, address book synchronization, and instant PIN-less authentication for enterprise users.",
+        m1: "5M+", ml1: "Minutes of HD Voice / Day",
+        m2: "4.7 ★", ml2: "Average Store Rating",
+        m3: "Zero", ml3: "Packet Drop on Cellular Handover"
+      },
+      {
+        title: "Voice of Romania Official App",
+        client: "PRO TV",
+        category: "Broadcast & Second Screen",
+        image: "assets/images/portfolio/app_voice_romania.jpg",
+        tags: ["Second Screen", "Real-Time Tally", "Push Alerts"],
+        description: "The official second screen experience for the world-renowned 'The Voice' format in Romania. Empowering television viewers to 'push the red buzzer' from home, rate vocal performances in real time, and trigger animated on-screen graphics directly visible on the national TV broadcast.",
+        m1: "800k+", ml1: "Simultaneous Live Voters",
+        m2: "#1 App", ml2: "Overall on App Store Romania",
+        m3: "15M+", ml3: "Total Live Votes Cast"
+      },
+      {
+        title: "Gebrüder Weiss Sales & Fleet Suite",
+        client: "Gebrüder Weiss Transport",
+        category: "Enterprise & Logistics",
+        image: "assets/images/portfolio/app_gebrueder_weiss.jpg",
+        tags: ["Offline-First", "Route Mapping", "CRM Integration"],
+        description: "A bespoke mobile CRM and route planning application for the international transport and logistics giant Gebrüder Weiss. Designed for field sales managers and agents across 30+ countries to manage client quotes, track shipment contracts, and access enterprise dispatch data securely offline.",
+        m1: "3,500+", ml1: "Active Field Sales Agents",
+        m2: "35%", ml2: "Reduction in Sales Admin Time",
+        m3: "100%", ml3: "Encrypted Enterprise Cloud Sync"
+      },
+      {
+        title: "Romania's Got Talent Companion",
+        client: "PRO TV",
+        category: "Broadcast & Entertainment",
+        image: "assets/images/portfolio/app_romani_talent.jpg",
+        tags: ["Live Buzzer", "Ad Monetization", "Interactive Video"],
+        description: "Interactive companion application for 'Românii au talent' (Got Talent franchise). Audiences vote during the live semi-finals and finals with instantaneous tally feedback, access behind-the-scenes auditions, and unlock sponsored rewards directly integrated into the broadcast flow.",
+        m1: "2.5M+", ml1: "Unique App Sessions",
+        m2: "98.8%", ml2: "High-Traffic Concurrency SLA",
+        m3: "4.8 ★", ml3: "Over 85,000 App Store Reviews"
+      },
+      {
+        title: "IABM Conference & Networking App",
+        client: "IABM International",
+        category: "Events & Summits",
+        image: "assets/images/portfolio/app_iabm.jpg",
+        tags: ["Live Q&A", "B2B Matchmaking", "Digital Agenda"],
+        description: "A tailored mobile event companion engineered for the international broadcast and media technology association. The app connects delegates, facilitates 1-on-1 meeting scheduling, live session question upvoting, and instant push announcements across major global summits.",
+        m1: "94%", ml1: "Attendee Adoption Rate",
+        m2: "12,000+", ml2: "Peer-to-Peer Meetings Booked",
+        m3: "Real-time", ml3: "Live Poll & Audience Q&A"
+      },
+      {
+        title: "VN Rezepte Gourmet Cooking App",
+        client: "Russ Media",
+        category: "Lifestyle & Food",
+        image: "assets/images/portfolio/app_vn_rezepte.jpg",
+        tags: ["Recipe Engine", "Media Player", "In-App Purchases"],
+        description: "A rich culinary application delivering thousands of chef-curated recipes, interactive ingredient measurement converters, guided step-by-step cooking videos, and smart grocery list generators. Featured by Apple and Google Play across Central Europe.",
+        m1: "450k+", ml1: "Monthly Active Cooks",
+        m2: "15,000+", ml2: "Gourmet Recipes Catalog",
+        m3: "4.9 ★", ml3: "User Satisfaction Score"
+      },
+      {
+        title: "Viasat Golf Card GPS & Tracker",
+        client: "Viasat Scandinavia",
+        category: "Sports & Lifestyle",
+        image: "assets/images/portfolio/app_viasat_golf.jpg",
+        tags: ["GPS Geolocation", "Video Flyovers", "Scorecard"],
+        description: "The premier golf companion app for players across Sweden, Norway, and Scandinavia. Featuring GPS rangefinding, 3D aerial hole flyover videos, digital handicap calculation, and integrated booking for over 500 partner golf courses.",
+        m1: "500+", ml1: "Accurately Mapped Golf Courses",
+        m2: "±1 Yard", ml2: "High-Precision GPS Distance",
+        m3: "180k+", ml3: "Registered Scandinavian Golfers"
+      },
+      {
+        title: "Romania TV 24/7 Live Stream & News",
+        client: "Romania TV (RTV)",
+        category: "Media & Streaming",
+        image: "assets/images/portfolio/app_romania_tv.jpg",
+        tags: ["HLS Live Stream", "Sub-second Push", "VOD Feeds"],
+        description: "A high-performance news streaming and editorial mobile application. Engineered with an ultra-low latency HLS live video player, breaking news push notification engine capable of delivering alerts to 1M+ devices in under 5 seconds, and bookmarking.",
+        m1: "3M+", ml1: "Monthly Streaming Hours",
+        m2: "< 3.5s", ml2: "Instant Breaking Push Delivery",
+        m3: "4.6 ★", ml3: "Top Rated News App"
+      },
+      {
+        title: "Webit Congress Tech Summit Platform",
+        client: "Design.bg / Webit",
+        category: "Events & Conferences",
+        image: "assets/images/portfolio/app_webit_congress.jpg",
+        tags: ["AI Matchmaking", "Live Agenda", "Floor Navigation"],
+        description: "The official digital platform for Webit Congress, one of the world's largest digital technology and startup festivals. Featuring multi-track keynote agenda planning, interactive venue maps, startup pitch evaluations, and speed-networking matchmaking algorithms.",
+        m1: "15,000+", ml1: "Global Summit Attendees",
+        m2: "120+", ml2: "Countries Represented",
+        m3: "45,000+", ml3: "Digital Connections Generated"
+      }
+    ];
+
+    function openAppModal(idx) {
+      const data = appData[idx];
+      if (!data) return;
+
+      document.getElementById('modalImg').src = data.image;
+      document.getElementById('modalImg').alt = data.title;
+      document.getElementById('modalClient').textContent = data.client;
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalDesc').textContent = data.description;
+      
+      document.getElementById('modalMetric1').textContent = data.m1;
+      document.getElementById('modalMetricLabel1').textContent = data.ml1;
+      document.getElementById('modalMetric2').textContent = data.m2;
+      document.getElementById('modalMetricLabel2').textContent = data.ml2;
+      document.getElementById('modalMetric3').textContent = data.m3;
+      document.getElementById('modalMetricLabel3').textContent = data.ml3;
+
+      const tagsContainer = document.getElementById('modalTags');
+      tagsContainer.innerHTML = '';
+      data.tags.forEach(t => {
+        const span = document.createElement('span');
+        span.className = 'modal-tag';
+        span.textContent = t;
+        tagsContainer.appendChild(span);
+      });
+
+      document.getElementById('appModalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAppModal(e) {
+      document.getElementById('appModalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Filter & Search Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const searchInput = document.getElementById('appSearchInput');
+    const cards = document.querySelectorAll('.app-card');
+    const countBadge = document.getElementById('appCountBadge');
+
+    let currentFilter = 'all';
+    let searchQuery = '';
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.getAttribute('data-filter');
+        applyFilters();
+      });
+    });
+
+    searchInput.addEventListener('input', e => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      applyFilters();
+    });
+
+    function applyFilters() {
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const keywords = card.getAttribute('data-keywords').toLowerCase();
+        const title = card.querySelector('.app-card-title').textContent.toLowerCase();
+        const client = card.querySelector('.client-tag').textContent.toLowerCase();
+
+        const matchesFilter = (currentFilter === 'all' || category === currentFilter);
+        const matchesSearch = (searchQuery === '' || title.includes(searchQuery) || client.includes(searchQuery) || keywords.includes(searchQuery));
+
+        if (matchesFilter && matchesSearch) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      countBadge.textContent = `${visibleCount} Application${visibleCount === 1 ? '' : 's'}`;
+    }
+
+    // Mobile nav toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mainNav = document.getElementById('mainNav');
+    if (mobileToggle && mainNav) {
+      mobileToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('open');
+        mobileToggle.classList.toggle('open');
+      });
+    }
+
+    // Neon Cursor Follower
+    (() => {
+      let px = innerWidth / 2, py = innerHeight / 2, cx = px, cy = py;
+      const cur = document.getElementById('cur'), dot = document.getElementById('dot');
+      const showCursor = v => { if (cur && dot) cur.style.opacity = dot.style.opacity = v; };
+
+      addEventListener('pointermove', e => {
+        px = e.clientX; py = e.clientY; showCursor(1);
+        if (dot) dot.style.transform = `translate(${px}px,${py}px)`;
+        if (cur) cur.classList.toggle('hov', !!(e.target.closest && e.target.closest('a,button,input,.app-card,.cta-dashed-box')));
+      });
+      addEventListener('pointerdown', () => cur && cur.classList.add('dn'));
+      addEventListener('pointerup', () => cur && cur.classList.remove('dn'));
+      document.documentElement.addEventListener('mouseleave', () => showCursor(0));
+      document.documentElement.addEventListener('mouseenter', () => showCursor(1));
+
+      (function follow() {
+        cx += (px - cx) * 0.16; cy += (py - cy) * 0.16;
+        if (cur) cur.style.transform = `translate(${cx}px,${cy}px)`;
+        requestAnimationFrame(follow);
+      })();
+    })();
+  </script>
+  <script src="assets/js/motion.js"></script>
+</body>
+</html>
