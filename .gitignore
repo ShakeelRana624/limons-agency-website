@@ -19,3 +19,7 @@ desktop.ini
 # Temporary & Log files
 *.log
 *.tmp
+*.docx
+archive/
+.FullName
+
