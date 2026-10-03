@@ -56,29 +56,11 @@
       color:#fff;
       border:none!important;
     }
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(90deg, rgba(255,83,97,0.18) 0%, rgba(255,83,97,0.05) 28%, rgba(255,83,97,0.12) 52%, rgba(255,83,97,0.04) 100%),
-        radial-gradient(circle at 50% 60%, rgba(194,24,75,.18), transparent 60%);
-      filter:blur(78px);
-      opacity:.9;
-      pointer-events:none;
-    }
+    /* Hero no longer owns a separate full-screen gradient.
+       This prevents a visible boundary/partition line between hero and the next section. */
+    .hero::before,
     .hero::after{
-      content:"";
-      position:absolute;
-      left:50%;
-      bottom:-12%;
-      width:72%;
-      height:38%;
-      transform:translateX(-50%);
-      background:linear-gradient(90deg, transparent 0%, rgba(255,130,160,0.16) 20%, rgba(255,83,97,0.22) 50%, rgba(255,83,97,0.1) 78%, transparent 100%);
-      filter:blur(90px);
-      pointer-events:none;
-      opacity:.9;
+      display:none!important;
     }
     .stage{position:relative;flex:none;width:calc(var(--u)*1672);height:calc(var(--u)*940)}
     
@@ -269,8 +251,8 @@
 
     .header-right {
       position: absolute;
-      right: calc(var(--u)*20);
-      top: calc(var(--u)*18);
+      left: calc(var(--u)*1286);
+      top: calc(var(--u)*20);
       display: flex;
       align-items: center;
       gap: calc(var(--u)*12);
@@ -403,32 +385,6 @@
       fill: currentColor;
       stroke: none;
     }
-
-    .cta{
-      left:calc(var(--u)*1420);
-      top:calc(var(--u)*28);
-      width:calc(var(--u)*172);
-      height:calc(var(--u)*57);
-      border:calc(var(--u)*1.6) solid #c04057;
-      border-radius:99px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:calc(var(--u)*9);
-      font-size:calc(var(--u)*18.5);
-      font-weight:500;
-      color:#fff;
-      text-decoration:none;
-      background:rgba(80,10,20,.25);
-      transition:background .35s,box-shadow .35s,transform .2s;
-      z-index:100;
-    }
-    .cta:hover{
-      background:rgba(192,64,87,.35);
-      box-shadow:0 0 calc(var(--u)*30) rgba(192,64,87,.45);
-      transform:translateY(-1px);
-    }
-    .cta svg{width:calc(var(--u)*15);height:calc(var(--u)*15)}
 
     /* ---------- HERO CONTENT ---------- */
     .hero-logo{position:absolute;left:50%;transform:translateX(-50%);top:calc(var(--u)*140);width:calc(var(--u)*240);z-index:7;text-align:center}
@@ -1182,16 +1138,30 @@
     .brand-strip p{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:12px}
     .brand-strip img{height:52px;mix-blend-mode:normal;filter:none;opacity:1;transition:none}
     .brand-strip img:hover{opacity:1;filter:none;transform:none}
-    button,a[class*="btn"],.cta,.gh-modal-btn,.pill{background-repeat:no-repeat!important;background-position:bottom!important;background-size:100% 0%!important;transition:background-size .45s cubic-bezier(.16,1,.3,1),color .25s ease,transform .25s ease}
-    button:hover,button:focus-visible,a[class*="btn"]:hover,a[class*="btn"]:focus-visible,.cta:hover,.cta:focus-visible,.gh-modal-btn:hover,.gh-modal-btn:focus-visible,.pill:hover{background-image:linear-gradient(#c51e46,#c51e46)!important;background-size:100% 100%!important}
+    button:not(.mobile-toggle),
+    a[class*="btn"],
+    .pill {
+      background-repeat: no-repeat !important;
+      background-position: bottom !important;
+      background-size: 100% 0% !important;
+      transition: background-size .45s cubic-bezier(.16, 1, .3, 1), color .25s ease, transform .25s ease
+    }
+
+    button:not(.mobile-toggle):hover,
+    button:not(.mobile-toggle):focus-visible,
+    a[class*="btn"]:hover,
+    a[class*="btn"]:focus-visible,
+    .pill:hover {
+      background-image: linear-gradient(#c51e46, #c51e46) !important;
+      background-size: 100% 100% !important
+    }
     @media(max-width:1024px) and (min-width:768px){.app-features-panel{grid-template-columns:minmax(0,.34fr) minmax(0,.66fr)}.feat-display-col{grid-template-columns:minmax(0,1.6fr) minmax(0,.65fr);gap:16px}}
     @media(max-width:767px){.feat-display-col{grid-template-columns:minmax(0,1fr);gap:12px}.feat-display-stage{grid-column:1;grid-row:1;min-height:250px;max-height:340px}.feat-callouts{grid-column:1;grid-row:2;display:grid;grid-template-columns:1fr;gap:12px}.feat-content-area{grid-column:1;grid-row:3}.brand-strip .inner{gap:24px}.brand-strip img{height:42px}}
   </style>
   <link rel="stylesheet" href="assets/css/site-header.css">
   <link rel="stylesheet" href="assets/css/motion.css">
   <link rel="stylesheet" href="assets/css/brand-ui.css">
-</head>
-<body>
+<body data-mo-entrance="all">
 
   <section class="hero" id="top">
     <div class="stage">
@@ -1273,21 +1243,32 @@
 
       <div class="header-right">
         <div class="gh-hover">
-          <a class="gh-trigger" href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="Open Source on GitHub">
-            <img src="assets/images/brand/github-icon.png" alt="GitHub">
+          <a class="gh-trigger" href="https://github.com" target="_blank" rel="noopener noreferrer"
+            aria-label="Open Source on GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.23 0 1.61-.01 2.91-.01 3.31 0 .32.22.7.83.58C20.56 22.1 24 17.6 24 12.3 24 5.67 18.63.3 12 .3z">
+              </path>
+            </svg>
           </a>
           <div class="gh-modal" role="tooltip">
-            <div class="gh-modal-mark"><img src="assets/images/brand/github-icon.png" alt="GitHub"></div>
             <h4>Open Source</h4>
-            <p>Check out our GitHub profile to explore our development tools, frameworks and open source contributions.</p>
+            <p>Check out our GitHub profile to explore our development tools, frameworks and open source contributions.
+            </p>
             <a class="gh-modal-btn" href="https://github.com" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.23 0 1.61-.01 2.91-.01 3.31 0 .32.22.7.83.58C20.56 22.1 24 17.6 24 12.3 24 5.67 18.63.3 12 .3z"></path></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.23 0 1.61-.01 2.91-.01 3.31 0 .32.22.7.83.58C20.56 22.1 24 17.6 24 12.3 24 5.67 18.63.3 12 .3z">
+                </path>
+              </svg>
               View on Github
             </a>
           </div>
         </div>
         <a class="cta" href="#contact">Get in Touch
-          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6"><path d="M3 13L13 3M5 3h8v8"></path></svg>
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.6">
+            <path d="M3 13L13 3M5 3h8v8"></path>
+          </svg>
         </a>
       </div>
 
