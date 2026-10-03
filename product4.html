@@ -963,14 +963,6 @@
     footer a:hover{color:#fff}
     .footer-bottom{width:min(1160px,92vw);margin:44px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:rgba(255,255,255,.3);font-size:10px}
 
-    /* ---------- CURSOR ---------- */
-    .cur{position:fixed;left:0;top:0;width:40px;height:40px;margin:-20px 0 0 -20px;border-radius:50%;border:1.5px solid #ff3d6e;box-shadow:0 0 12px #c2184b,0 0 30px #9a1240,0 0 60px rgba(104,2,2,.9),inset 0 0 14px rgba(194,24,75,.55);pointer-events:none;z-index:9999;opacity:0;transition:width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),background .3s,opacity .25s}
-    .cur.dot{width:8px;height:8px;margin:-4px 0 0 -4px;background:#ff5a86;border:0;box-shadow:0 0 8px #ff2d63,0 0 22px #c2184b}
-    .cur.hov{width:70px;height:70px;margin:-35px 0 0 -35px;background:rgba(194,24,75,.16)}
-    .cur.dn{width:26px;height:26px;margin:-13px 0 0 -13px}
-    @media (pointer:fine){*{cursor:none!important}}
-    @media (pointer:coarse){.cur{display:none}}
-
     /* ---------- REVEAL ANIMATION ---------- */
     .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
     .reveal.in{opacity:1;transform:none}
@@ -1533,8 +1525,6 @@
     </div>
   </footer>
 
-  <div class="cur" id="cur"></div><div class="cur dot" id="dot"></div>
-
   <script>
     (() => {
       const $ = s => document.querySelector(s);
@@ -1571,25 +1561,6 @@
           }
         }
       }));
-
-      // Custom neon follower cursor
-      let px = innerWidth / 2, py = innerHeight / 2, cx = px, cy = py;
-      const cur = $('#cur'), dot = $('#dot');
-      const showCursor = v => { if(cur&&dot){ cur.style.opacity = dot.style.opacity = v; } };
-      addEventListener('pointermove', e => {
-        px = e.clientX; py = e.clientY; showCursor(1);
-        if(dot) dot.style.transform = `translate(${px}px,${py}px)`;
-        if(cur) cur.classList.toggle('hov', !!(e.target.closest && e.target.closest('a,button,input')));
-      });
-      addEventListener('pointerdown', () => cur && cur.classList.add('dn'));
-      addEventListener('pointerup', () => cur && cur.classList.remove('dn'));
-      document.documentElement.addEventListener('mouseleave', () => showCursor(0));
-      document.documentElement.addEventListener('mouseenter', () => showCursor(1));
-      (function follow() {
-        cx += (px - cx) * .16; cy += (py - cy) * .16;
-        if(cur) cur.style.transform = `translate(${cx}px,${cy}px)`;
-        requestAnimationFrame(follow);
-      })();
 
       // ==========================================================
       // APP FEATURES INTERACTIVE CONTROLLER (40/60 + MODAL)
