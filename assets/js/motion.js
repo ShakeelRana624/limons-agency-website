@@ -90,6 +90,7 @@
       '.mo-hero-logo', '.mo-hero-title',
       '.mo-hero-sub', '.mo-hero-img',
       '.feature-note', '.dashboard-point', '.mo-note',
+      '.feature-figure', '.mo-mockup-reveal', '.feat-display-stage',
       // Also handle the existing .reveal class from product pages
       '.reveal'
     ];
