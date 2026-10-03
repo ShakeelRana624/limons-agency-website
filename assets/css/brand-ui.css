@@ -378,3 +378,24 @@ body[data-mo-entrance] .header-right { animation-delay: .65s; }
   opacity: 1 !important;
   transform: translate3d(0, -2px, 0) !important;
 }
+
+/* Footer brand logo */
+.footer-logo {
+  display: inline-block;
+  margin-bottom: 14px;
+  text-decoration: none;
+  transition: transform .25s var(--mo-ease-smooth), opacity .25s var(--mo-ease-smooth);
+}
+.footer-logo:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+.footer-logo img,
+.footer-brand img.footer-logo-img {
+  height: 38px;
+  width: auto;
+  max-width: 150px;
+  display: block;
+  object-fit: contain;
+}
+
