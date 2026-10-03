@@ -70,6 +70,16 @@
               .mo-cta-band, .mo-hero-logo, .mo-hero-title,
               .mo-hero-sub, .mo-hero-img
   ------------------------------------------------------------------ */
+  /* After an element has finished its reveal, drop the stagger delay so that
+     hover transitions on it respond instantly (no laggy 80-300ms hover). */
+  function settleReveal(el) {
+    const delay = parseFloat(getComputedStyle(el).transitionDelay) * 1000 || 0;
+    setTimeout(() => {
+      el.style.transitionDelay = '';
+      el.classList.add('mo-done');
+    }, 1300 + delay);
+  }
+
   function initScrollReveals() {
     const selectors = [
       '.mo-reveal', '.mo-fade', '.mo-scale',
@@ -79,6 +89,7 @@
       '.mo-dash-point', '.mo-cta-band',
       '.mo-hero-logo', '.mo-hero-title',
       '.mo-hero-sub', '.mo-hero-img',
+      '.feature-note', '.dashboard-point', '.mo-note',
       // Also handle the existing .reveal class from product pages
       '.reveal'
     ];
@@ -95,6 +106,7 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in');
+          settleReveal(entry.target);
           io.unobserve(entry.target);
         }
       });
@@ -278,6 +290,59 @@
   }
 
   /* ------------------------------------------------------------------
+     12b. ENTRANCE FOR EVERY ELEMENT (opt-in: <body data-mo-entrance="all">)
+     Gives each remaining block an entrance animation, staggered per group.
+  ------------------------------------------------------------------ */
+  function initEntranceAll() {
+    if (document.body.dataset.moEntrance !== 'all') return;
+
+    // 1. Feature Story Heads: kicker, h3, p staggered
+    $$('.feature-story-head').forEach(head => {
+      [...head.children].forEach((child, i) => {
+        child.classList.add('mo-reveal');
+        child.style.transitionDelay = (i * 100) + 'ms';
+      });
+    });
+
+    // 2. Brand Strip: eyebrow text & logos
+    $$('.brand-strip .inner > p').forEach(p => {
+      p.classList.add('mo-reveal');
+      p.style.transitionDelay = '60ms';
+    });
+    $$('.brand-strip img').forEach((img, i) => {
+      img.classList.add('mo-brand-logo');
+      img.style.transitionDelay = (140 + i * 120) + 'ms';
+    });
+
+    // 3. CTA Band: icon, title, subtitle, each input, and each button
+    const ctaContainer = $('.cta-band .container');
+    if (ctaContainer) {
+      const icon = ctaContainer.querySelector('.band-icon');
+      const title = ctaContainer.querySelector('h3');
+      const subtitle = ctaContainer.querySelector('p');
+      if (icon) { icon.classList.add('mo-reveal'); icon.style.transitionDelay = '60ms'; }
+      if (title) { title.classList.add('mo-reveal'); title.style.transitionDelay = '140ms'; }
+      if (subtitle) { subtitle.classList.add('mo-reveal'); subtitle.style.transitionDelay = '220ms'; }
+
+      ctaContainer.querySelectorAll('.form-row-inputs input').forEach((inp, i) => {
+        inp.classList.add('mo-reveal');
+        inp.style.transitionDelay = (280 + i * 80) + 'ms';
+      });
+
+      ctaContainer.querySelectorAll('.form-row-buttons button, .form-row-buttons .btn-demo, .form-row-buttons .btn-start').forEach((btn, i) => {
+        btn.classList.add('mo-reveal');
+        btn.style.transitionDelay = (480 + i * 90) + 'ms';
+      });
+    }
+
+    // 4. Footer bottom items
+    $$('.footer-bottom > *').forEach((item, i) => {
+      item.classList.add('mo-reveal');
+      item.style.transitionDelay = (100 + i * 120) + 'ms';
+    });
+  }
+
+  /* ------------------------------------------------------------------
      13. BUTTONS & CARDS AUTO-INTERACTIONS
   ------------------------------------------------------------------ */
   function initButtons() {
@@ -322,6 +387,7 @@
     initFormInputs();
     initFeatureNotes();
     initCtaBand();
+    initEntranceAll();
     initButtons();
     initCards();
     initFooterReveal();
