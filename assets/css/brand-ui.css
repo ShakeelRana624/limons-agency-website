@@ -410,17 +410,22 @@ body[data-mo-entrance] .header-right { animation-delay: .65s; }
 }
 
 /* =====================================================================
-   5. MOCKUP BOTTOM-TO-TOP REVEAL ANIMATION (Silky & Fluid)
-   Dedicated reveal for all product page mockups:
-   - Telly (4 feature mockups + hero)
-   - Veeplay (Premium Multi-Device Media Showcase + interactive stage)
-   - On-Demand (Red Smartphones mockup + interactive stage)
-   - File Sync (Burgundy Tablet mockup + interactive stage)
+   5. MOCKUP BOTTOM-TO-TOP REVEAL ANIMATION (Matching Index.html)
+   Exact signature mechanics from index.html:
+   - Bottom-to-top curtain clip-path unmasking (inset wipe from bottom)
+   - Deep translateY(110px) upward glide
+   - Subtle scale entrance (0.92 -> 1)
+   - Silky cubic-bezier(0.16, 1, 0.3, 1) ease
+   Applies to all product page mockups:
+   - Telly (Hero mockup + 4 feature story mockups)
+   - Veeplay (Hero Media Player mockup + interactive stage)
+   - On-Demand (Hero Red Smartphones mockup + interactive stage)
+   - File Sync (Hero Burgundy Tablet mockup + interactive stage)
    ===================================================================== */
 :root {
   --mo-mockup-ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --mo-mockup-duration: 1200ms;
-  --mo-mockup-rise: 56px;
+  --mo-mockup-duration: 1400ms;
+  --mo-mockup-rise: 100px;
 }
 
 /* Feature story mockups (Telly 4 mockups) and feature visual stages (File Sync, On-Demand, Veeplay) */
@@ -430,13 +435,17 @@ body[data-mo-entrance] .header-right { animation-delay: .65s; }
 .feat-img-wrap.mo-mockup-reveal,
 .mo-mockup-reveal {
   opacity: 0;
-  transform: translate3d(0, var(--mo-mockup-rise), 0) scale(0.96);
-  will-change: opacity, transform;
+  clip-path: inset(100% 0 0 0);
+  -webkit-clip-path: inset(100% 0 0 0);
+  transform: translate3d(0, var(--mo-mockup-rise), 0) scale(0.93);
+  will-change: opacity, transform, clip-path;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transition:
-    opacity var(--mo-mockup-duration) var(--mo-mockup-ease),
-    transform var(--mo-mockup-duration) var(--mo-mockup-ease) !important;
+    opacity 1s var(--mo-mockup-ease),
+    transform var(--mo-mockup-duration) var(--mo-mockup-ease),
+    clip-path var(--mo-mockup-duration) var(--mo-mockup-ease),
+    -webkit-clip-path var(--mo-mockup-duration) var(--mo-mockup-ease) !important;
 }
 
 .feature-figure.in,
@@ -445,33 +454,55 @@ body[data-mo-entrance] .header-right { animation-delay: .65s; }
 .feat-img-wrap.mo-mockup-reveal.in,
 .mo-mockup-reveal.in {
   opacity: 1;
+  clip-path: inset(0 0 0 0);
+  -webkit-clip-path: inset(0 0 0 0);
   transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+/* Clear clip-path when animation settles so hover and float effects are completely free */
+.feature-figure.in.mo-done,
+.feat-display-stage.in.mo-done,
+.mo-mockup-reveal.in.mo-done {
+  clip-path: none !important;
+  -webkit-clip-path: none !important;
 }
 
 /* Hero mockups (Desktop) */
 .mock.mo-hero-img,
 .hero-image-wrapper.mock.mo-hero-img {
   opacity: 0;
-  transform: translate3d(0, var(--mo-mockup-rise), 0) scale(0.96);
-  will-change: opacity, transform;
+  clip-path: inset(100% 0 0 0);
+  -webkit-clip-path: inset(100% 0 0 0);
+  transform: translate3d(0, var(--mo-mockup-rise), 0) scale(0.93);
+  will-change: opacity, transform, clip-path;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transition:
-    opacity var(--mo-mockup-duration) var(--mo-mockup-ease) .25s,
-    transform var(--mo-mockup-duration) var(--mo-mockup-ease) .25s !important;
+    opacity 1s var(--mo-mockup-ease) .2s,
+    transform var(--mo-mockup-duration) var(--mo-mockup-ease) .2s,
+    clip-path var(--mo-mockup-duration) var(--mo-mockup-ease) .2s,
+    -webkit-clip-path var(--mo-mockup-duration) var(--mo-mockup-ease) .2s !important;
 }
 
 .mock.mo-hero-img.in,
 .hero-image-wrapper.mock.mo-hero-img.in {
   opacity: 1;
+  clip-path: inset(0 0 0 0);
+  -webkit-clip-path: inset(0 0 0 0);
   transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+.mock.mo-hero-img.in.mo-done,
+.hero-image-wrapper.mock.mo-hero-img.in.mo-done {
+  clip-path: none !important;
+  -webkit-clip-path: none !important;
 }
 
 /* Hero mockups (Mobile <= 820px, where .mock is centered via translateX(-50%)) */
 @media (max-width: 820px) {
   .mock.mo-hero-img,
   .hero-image-wrapper.mock.mo-hero-img {
-    transform: translate3d(-50%, var(--mo-mockup-rise), 0) scale(0.96) !important;
+    transform: translate3d(-50%, 80px, 0) scale(0.93) !important;
   }
   .mock.mo-hero-img.in,
   .hero-image-wrapper.mock.mo-hero-img.in {

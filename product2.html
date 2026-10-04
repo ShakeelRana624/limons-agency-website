@@ -1523,9 +1523,9 @@
       }
 
       // Trigger hero entrance immediately
-      requestAnimationFrame(() => {
+      setTimeout(() => {
         document.querySelectorAll('.mo-hero-logo, .mo-hero-title, .mo-hero-sub, .mo-hero-img').forEach(el => el.classList.add('in'));
-      });
+      }, 60);
 
       // Smooth navigation
       $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {

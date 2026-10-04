@@ -105,17 +105,29 @@
     }
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting || entry.intersectionRatio > 0) {
           entry.target.classList.add('in');
           settleReveal(entry.target);
           io.unobserve(entry.target);
         }
       });
     }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -8% 0px'
+      threshold: 0,
+      rootMargin: '60px 0px -2% 0px'
     });
     els.forEach(el => io.observe(el));
+
+    // Fallback: check already visible elements immediately
+    setTimeout(() => {
+      els.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight + 60 && r.bottom > -60) {
+          el.classList.add('in');
+          settleReveal(el);
+          io.unobserve(el);
+        }
+      });
+    }, 150);
   }
 
   /* ------------------------------------------------------------------
@@ -366,11 +378,12 @@
      14. HERO ENTRANCE GUARANTEE
   ------------------------------------------------------------------ */
   function initHeroEntrance() {
-    requestAnimationFrame(() => {
+    setTimeout(() => {
       $$('.mo-hero-logo, .mo-hero-title, .mo-hero-sub, .mo-hero-img').forEach(el => {
         el.classList.add('in');
+        settleReveal(el);
       });
-    });
+    }, 60);
   }
 
   /* ------------------------------------------------------------------

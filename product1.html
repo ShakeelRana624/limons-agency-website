@@ -866,6 +866,7 @@
 
     .feature-figure {
       width: min(760px, 58vw);
+      min-height: 400px;
       margin: 0 auto;
       position: relative;
       z-index: 2;
@@ -1989,7 +1990,7 @@
           </div>
           <figure class="feature-figure mo-img-reveal mo-mockup-reveal">
             <img class="mo-float-slow" src="assets/images/mockups/telly/Burgundy Quiz Challenge iPhone Mockup.png"
-              alt="Telly live quiz challenge" loading="lazy" decoding="async">
+              alt="Telly live quiz challenge">
           </figure>
         </div>
       </section>
@@ -2016,7 +2017,7 @@
           </div>
           <figure class="feature-figure mo-img-reveal mo-mockup-reveal">
             <img class="mo-float-slow" src="assets/images/mockups/telly/Burgundy iPhone App Showcase.png"
-              alt="Telly voting and comments screens" loading="lazy" decoding="async">
+              alt="Telly voting and comments screens">
           </figure>
         </div>
       </section>
@@ -2043,7 +2044,7 @@
           </div>
           <figure class="feature-figure mo-img-reveal mo-mockup-reveal">
             <img class="mo-float-slow" src="assets/images/mockups/telly/Tilted Maroon iPhones Showcasing App UI.png"
-              alt="Telly show portal and premium content screens" loading="lazy" decoding="async">
+              alt="Telly show portal and premium content screens">
           </figure>
         </div>
       </section>
@@ -2058,7 +2059,7 @@
         <div class="feature-map">
           <figure class="feature-figure mo-img-reveal mo-mockup-reveal">
             <img class="mo-float-slow" src="assets/images/mockups/telly/Telly Dashboard Tablet Mockup.png"
-              alt="Telly centralized show management dashboard" loading="lazy" decoding="async">
+              alt="Telly centralized show management dashboard">
           </figure>
         </div>
         <div class="dashboard-points" data-mo-stagger>
@@ -2176,9 +2177,9 @@
       }
 
       // Trigger hero entrance immediately
-      requestAnimationFrame(() => {
+      setTimeout(() => {
         document.querySelectorAll('.mo-hero-logo, .mo-hero-title, .mo-hero-sub, .mo-hero-img').forEach(el => el.classList.add('in'));
-      });
+      }, 60);
 
       // Smooth navigation
       $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
