@@ -1713,9 +1713,7 @@
     </div>
   </div>
 
-  <!-- CUSTOM NEON FOLLOWER CURSOR -->
-  <div class="cur" id="cur"></div>
-  <div class="cur dot" id="dot"></div>
+
 
   <script>
     // App Case Studies Data for Modal
@@ -1922,29 +1920,9 @@
       });
     }
 
-    // Neon Cursor Follower
-    (() => {
-      let px = innerWidth / 2, py = innerHeight / 2, cx = px, cy = py;
-      const cur = document.getElementById('cur'), dot = document.getElementById('dot');
-      const showCursor = v => { if (cur && dot) cur.style.opacity = dot.style.opacity = v; };
-
-      addEventListener('pointermove', e => {
-        px = e.clientX; py = e.clientY; showCursor(1);
-        if (dot) dot.style.transform = `translate(${px}px,${py}px)`;
-        if (cur) cur.classList.toggle('hov', !!(e.target.closest && e.target.closest('a,button,input,.app-card,.cta-dashed-box')));
-      });
-      addEventListener('pointerdown', () => cur && cur.classList.add('dn'));
-      addEventListener('pointerup', () => cur && cur.classList.remove('dn'));
-      document.documentElement.addEventListener('mouseleave', () => showCursor(0));
-      document.documentElement.addEventListener('mouseenter', () => showCursor(1));
-
-      (function follow() {
-        cx += (px - cx) * 0.16; cy += (py - cy) * 0.16;
-        if (cur) cur.style.transform = `translate(${cx}px,${cy}px)`;
-        requestAnimationFrame(follow);
-      })();
-    })();
+    }
   </script>
+  <script src="assets/js/lenis.min.js"></script>
   <script src="assets/js/motion.js"></script>
 </body>
 </html>

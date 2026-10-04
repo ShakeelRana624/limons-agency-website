@@ -2927,6 +2927,7 @@
 
       document.getElementById('appModalOverlay').classList.add('open');
       document.body.style.overflow = 'hidden';
+      if (window.lenis) window.lenis.stop();
     }
 
     // Close Case Study Modal
@@ -2934,6 +2935,7 @@
       if (e && e.target !== e.currentTarget && !e.target.closest('.modal-close-btn') && !e.target.closest('.btn-modal-inquire')) return;
       document.getElementById('appModalOverlay').classList.remove('open');
       document.body.style.overflow = '';
+      if (window.lenis) window.lenis.start();
     }
 
     // Close modal on Escape key
@@ -2965,6 +2967,7 @@
     }
   </script>
   
+  <script src="assets/js/lenis.min.js"></script>
   <script src="assets/js/motion.js"></script>
 </body>
 </html>

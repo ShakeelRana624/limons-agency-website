@@ -387,9 +387,209 @@
   }
 
   /* ------------------------------------------------------------------
-     15. INIT EVERYTHING
+     15. LENIS SMOOTH SCROLLING
+  ------------------------------------------------------------------ */
+  function initLenis() {
+    if (typeof window.Lenis === 'undefined') return;
+    if (reduce) return;
+
+    const lenis = new window.Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+      infinite: false,
+    });
+
+    window.lenis = lenis;
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Synchronize window scroll events with Lenis
+    lenis.on('scroll', () => {
+      window.dispatchEvent(new Event('scroll'));
+    });
+
+    // Smooth scroll for anchor links
+    $$('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const id = anchor.getAttribute('href');
+        if (id && id !== '#' && id.length > 1) {
+          const target = document.querySelector(id);
+          if (target) {
+            e.preventDefault();
+            lenis.scrollTo(target, { offset: -30, duration: 1.2 });
+          }
+        }
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     16. PRELOADER (Luxury Brand Intro — No Dashes, Dividers, or AI Artifacts)
+  ------------------------------------------------------------------ */
+  function initPreloader() {
+    let preloader = document.querySelector('.limons-preloader');
+    if (!preloader) {
+      preloader = document.createElement('div');
+      preloader.className = 'limons-preloader';
+      preloader.setAttribute('role', 'status');
+      preloader.setAttribute('aria-label', 'Loading');
+      preloader.innerHTML = `
+        <div class="preloader-ambient-glow" aria-hidden="true"></div>
+        <div class="preloader-center">
+          <div class="preloader-brand-title">Limons</div>
+          <div class="preloader-bar-wrap">
+            <div class="preloader-bar-fill" id="preloaderBar"></div>
+          </div>
+          <div class="preloader-count" id="preloaderCount">0%</div>
+        </div>
+      `;
+      document.body.prepend(preloader);
+    }
+
+    const bar = preloader.querySelector('#preloaderBar');
+    const count = preloader.querySelector('#preloaderCount');
+    let progress = 0;
+    let isDone = false;
+
+    const timer = setInterval(() => {
+      if (isDone) return;
+      if (progress < 90) {
+        progress += Math.floor(Math.random() * 8 + 4);
+        if (progress > 90) progress = 90;
+        if (bar) bar.style.width = progress + '%';
+        if (count) count.textContent = progress + '%';
+      }
+    }, 40);
+
+    function dismissPreloader() {
+      if (isDone) return;
+      isDone = true;
+      clearInterval(timer);
+      if (bar) bar.style.width = '100%';
+      if (count) count.textContent = '100%';
+
+      setTimeout(() => {
+        preloader.classList.add('is-loaded');
+        setTimeout(() => {
+          preloader.remove();
+        }, 800);
+      }, 240);
+    }
+
+    if (document.readyState === 'complete') {
+      setTimeout(dismissPreloader, 400);
+    } else {
+      window.addEventListener('load', () => setTimeout(dismissPreloader, 300));
+      setTimeout(dismissPreloader, 1400); // Fail-safe
+    }
+  }
+
+  /* ------------------------------------------------------------------
+     17. CUSTOM DOT CURSOR (Crisp, Strictly Non-Magnetic)
+  ------------------------------------------------------------------ */
+  function initCustomCursor() {
+    if (window.matchMedia('(hover: none) or (pointer: coarse)').matches) return;
+    if ('ontouchstart' in window && !window.matchMedia('(pointer: fine)').matches) return;
+
+    let dot = document.querySelector('.limons-cursor-dot');
+    let ring = document.querySelector('.limons-cursor-ring');
+    if (!dot) {
+      dot = document.createElement('div');
+      dot.className = 'limons-cursor-dot';
+      document.body.appendChild(dot);
+    }
+    if (!ring) {
+      ring = document.createElement('div');
+      ring.className = 'limons-cursor-ring';
+      document.body.appendChild(ring);
+    }
+
+    let mouseX = -100;
+    let mouseY = -100;
+    let ringX = -100;
+    let ringY = -100;
+    let isVisible = false;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!isVisible) {
+        isVisible = true;
+        dot.classList.add('is-visible');
+        ring.classList.add('is-visible');
+        ringX = mouseX;
+        ringY = mouseY;
+      }
+      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+    }, { passive: true });
+
+    window.addEventListener('mouseleave', () => {
+      isVisible = false;
+      dot.classList.remove('is-visible');
+      ring.classList.remove('is-visible');
+    });
+
+    window.addEventListener('mouseenter', () => {
+      isVisible = true;
+      dot.classList.add('is-visible');
+      ring.classList.add('is-visible');
+    });
+
+    window.addEventListener('mousedown', () => {
+      dot.classList.add('is-active');
+      ring.classList.add('is-active');
+    });
+
+    window.addEventListener('mouseup', () => {
+      dot.classList.remove('is-active');
+      ring.classList.remove('is-active');
+    });
+
+    // Hover effect on clickables (Strictly Non-Magnetic: only scales, does NOT snap)
+    const hoverSelectors = 'a, button, input, select, textarea, [role="button"], label, .interactive, .btn-start-project, .link-process, .app-card-action, .filter-btn, .pill, .start, .modal-close-btn, .btn-workflow-start, .feature-pill';
+    
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest(hoverSelectors)) {
+        ring.classList.add('is-hover');
+        dot.classList.add('is-hover');
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest(hoverSelectors)) {
+        ring.classList.remove('is-hover');
+        dot.classList.remove('is-hover');
+      }
+    });
+
+    // 120fps smooth lerp for the ring follower
+    function renderCursor() {
+      if (isVisible) {
+        ringX += (mouseX - ringX) * 0.18;
+        ringY += (mouseY - ringY) * 0.18;
+        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+      }
+      requestAnimationFrame(renderCursor);
+    }
+    requestAnimationFrame(renderCursor);
+  }
+
+  /* ------------------------------------------------------------------
+     18. INIT EVERYTHING
   ------------------------------------------------------------------ */
   function init() {
+    initLenis();
+    initPreloader();
+    initCustomCursor();
     initProgressBar();
     initPageTransitions();
     initHeroEntrance();
