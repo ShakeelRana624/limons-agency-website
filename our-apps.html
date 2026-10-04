@@ -1118,44 +1118,6 @@
       gap: 12px;
     }
 
-    /* ---------- CUSTOM NEON CURSOR ---------- */
-    .cur {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 40px;
-      height: 40px;
-      margin: -20px 0 0 -20px;
-      border-radius: 50%;
-      border: 1.5px solid #ff3d6e;
-      box-shadow: 0 0 12px #c2184b, 0 0 30px #9a1240, inset 0 0 14px rgba(194, 24, 75, 0.55);
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0;
-      transition: width .3s var(--ease), height .3s var(--ease), margin .3s var(--ease), background .3s, opacity .25s;
-    }
-    .cur.dot {
-      width: 8px;
-      height: 8px;
-      margin: -4px 0 0 -4px;
-      background: #ff5a86;
-      border: 0;
-      box-shadow: 0 0 8px #ff2d63, 0 0 22px #c2184b;
-    }
-    .cur.hov {
-      width: 64px;
-      height: 64px;
-      margin: -32px 0 0 -32px;
-      background: rgba(194, 24, 75, 0.16);
-    }
-    .cur.dn {
-      width: 24px;
-      height: 24px;
-      margin: -12px 0 0 -12px;
-    }
-    @media (pointer: fine) { * { cursor: none !important; } }
-    @media (pointer: coarse) { .cur { display: none; } }
-
     /* ---------- RESPONSIVE MEDIA QUERIES ---------- */
     @media (max-width: 900px) {
       .apps-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1920,7 +1882,6 @@
       });
     }
 
-    }
   </script>
   <script src="assets/js/lenis.min.js"></script>
   <script src="assets/js/motion.js"></script>

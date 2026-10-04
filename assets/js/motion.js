@@ -494,102 +494,11 @@
   }
 
   /* ------------------------------------------------------------------
-     17. CUSTOM DOT CURSOR (Crisp, Strictly Non-Magnetic)
-  ------------------------------------------------------------------ */
-  function initCustomCursor() {
-    if (window.matchMedia('(hover: none) or (pointer: coarse)').matches) return;
-    if ('ontouchstart' in window && !window.matchMedia('(pointer: fine)').matches) return;
-
-    let dot = document.querySelector('.limons-cursor-dot');
-    let ring = document.querySelector('.limons-cursor-ring');
-    if (!dot) {
-      dot = document.createElement('div');
-      dot.className = 'limons-cursor-dot';
-      document.body.appendChild(dot);
-    }
-    if (!ring) {
-      ring = document.createElement('div');
-      ring.className = 'limons-cursor-ring';
-      document.body.appendChild(ring);
-    }
-
-    let mouseX = -100;
-    let mouseY = -100;
-    let ringX = -100;
-    let ringY = -100;
-    let isVisible = false;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (!isVisible) {
-        isVisible = true;
-        dot.classList.add('is-visible');
-        ring.classList.add('is-visible');
-        ringX = mouseX;
-        ringY = mouseY;
-      }
-      dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-    }, { passive: true });
-
-    window.addEventListener('mouseleave', () => {
-      isVisible = false;
-      dot.classList.remove('is-visible');
-      ring.classList.remove('is-visible');
-    });
-
-    window.addEventListener('mouseenter', () => {
-      isVisible = true;
-      dot.classList.add('is-visible');
-      ring.classList.add('is-visible');
-    });
-
-    window.addEventListener('mousedown', () => {
-      dot.classList.add('is-active');
-      ring.classList.add('is-active');
-    });
-
-    window.addEventListener('mouseup', () => {
-      dot.classList.remove('is-active');
-      ring.classList.remove('is-active');
-    });
-
-    // Hover effect on clickables (Strictly Non-Magnetic: only scales, does NOT snap)
-    const hoverSelectors = 'a, button, input, select, textarea, [role="button"], label, .interactive, .btn-start-project, .link-process, .app-card-action, .filter-btn, .pill, .start, .modal-close-btn, .btn-workflow-start, .feature-pill';
-    
-    document.addEventListener('mouseover', (e) => {
-      if (e.target.closest(hoverSelectors)) {
-        ring.classList.add('is-hover');
-        dot.classList.add('is-hover');
-      }
-    });
-
-    document.addEventListener('mouseout', (e) => {
-      if (e.target.closest(hoverSelectors)) {
-        ring.classList.remove('is-hover');
-        dot.classList.remove('is-hover');
-      }
-    });
-
-    // 120fps smooth lerp for the ring follower
-    function renderCursor() {
-      if (isVisible) {
-        ringX += (mouseX - ringX) * 0.18;
-        ringY += (mouseY - ringY) * 0.18;
-        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
-      }
-      requestAnimationFrame(renderCursor);
-    }
-    requestAnimationFrame(renderCursor);
-  }
-
-  /* ------------------------------------------------------------------
-     18. INIT EVERYTHING
+     17. INIT EVERYTHING
   ------------------------------------------------------------------ */
   function init() {
     initLenis();
     initPreloader();
-    initCustomCursor();
     initProgressBar();
     initPageTransitions();
     initHeroEntrance();
