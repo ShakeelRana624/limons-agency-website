@@ -47,8 +47,8 @@
       if (!href) return;
       // Skip anchors, external links, javascript:, mailto:, tel:
       if (href.startsWith('#') || href.startsWith('javascript:') ||
-          href.startsWith('mailto:') || href.startsWith('tel:') ||
-          a.target === '_blank' || a.hasAttribute('download')) return;
+        href.startsWith('mailto:') || href.startsWith('tel:') ||
+        a.target === '_blank' || a.hasAttribute('download')) return;
       // Only intercept .html links (local pages)
       if (href.endsWith('.html') || href.includes('.html#')) {
         a.addEventListener('click', e => {

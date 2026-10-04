@@ -62,15 +62,15 @@
     .hero::after{
       display:none!important;
     }
-    .stage{position:relative;flex:none;width:calc(var(--u)*1672);height:calc(var(--u)*940)}
+    .stage{position:relative;flex:none;width:calc(var(--u)*1672);height:calc(var(--u)*980)}
     
-    /* Mockup smoothly dissolves before the hero bottom boundary */
-    .mock{position:absolute;left:calc(var(--u)*466);top:calc(var(--u)*472);width:calc(var(--u)*740);z-index:4;pointer-events:none}
+    /* Mockup smoothly placed directly under hero text */
+    .mock{position:absolute;left:calc(var(--u)*436);top:calc(var(--u)*385);width:calc(var(--u)*800);z-index:4;pointer-events:none}
     .mock img{
       width:100%;
-      filter:drop-shadow(0 calc(var(--u)*30) calc(var(--u)*50) rgba(0,0,0,.6));
-      mask-image:linear-gradient(to bottom, #000 0%, #000 52%, rgba(0,0,0,0.6) 72%, transparent 88%);
-      -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 52%, rgba(0,0,0,0.6) 72%, transparent 88%);
+      filter:drop-shadow(0 calc(var(--u)*20) calc(var(--u)*40) rgba(0,0,0,.65));
+      mask-image:linear-gradient(to bottom, #000 0%, #000 85%, rgba(0,0,0,0.5) 95%, transparent 100%);
+      -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 85%, rgba(0,0,0,0.5) 95%, transparent 100%);
     }
 
     /* ---------- EU HORIZON 2020 BADGE ---------- */
@@ -1089,7 +1089,7 @@
       .hero-copy{top:calc(var(--u)*240);padding:0 20px}
       .hero-copy h1{font-size:calc(var(--u)*28);line-height:1.35;white-space:normal}
       .hero-copy p{font-size:calc(var(--u)*16);width:100%;margin-top:calc(var(--u)*10)}
-      .mock{left:50%;transform:translateX(-50%);top:calc(var(--u)*420);width:calc(var(--u)*540)}
+      .mock{left:50%;transform:translateX(-50%);top:calc(var(--u)*390);width:calc(var(--u)*540)}
       .section{padding:68px 5vw}
       .section-head h2{font-size:32px}
       .cta-band{width:92%;margin:40px auto;padding:44px 20px;border-radius:20px}
@@ -1173,7 +1173,6 @@
 
       <!-- UNIFIED NAVBAR WITH PRODUCTS & SERVICES DROPDOWN -->
       <nav class="abs nav" id="mainNav" aria-label="Primary navigation">
-        <a class="nav-link" href="our-apps.html">Our Work</a>
         
         <!-- SERVICES DROPDOWN -->
         <div class="nav-item-dropdown" id="servicesDropdown">
@@ -1236,7 +1235,7 @@
             </a>
           </div>
         </div>
-        <a class="nav-link" href="#dashboard">Resources</a>
+        <a class="nav-link" href="product1.html#dashboard">Resources</a>
         <a class="nav-link" href="index.html#trust">About</a>
         <a class="mobile-contact nav-link" href="#contact">Get in Touch<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13L13 3M5 3h8v8"/></svg></a>
       </nav>

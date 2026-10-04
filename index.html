@@ -224,10 +224,12 @@
       visibility: visible;
       pointer-events: auto;
       transform: translateX(-50%) translateY(0);
-      transition-delay:0s;
+      transition-delay: 0s;
     }
+
     .dropdown-menu {
-      transition-delay:.12s; /* close hone se pehle halka sa wait */
+      transition-delay: .12s;
+      /* close hone se pehle halka sa wait */
     }
 
     .dropdown-item {
@@ -1090,7 +1092,6 @@
   </style>
   <link rel="stylesheet" href="assets/css/site-header.css">
   <link rel="stylesheet" href="assets/css/motion.css">
-  <link rel="stylesheet" href="assets/css/brand-ui.css">
 </head>
 
 <body class="mo-no-body-fade">
@@ -1102,8 +1103,6 @@
 
       <a class="abs logo fade" href="index.html"><img src="assets/images/brand/Horizontal Logo.png" alt="Limons"></a>
       <nav class="abs nav fade" id="nav">
-        <a class="nav-link" href="our-apps.html">Our Work</a>
-
         <!-- Services dropdown -->
         <div class="nav-item-dropdown">
           <a class="nav-link" href="custom-app-development.html" aria-haspopup="true" aria-expanded="false">
@@ -1191,7 +1190,7 @@
           </div>
         </div>
 
-        <a class="nav-link" href="our-apps.html">Resources</a>
+        <a class="nav-link" href="product1.html#dashboard">Resources</a>
         <a class="nav-link" href="#trust">About</a>
         <a class="mobile-contact nav-link" href="custom-app-development.html#contact-form">Get in Touch<svg
             viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -1334,7 +1333,7 @@
         const t = d => ({ delay: d });
         anim($('#glow'), [{ opacity: 0 }, { opacity: 1 }], { duration: 2200, delay: 100 });
         ['.logo', '#nav', '.header-right'].forEach((s, i) =>
-          anim($(s), [{ opacity: 0, transform: 'translateY(-24px)' }, { opacity: 1, transform: 'none' }], t(150 + i * 120)));
+          anim($(s), [{ opacity: 0, transform: 'translateY(-24px)' }, { opacity: 1, transform: 'none' }], { duration: 1600, delay: 250 + i * 200 }));
         $$('.word .in').forEach((w, i) =>
           anim(w, [{ transform: 'translateY(105%)' }, { transform: 'translateY(0)' }], { duration: 1300, delay: 300 + i * 160 }));
         anim($('#ring'), [{ opacity: 0, transform: 'scale(.55) rotate(-40deg)' }, { opacity: 1, transform: 'scale(1) rotate(0)' }], { duration: 1800, delay: 500 });
