@@ -103,14 +103,14 @@
     .hero {
       position: relative;
       width: 100vw;
-      height: 100vh;
-      height: 100dvh;
+      min-height: calc(var(--u)*940);
       overflow: hidden;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       background: transparent;
-      color: #fff
+      color: #fff;
+      border: none !important;
     }
 
     .hero .shade {
@@ -137,7 +137,7 @@
       position: relative;
       flex: none;
       width: calc(var(--u)*1672);
-      height: calc(var(--u)*941)
+      height: calc(var(--u)*940);
     }
 
     /* ==========================================================
@@ -147,25 +147,22 @@
     .hero-image-wrapper,
     .mock {
       position: absolute;
-      left: calc(var(--u)*466);
-      top: calc(var(--u)*472);
-      width: calc(var(--u)*740);
+      left: calc(var(--u)*456);
+      top: calc(var(--u)*455);
+      width: calc(var(--u)*760);
       z-index: 4;
       pointer-events: none;
       display: flex;
       justify-content: center;
     }
 
-    /* Desktop: larger hero image that runs all the way to the bottom of the first
-       section. Anchored to the hero's bottom edge (the stage can be letter-boxed on
-       tall windows, so the extra gap is added back via the max() term). */
     @media (min-width:821px) {
       .hero-image-wrapper,
       .mock {
-        left: calc(var(--u)*336);
-        top: auto;
-        bottom: calc(0px - max(0px, 50vh - var(--u)*470.5));
-        width: calc(var(--u)*1000);
+        left: calc(var(--u)*456);
+        top: calc(var(--u)*455);
+        bottom: auto;
+        width: calc(var(--u)*760);
       }
     }
 
@@ -1667,8 +1664,8 @@
       .hero-image-wrapper {
         left: 50%;
         transform: translateX(-50%);
-        top: calc(var(--u)*420);
-        width: calc(var(--u)*540)
+        top: calc(var(--u)*400);
+        width: calc(var(--u)*540);
       }
 
       .section {
@@ -1887,7 +1884,7 @@
           </div>
         </div>
         <a class="nav-link" href="product1.html#dashboard">Resources</a>
-        <a class="nav-link" href="index.html#trust">About</a>
+        <a class="nav-link" href="about.html">About</a>
         <a class="mobile-contact nav-link" href="#contact">Get in Touch<svg viewBox="0 0 16 16" fill="none"
             stroke="currentColor" stroke-width="1.8">
             <path d="M3 13L13 3M5 3h8v8" />
