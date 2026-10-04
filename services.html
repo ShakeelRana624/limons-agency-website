@@ -731,11 +731,11 @@
     }
 
     /* ===================================================================
-       SECTION 2: PINNED PROCESS AND WORKFLOW (Screenshot 2 - Optimized Fit)
+       SECTION 2: PINNED PROCESS AND WORKFLOW (Screenshot Exact Match)
        =================================================================== */
     .process-pin-track {
       position: relative;
-      height: 290vh; /* Smooth pinning duration */
+      height: 190vh; /* Smooth, responsive pinning scroll duration */
       z-index: 20;
     }
 
@@ -747,28 +747,38 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
-      padding: 72px clamp(18px, 3.5vw, 50px) 25px;
+      padding: 20px clamp(18px, 3.5vw, 50px) 15px;
       box-sizing: border-box;
+      background:
+        /* Prominent maroon/crimson glow pool directly under Step 3 (Screenshot match) */
+        radial-gradient(ellipse 65% 50% at 62% 84%, rgba(195, 22, 52, 0.58) 0%, rgba(135, 14, 36, 0.38) 45%, rgba(65, 6, 16, 0.16) 72%, transparent 88%),
+        /* Ambient red glow behind top header */
+        radial-gradient(circle at 50% 16%, rgba(175, 20, 50, 0.32) 0%, rgba(85, 8, 22, 0.16) 38%, transparent 70%),
+        /* Subtle glow top-left */
+        radial-gradient(circle at 10% 26%, rgba(130, 14, 34, 0.16) 0%, transparent 45%),
+        /* Subtle glow far-right */
+        radial-gradient(circle at 86% 36%, rgba(135, 15, 36, 0.16) 0%, transparent 45%),
+        /* Deep dark black base (pitch dark under step 1) */
+        #080204;
+      overflow: hidden;
     }
 
     .process-inner-container {
       position: relative;
       width: 100%;
-      max-width: 1400px;
-      height: 100%;
-      max-height: calc(100vh - 85px);
+      max-width: 1360px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      align-items: center;
       margin: 0 auto;
     }
 
-    /* Compact Process Header to guarantee zero clipping on short viewports */
+    /* Process Header */
     .process-header {
       text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       position: relative;
       z-index: 30;
       flex-shrink: 0;
@@ -777,21 +787,21 @@
     .process-badge {
       display: inline-flex;
       align-items: center;
-      padding: 5px 18px;
+      padding: 4px 18px;
       border-radius: 999px;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 500;
       letter-spacing: 0.02em;
       color: #fce2e6;
-      background: rgba(45, 10, 16, 0.7);
-      border: 1px solid rgba(255, 83, 97, 0.45);
-      box-shadow: 0 0 16px rgba(234, 43, 100, 0.25);
-      margin-bottom: 8px;
+      background: rgba(45, 10, 18, 0.65);
+      border: 1px solid rgba(255, 75, 100, 0.55);
+      box-shadow: 0 0 16px rgba(255, 51, 102, 0.25);
+      margin-bottom: 6px;
       backdrop-filter: blur(12px);
     }
 
     .process-title {
-      font-size: clamp(26px, 2.8vw, 38px);
+      font-size: clamp(24px, 2.7vw, 38px);
       font-weight: 700;
       letter-spacing: -0.02em;
       color: #ffffff;
@@ -800,34 +810,34 @@
     }
 
     .process-subtitle {
-      font-size: clamp(13px, 1vw, 15px);
-      color: rgba(255, 255, 255, 0.68);
-      max-width: 520px;
+      font-size: clamp(12px, 0.92vw, 14.5px);
+      color: rgba(255, 255, 255, 0.72);
+      max-width: 540px;
       margin: 0 auto 12px;
-      line-height: 1.45;
+      line-height: 1.4;
     }
 
     .btn-workflow-start {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 38px;
+      height: 36px;
       padding: 0 24px;
       border-radius: 999px;
-      background: linear-gradient(135deg, rgba(167, 24, 40, 0.85) 0%, rgba(104, 2, 2, 0.85) 100%);
-      border: 1px solid rgba(255, 83, 97, 0.5);
-      box-shadow: 0 0 20px rgba(234, 43, 100, 0.35);
-      color: #fff;
-      font-size: 13.5px;
+      background: linear-gradient(180deg, #8a0c20 0%, #58030f 100%);
+      border: 1px solid rgba(255, 83, 97, 0.65);
+      box-shadow: 0 0 25px rgba(234, 43, 100, 0.45), 0 0 50px rgba(180, 20, 50, 0.25);
+      color: #ffffff;
+      font-size: 13px;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.3s ease;
     }
 
     .btn-workflow-start:hover {
-      background: linear-gradient(135deg, #bf1b3a 0%, #850508 100%);
+      background: linear-gradient(180deg, #a5122b 0%, #6d0515 100%);
       border-color: #ff5361;
-      box-shadow: 0 0 28px rgba(255, 83, 97, 0.6);
+      box-shadow: 0 0 32px rgba(255, 83, 97, 0.7), 0 0 60px rgba(234, 43, 100, 0.4);
       transform: translateY(-1px);
     }
 
@@ -835,9 +845,8 @@
     .diagram-stage {
       position: relative;
       width: 100%;
-      flex: 1;
-      min-height: 260px;
-      max-height: 360px;
+      height: 350px;
+      margin-top: 10px;
     }
 
     /* SVG Curved Wave Line */
@@ -847,7 +856,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 5;
+      z-index: 2;
     }
 
     .diagram-svg {
@@ -856,241 +865,205 @@
       overflow: visible;
     }
 
-    /* Base dormant grey line */
+    /* Base dormant glowing line */
     .wave-path-base {
       fill: none;
-      stroke: rgba(255, 255, 255, 0.18);
+      stroke: url(#waveNeonGrad);
       stroke-width: 3.5px;
       stroke-linecap: round;
-      transition: stroke 0.4s ease;
+      opacity: 0.95;
     }
 
     /* Active colored line (draws with scroll) */
     .wave-path-active {
       fill: none;
-      stroke: url(#waveRedGrad);
-      stroke-width: 4px;
+      stroke: #ffffff;
+      stroke-width: 3.8px;
       stroke-linecap: round;
       will-change: stroke-dashoffset;
+      opacity: 0.95;
     }
 
     /* Step Nodes Layout */
     .step-node {
       position: absolute;
-      width: clamp(210px, 20vw, 270px);
+      width: 23%;
+      max-width: 280px;
       z-index: 10;
-      transition: all 0.5s var(--ease);
+      transition: all 0.4s var(--ease);
     }
 
-    /* Coordinates for 4 Steps (sinusoidal pattern of Screenshot 2) */
+    /* Coordinates for 4 Steps (Sinusoidal matching screenshot) */
     .step-node.step-1 {
-      left: 12.5%;
-      top: 48%;
-      transform: translate(-50%, -10%);
+      left: 2%;
+      top: 130px;
     }
 
     .step-node.step-2 {
-      left: 37.5%;
-      top: 5%;
-      transform: translate(-50%, 0);
+      left: 27%;
+      top: 10px;
     }
 
     .step-node.step-3 {
-      left: 62.5%;
-      top: 52%;
-      transform: translate(-50%, -10%);
+      left: 52%;
+      top: 130px;
+    }
+
+    /* Maroon shade glow directly under Step 3 (Screenshot match) */
+    .step-node.step-3::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      transform: translateX(-50%);
+      width: 480px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(210, 24, 55, 0.7) 0%, rgba(145, 14, 36, 0.45) 42%, rgba(75, 8, 20, 0.18) 70%, transparent 85%);
+      filter: blur(28px);
+      pointer-events: none;
+      z-index: 1;
     }
 
     .step-node.step-4 {
-      left: 87.5%;
-      top: 7%;
-      transform: translate(-50%, 0);
+      left: 77%;
+      top: 10px;
     }
 
-    /* Watermark Number */
-    .step-watermark {
-      position: absolute;
-      top: -34px;
-      left: -18px;
-      font-size: clamp(75px, 6.5vw, 105px);
-      font-weight: 800;
-      line-height: 1;
-      color: rgba(255, 255, 255, 0.08);
-      user-select: none;
-      pointer-events: none;
-      z-index: 1;
-      transition: color 0.6s var(--ease), text-shadow 0.6s var(--ease), transform 0.6s var(--ease);
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .step-node.is-active .step-watermark {
-      color: rgba(255, 83, 97, 0.22);
-      text-shadow: 0 0 30px rgba(255, 51, 102, 0.3);
-      transform: translateY(-3px);
-    }
-
-    /* Icon Card & Dot Container */
-    .step-card-row {
-      position: relative;
+    /* Step Top Row: Big Number + Icon side by side */
+    .step-top-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      z-index: 4;
+      gap: 14px;
       margin-bottom: 10px;
     }
 
-    .step-card {
-      width: clamp(50px, 4.4vw, 60px);
-      height: clamp(50px, 4.4vw, 60px);
+    /* Big Integer (1, 2, 3, 4 - screenshot scale) */
+    .step-num {
+      font-family: 'Poppins', system-ui, sans-serif;
+      font-size: clamp(70px, 6.2vw, 94px);
+      font-weight: 800;
+      line-height: 0.8;
+      color: rgba(255, 255, 255, 0.18);
+      user-select: none;
+      pointer-events: none;
+      transition: color 0.4s var(--ease), text-shadow 0.4s var(--ease);
+      flex-shrink: 0;
+      letter-spacing: -0.04em;
+    }
+
+    .step-node.is-active .step-num,
+    .step-node:hover .step-num {
+      color: rgba(255, 83, 97, 0.35);
+      text-shadow: 0 0 25px rgba(255, 51, 102, 0.35);
+    }
+
+    /* Glassmorphic Icon Box with Red Glow */
+    .step-icon-box {
+      position: relative;
+      width: clamp(52px, 4.2vw, 60px);
+      height: clamp(52px, 4.2vw, 60px);
       border-radius: 16px;
-      background: rgba(20, 6, 10, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: radial-gradient(circle at 35% 30%, rgba(95, 14, 28, 0.95), rgba(28, 5, 10, 0.98));
+      border: 1.5px solid rgba(255, 65, 95, 0.55);
+      box-shadow: 0 0 22px rgba(255, 51, 102, 0.42),
+                  inset 0 0 14px rgba(255, 51, 102, 0.22),
+                  0 10px 24px rgba(0, 0, 0, 0.6);
       display: grid;
       place-items: center;
-      transition: all 0.5s var(--ease);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
-
-    .step-card svg {
-      width: clamp(22px, 2vw, 25px);
-      height: clamp(22px, 2vw, 25px);
-      stroke: rgba(255, 255, 255, 0.45);
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transition: all 0.5s var(--ease);
-    }
-
-    /* Glowing Dot on the curve */
-    .step-curve-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.35);
-      border: 2px solid rgba(0, 0, 0, 0.6);
-      transition: all 0.4s var(--ease);
-      position: relative;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       flex-shrink: 0;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
     }
 
-    .step-curve-dot::after {
-      content: "";
-      position: absolute;
-      inset: -5px;
-      border-radius: 50%;
-      background: rgba(255, 51, 102, 0.4);
-      opacity: 0;
-      transform: scale(0.5);
-      transition: all 0.4s var(--ease);
+    .step-node.is-active .step-icon-box,
+    .step-node:hover .step-icon-box {
+      transform: translateY(-2px) scale(1.04);
+      border-color: #ff5361;
+      box-shadow: 0 0 32px rgba(255, 51, 102, 0.7),
+                  inset 0 0 18px rgba(255, 51, 102, 0.35),
+                  0 14px 30px rgba(0, 0, 0, 0.7);
     }
 
-    /* Active State for Cards & Dots */
-    .step-node.is-active .step-card {
-      background: rgba(35, 8, 14, 0.85);
-      border-color: #ff4d6d;
-      box-shadow: 0 0 26px rgba(255, 51, 102, 0.55), 0 0 50px rgba(234, 43, 100, 0.25), inset 0 0 14px rgba(255, 51, 102, 0.25);
-      transform: scale(1.05) translateY(-2px);
-    }
-
-    .step-node.is-active .step-card svg {
+    .step-icon {
+      width: clamp(22px, 1.8vw, 25px);
+      height: clamp(22px, 1.8vw, 25px);
       stroke: #ffffff;
-      filter: drop-shadow(0 0 8px rgba(255, 83, 97, 0.8));
+      fill: none;
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+      transition: filter 0.35s var(--ease);
     }
 
-    .step-node.is-active .step-curve-dot {
+    .step-node.is-active .step-icon {
+      filter: drop-shadow(0 0 8px rgba(255, 83, 97, 0.9));
+    }
+
+    /* Glowing Dots on Curve / Icon edges */
+    .step-dot {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
       background: #ffffff;
-      box-shadow: 0 0 12px #ff3366, 0 0 20px #ff3366;
-      transform: scale(1.25);
+      box-shadow: 0 0 10px #ff3366, 0 0 18px #ff4d6d;
+      z-index: 6;
+      pointer-events: none;
     }
 
-    .step-node.is-active .step-curve-dot::after {
-      opacity: 1;
-      transform: scale(1.6);
-      animation: pulseDot 2s infinite ease-out;
+    .step-dot.dot-left {
+      left: -4px;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
-    @keyframes pulseDot {
-      0% { transform: scale(1); opacity: 0.8; }
-      100% { transform: scale(2.4); opacity: 0; }
+    .step-dot.dot-bottom {
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
-    /* Step Content Text */
-    .step-content {
+    /* Step Text Block (Directly below Number + Icon) */
+    .step-text-block {
       position: relative;
       z-index: 5;
-      transition: all 0.5s var(--ease);
-      opacity: 0.35;
-      transform: translateY(5px);
-      filter: grayscale(0.6);
-    }
-
-    .step-node.is-active .step-content {
-      opacity: 1;
-      transform: translateY(0);
-      filter: grayscale(0);
     }
 
     .step-heading {
       font-size: clamp(14.5px, 1.15vw, 17px);
-      font-weight: 600;
+      font-weight: 700;
       line-height: 1.25;
       color: #ffffff;
-      margin-bottom: 5px;
+      margin: 0 0 5px 0;
       letter-spacing: -0.01em;
-      transition: color 0.4s ease, text-shadow 0.4s ease;
+      transition: text-shadow 0.3s ease;
     }
 
     .step-node.is-active .step-heading {
-      text-shadow: 0 0 20px rgba(255, 83, 97, 0.3);
+      text-shadow: 0 0 18px rgba(255, 83, 97, 0.4);
     }
 
     .step-paragraph {
-      font-size: clamp(11.5px, 0.85vw, 13px);
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.7);
-      transition: color 0.4s ease;
+      font-size: clamp(11.5px, 0.85vw, 12.8px);
+      line-height: 1.48;
+      color: rgba(255, 255, 255, 0.74);
+      margin: 0;
+      max-width: 270px;
     }
 
     .step-node.is-active .step-paragraph {
-      color: rgba(255, 255, 255, 0.88);
-    }
-
-    /* Indicator pill on diagram */
-    .scroll-guide-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 14px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.5);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      pointer-events: none;
-      margin: 10px auto 0;
-      flex-shrink: 0;
-    }
-
-    .scroll-guide-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #ff5361;
-      animation: pulseDot 1.5s infinite;
+      color: rgba(255, 255, 255, 0.92);
     }
 
     /* ===================================================================
-       NEW SECTION 3: APPS WE'VE BUILT (Exact Match to User Screenshot)
+       NEW SECTION 3: APPS WE'VE BUILT (Natural Flow Gap)
        =================================================================== */
     .apps-built-section {
       position: relative;
-      padding: 70px clamp(24px, 5vw, 80px) 90px;
+      padding: 48px clamp(24px, 5vw, 80px) 90px;
+      margin-top: 0;
       z-index: 25;
-      background: linear-gradient(180deg, transparent 0%, rgba(10, 3, 5, 0.4) 30%, transparent 100%);
+      background: linear-gradient(180deg, transparent 0%, rgba(10, 3, 5, 0.5) 30%, transparent 100%);
     }
 
     .apps-built-container {
@@ -1100,7 +1073,7 @@
 
     .apps-built-header {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 34px;
     }
 
     .apps-built-badge {
@@ -2105,68 +2078,70 @@
           
           <!-- SVG Wave Tracks -->
           <div class="diagram-svg-wrap">
-            <svg class="diagram-svg" viewBox="0 0 1400 320" preserveAspectRatio="none">
+            <svg class="diagram-svg" viewBox="0 0 1320 350" preserveAspectRatio="none">
               <defs>
-                <linearGradient id="waveRedGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#ff3366"/>
-                  <stop offset="35%" stop-color="#ff4d6d"/>
-                  <stop offset="65%" stop-color="#ea2b64"/>
-                  <stop offset="100%" stop-color="#ff6b8b"/>
+                <linearGradient id="waveNeonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ff3366" stop-opacity="0.3"/>
+                  <stop offset="6%" stop-color="#ff3366" stop-opacity="0.95"/>
+                  <stop offset="35%" stop-color="#ff4d6d" stop-opacity="1"/>
+                  <stop offset="65%" stop-color="#ea2b64" stop-opacity="1"/>
+                  <stop offset="90%" stop-color="#ff4d6d" stop-opacity="1"/>
+                  <stop offset="100%" stop-color="#ff3366" stop-opacity="0.2"/>
                 </linearGradient>
                 <filter id="neonWaveGlow" x="-10%" y="-30%" width="120%" height="160%">
-                  <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#ff3366" flood-opacity="0.9"/>
-                  <feDropShadow dx="0" dy="0" stdDeviation="15" flood-color="#ea2b64" flood-opacity="0.6"/>
+                  <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#ff3366" flood-opacity="0.9"/>
+                  <feDropShadow dx="0" dy="0" stdDeviation="12" flood-color="#ea2b64" flood-opacity="0.65"/>
+                  <feDropShadow dx="0" dy="0" stdDeviation="22" flood-color="#ff2a5f" flood-opacity="0.35"/>
                 </filter>
               </defs>
 
-              <!-- Base dormant grey line -->
-              <path class="wave-path-base" 
-                    d="M 30,205 C 90,210 130,210 175,210 C 295,210 405,75 525,75 C 645,75 755,225 875,225 C 995,225 1105,80 1225,80 C 1285,80 1335,110 1375,130" />
+              <!-- Base dormant glowing neon line (matching screenshot) -->
+              <path class="wave-path-base" filter="url(#neonWaveGlow)"
+                    d="M 0,150 C 35,152 70,158 111,158 C 220,158 320,38 451,38 C 560,38 660,158 781,158 C 900,158 1000,38 1111,38 C 1180,38 1250,65 1320,90" />
 
-              <!-- Active glowing neon red line (animated on scroll) -->
+              <!-- Active high-intensity neon line (animated on scroll) -->
               <path class="wave-path-active" id="activeWavePath" filter="url(#neonWaveGlow)"
-                    d="M 30,205 C 90,210 130,210 175,210 C 295,210 405,75 525,75 C 645,75 755,225 875,225 C 995,225 1105,80 1225,80 C 1285,80 1335,110 1375,130" />
+                    d="M 0,150 C 35,152 70,158 111,158 C 220,158 320,38 451,38 C 560,38 660,158 781,158 C 900,158 1000,38 1111,38 C 1180,38 1250,65 1320,90" />
             </svg>
           </div>
 
           <!-- STEP 1 -->
-          <div class="step-node step-1" data-step="1" id="stepNode1">
-            <div class="step-watermark">1</div>
-            <div class="step-card-row">
-              <div class="step-card">
-                <!-- Pencil / Edit inside circle icon -->
-                <svg viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" stroke-width="1.6"/>
-                  <path d="M14.5 7.5l2 2L9 17H7v-2l7.5-7.5z" stroke-width="1.8"/>
+          <div class="step-node step-1 is-active" data-step="1" id="stepNode1">
+            <div class="step-top-row">
+              <div class="step-num">1</div>
+              <div class="step-icon-box">
+                <span class="step-dot dot-left"></span>
+                <svg viewBox="0 0 24 24" class="step-icon">
+                  <circle cx="12" cy="12" r="9.5" stroke="#ffffff" stroke-width="1.8" fill="none"/>
+                  <path d="M14.8 8.2l1 1L9.2 15.8H8.2v-1l6.6-6.6z" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                 </svg>
               </div>
-              <div class="step-curve-dot"></div>
             </div>
-            <div class="step-content">
+            <div class="step-text-block">
               <h4 class="step-heading">Defining the App’s Goal &amp; Feature Set</h4>
               <p class="step-paragraph">
-                We define the app's scope, structure, and key features using a lean approach focused on what users truly need first.
+                We define the app’s scope, structure, and key features using a lean approach focused on what users truly need first.
               </p>
             </div>
           </div>
 
           <!-- STEP 2 -->
-          <div class="step-node step-2" data-step="2" id="stepNode2">
-            <div class="step-watermark">2</div>
-            <div class="step-card-row">
-              <div class="step-card">
-                <!-- Bounding Box / Wireframe / Design icon -->
-                <svg viewBox="0 0 24 24">
-                  <rect x="5" y="5" width="14" height="14" rx="2" stroke-width="1.8"/>
-                  <rect x="3" y="3" width="4" height="4" fill="currentColor"/>
-                  <rect x="17" y="3" width="4" height="4" fill="currentColor"/>
-                  <rect x="3" y="17" width="4" height="4" fill="currentColor"/>
-                  <rect x="17" y="17" width="4" height="4" fill="currentColor"/>
+          <div class="step-node step-2 is-active" data-step="2" id="stepNode2">
+            <div class="step-top-row">
+              <div class="step-num">2</div>
+              <div class="step-icon-box">
+                <span class="step-dot dot-left"></span>
+                <span class="step-dot dot-bottom"></span>
+                <svg viewBox="0 0 24 24" class="step-icon" fill="none">
+                  <rect x="5.5" y="5.5" width="13" height="13" stroke="#ffffff" stroke-width="1.8"/>
+                  <rect x="3" y="3" width="5" height="5" fill="#ffffff" rx="0.5"/>
+                  <rect x="16" y="3" width="5" height="5" fill="#ffffff" rx="0.5"/>
+                  <rect x="3" y="16" width="5" height="5" fill="#ffffff" rx="0.5"/>
+                  <rect x="16" y="16" width="5" height="5" fill="#ffffff" rx="0.5"/>
                 </svg>
               </div>
-              <div class="step-curve-dot"></div>
             </div>
-            <div class="step-content">
+            <div class="step-text-block">
               <h4 class="step-heading">UI / UX Design</h4>
               <p class="step-paragraph">
                 Our design team creates a polished user experience with thoughtful layouts, visuals, typography, and colors before development begins.
@@ -2175,19 +2150,18 @@
           </div>
 
           <!-- STEP 3 -->
-          <div class="step-node step-3" data-step="3" id="stepNode3">
-            <div class="step-watermark">3</div>
-            <div class="step-card-row">
-              <div class="step-card">
-                <!-- Code brackets <> icon -->
-                <svg viewBox="0 0 24 24">
-                  <polyline points="16 18 22 12 16 6" stroke-width="2"/>
-                  <polyline points="8 6 2 12 8 18" stroke-width="2"/>
+          <div class="step-node step-3 is-active" data-step="3" id="stepNode3">
+            <div class="step-top-row">
+              <div class="step-num">3</div>
+              <div class="step-icon-box">
+                <span class="step-dot dot-left"></span>
+                <svg viewBox="0 0 24 24" class="step-icon" fill="none">
+                  <polyline points="9 17 4 12 9 7" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="15 7 20 12 15 17" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <div class="step-curve-dot"></div>
             </div>
-            <div class="step-content">
+            <div class="step-text-block">
               <h4 class="step-heading">App Development</h4>
               <p class="step-paragraph">
                 We build high quality applications with strong code architecture, delivering fast, reliable, and scalable mobile experiences.
@@ -2196,19 +2170,21 @@
           </div>
 
           <!-- STEP 4 -->
-          <div class="step-node step-4" data-step="4" id="stepNode4">
-            <div class="step-watermark">4</div>
-            <div class="step-card-row">
-              <div class="step-card">
-                <!-- Maintenance / Sync Cycle arrows icon -->
-                <svg viewBox="0 0 24 24">
-                  <path d="M21.5 2v6h-6" stroke-width="2"/>
-                  <path d="M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19" stroke-width="2"/>
+          <div class="step-node step-4 is-active" data-step="4" id="stepNode4">
+            <div class="step-top-row">
+              <div class="step-num">4</div>
+              <div class="step-icon-box">
+                <span class="step-dot dot-left"></span>
+                <span class="step-dot dot-bottom"></span>
+                <svg viewBox="0 0 24 24" class="step-icon" fill="none">
+                  <path d="M21 2v6h-6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M3 12a9 9 0 0 1 15.3-6.4L21 8" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M3 22v-6h6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M21 12a9 9 0 0 1-15.3 6.4L3 16" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <div class="step-curve-dot"></div>
             </div>
-            <div class="step-content">
+            <div class="step-text-block">
               <h4 class="step-heading">Maintenance</h4>
               <p class="step-paragraph">
                 After launch, we keep your app updated, supported, and improving over time so your users continue to have a smooth experience.
@@ -2218,10 +2194,7 @@
 
         </div>
 
-        <div class="scroll-guide-pill" id="scrollGuide">
-          <span class="scroll-guide-dot"></span>
-          Scroll to explore the 4-step workflow
-        </div>
+
 
       </div>
     </div>
