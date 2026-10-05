@@ -1,5 +1,5 @@
 /* ==================================================================
-   LIMONS — GLOBAL MOTION CONTROLLER
+   LIMONS - GLOBAL MOTION CONTROLLER
    Premium scroll reveals, text animations, navbar behavior,
    page transitions, and floating mockup orchestration.
    ================================================================== */
@@ -51,6 +51,25 @@
         a.target === '_blank' || a.hasAttribute('download')) return;
       // Only intercept .html links (local pages)
       if (href.endsWith('.html') || href.includes('.html#')) {
+        // If clicking a link pointing to an anchor on the current page, smooth scroll immediately
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        const [targetPath, targetHash] = href.split('#');
+        if (targetHash && (targetPath === currentPath || targetPath === '')) {
+          a.addEventListener('click', e => {
+            e.preventDefault();
+            const targetEl = document.getElementById(targetHash) || document.querySelector('#' + targetHash);
+            if (targetEl) {
+              if (window.lenis) {
+                window.lenis.scrollTo(targetEl, { offset: -30, duration: 1.0 });
+              } else {
+                targetEl.scrollIntoView({ behavior: 'smooth' });
+              }
+              try { history.pushState(null, '', '#' + targetHash); } catch(err){}
+            }
+          });
+          return;
+        }
+
         a.addEventListener('click', e => {
           e.preventDefault();
           overlay.classList.add('active');
@@ -131,7 +150,7 @@
   }
 
   /* ------------------------------------------------------------------
-     4. STAGGER CHILDREN — auto-assign stagger delays
+     4. STAGGER CHILDREN - auto-assign stagger delays
      Usage: add data-mo-stagger to the parent container
   ------------------------------------------------------------------ */
   function initStaggerContainers() {
@@ -224,7 +243,7 @@
   }
 
   /* ------------------------------------------------------------------
-     7. FOOTER COLUMNS — auto-stagger
+     7. FOOTER COLUMNS - auto-stagger
   ------------------------------------------------------------------ */
   function initFooterReveal() {
     const cols = $$('.footer-grid > div');
@@ -250,7 +269,7 @@
   }
 
   /* ------------------------------------------------------------------
-     8. BRAND STRIP LOGOS — auto-stagger
+     8. BRAND STRIP LOGOS - auto-stagger
   ------------------------------------------------------------------ */
   function initBrandReveal() {
     const logos = $$('.brand-strip img');
@@ -262,7 +281,7 @@
   }
 
   /* ------------------------------------------------------------------
-     9. DASHBOARD POINTS — auto-stagger
+     9. DASHBOARD POINTS - auto-stagger
   ------------------------------------------------------------------ */
   function initDashboardPoints() {
     const points = $$('.dashboard-point');
@@ -274,7 +293,7 @@
   }
 
   /* ------------------------------------------------------------------
-     10. FORM INPUTS — add mo-input class
+     10. FORM INPUTS - add mo-input class
   ------------------------------------------------------------------ */
   function initFormInputs() {
     $$('.unified-cta-form input, .contact-card input, .contact-card textarea, .contact-card select, .contact-form input, .contact-form textarea').forEach(input => {
@@ -283,7 +302,7 @@
   }
 
   /* ------------------------------------------------------------------
-     11. FEATURE NOTES — add hover class
+     11. FEATURE NOTES - add hover class
   ------------------------------------------------------------------ */
   function initFeatureNotes() {
     $$('.feature-note').forEach(note => {
@@ -292,7 +311,7 @@
   }
 
   /* ------------------------------------------------------------------
-     12. CTA BAND — special reveal
+     12. CTA BAND - special reveal
   ------------------------------------------------------------------ */
   function initCtaBand() {
     $$('.cta-band').forEach(band => {
@@ -430,10 +449,29 @@
         }
       });
     });
+
+    // Handle initial hash on page load (e.g. from about.html -> services.html#contact-form)
+    function scrollToHash() {
+      if (window.location.hash) {
+        const hash = window.location.hash;
+        const target = document.querySelector(hash) || document.getElementById(hash.replace('#', ''));
+        if (target) {
+          setTimeout(() => {
+            lenis.scrollTo(target, { offset: -30, duration: 1.0, immediate: false });
+          }, 350);
+          setTimeout(() => {
+            lenis.scrollTo(target, { offset: -30, duration: 0.6, immediate: false });
+          }, 950);
+        }
+      }
+    }
+    scrollToHash();
+    window.addEventListener('load', scrollToHash);
+    window.addEventListener('hashchange', scrollToHash);
   }
 
   /* ------------------------------------------------------------------
-     16. PRELOADER (Luxury Brand Intro — No Dashes, Dividers, or AI Artifacts)
+     16. PRELOADER (Luxury Brand Intro - No Dashes, Dividers, or AI Artifacts)
   ------------------------------------------------------------------ */
   function initPreloader() {
     let preloader = document.querySelector('.limons-preloader');
@@ -445,7 +483,7 @@
       preloader.innerHTML = `
         <div class="preloader-ambient-glow" aria-hidden="true"></div>
         <div class="preloader-center">
-          <div class="preloader-brand-title">Limons</div>
+          <div class="preloader-brand-title">LIMONS</div>
           <div class="preloader-bar-wrap">
             <div class="preloader-bar-fill" id="preloaderBar"></div>
           </div>
@@ -479,6 +517,18 @@
 
       setTimeout(() => {
         preloader.classList.add('is-loaded');
+        if (window.location.hash) {
+          const hashEl = document.querySelector(window.location.hash) || document.getElementById(window.location.hash.replace('#', ''));
+          if (hashEl) {
+            setTimeout(() => {
+              if (window.lenis) {
+                window.lenis.scrollTo(hashEl, { offset: -30, duration: 0.9, immediate: false });
+              } else {
+                hashEl.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 100);
+          }
+        }
         setTimeout(() => {
           preloader.remove();
         }, 800);

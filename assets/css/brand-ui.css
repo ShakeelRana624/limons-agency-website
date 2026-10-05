@@ -1,5 +1,5 @@
 /* =====================================================================
-   LIMONS — BRAND UI LAYER  (loads last, after motion.css)
+   LIMONS - BRAND UI LAYER  (loads last, after motion.css)
    1. Brand-primary colour for every button + menu
    2. Bottom -> top "liquid fill" hover animation for every button
    3. Slower, smoother header / dropdown / mobile-menu motion
@@ -15,7 +15,7 @@
   --brand-ink: #1A0A0B;
   --brand-paper: #F7F4F1;
 
-  /* button fill timing — change this one value to speed up / slow down */
+  /* button fill timing - change this one value to speed up / slow down */
   --btn-fill-time: .55s;
   --btn-fill-ease: cubic-bezier(.22, .61, .36, 1);
 
@@ -31,6 +31,7 @@
 /* every button-like element in the site */
 :is(.cta, .btn-contact, .mobile-contact, .gh-modal-btn,
     .form-row-buttons .btn-start, .filter-btn, .btn-expand-modal,
+    .btn-start-project, .btn-workflow-start,
     .form-row-buttons .btn-demo, .btn-send, .btn-describe-project, .btn-modal-inquire):not(#_) {
   position: relative;
   overflow: hidden;
@@ -47,6 +48,7 @@
 /* the rising fill (curved/wavy edge that flattens as it climbs) */
 :is(.cta, .btn-contact, .mobile-contact, .gh-modal-btn,
     .form-row-buttons .btn-start, .filter-btn, .btn-expand-modal,
+    .btn-start-project, .btn-workflow-start,
     .form-row-buttons .btn-demo, .btn-send, .btn-describe-project, .btn-modal-inquire):not(#_)::before {
   content: "";
   position: absolute;
@@ -64,9 +66,11 @@
 }
 :is(.cta, .btn-contact, .mobile-contact, .gh-modal-btn,
     .form-row-buttons .btn-start, .filter-btn, .btn-expand-modal,
+    .btn-start-project, .btn-workflow-start,
     .form-row-buttons .btn-demo, .btn-send, .btn-describe-project, .btn-modal-inquire):not(#_):hover::before,
 :is(.cta, .btn-contact, .mobile-contact, .gh-modal-btn,
     .form-row-buttons .btn-start, .filter-btn, .btn-expand-modal,
+    .btn-start-project, .btn-workflow-start,
     .form-row-buttons .btn-demo, .btn-send, .btn-describe-project, .btn-modal-inquire):not(#_):focus-visible::before {
   height: 150%;
   border-radius: 0;
@@ -114,11 +118,22 @@
 .mo-btn:hover { transform: translateY(-2px) !important; }
 
 /* the generic wipe that some pages add to every <button>: brand colour, not pink */
-html body button:not(.mobile-toggle):hover,
-html body button:not(.mobile-toggle):focus-visible,
-html body a[class*="btn"]:hover,
-html body a[class*="btn"]:focus-visible {
+html body button:not(.mobile-toggle):not(.app-card-action):not(.modal-close-btn):hover,
+html body button:not(.mobile-toggle):not(.app-card-action):not(.modal-close-btn):focus-visible,
+html body a[class*="btn"]:not(.link-process):hover,
+html body a[class*="btn"]:not(.link-process):focus-visible {
   background-image: linear-gradient(#9A1E23, #9A1E23) !important;
+}
+
+/* ensure case study action button stays cleanly styled on text only */
+.app-card-action,
+.app-card-action:hover,
+.app-card-action:focus-visible {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  width: fit-content !important;
+  align-self: flex-start !important;
 }
 
 /* text-link style button */
@@ -132,7 +147,7 @@ html body a[class*="btn"]:focus-visible {
 }
 
 /* =====================================================================
-   MENUS — primary colour
+   MENUS - primary colour
    ===================================================================== */
 html body .dropdown-menu,
 html body .gh-modal {
@@ -160,7 +175,7 @@ html body .nav-link.on {
 }
 
 /* =====================================================================
-   3. HEADER / MENU MOTION — slower + smoother
+   3. HEADER / MENU MOTION - slower + smoother
    ===================================================================== */
 html body .nav-link {
   transition: color .5s var(--menu-ease), background .6s var(--menu-ease) !important;
@@ -178,10 +193,10 @@ html body .dropdown-menu {
     visibility var(--menu-time) var(--menu-ease) !important;
 }
 html body .gh-modal {
-  transition:
-    opacity var(--menu-time) var(--menu-ease),
-    transform var(--menu-time) var(--menu-ease),
-    visibility var(--menu-time) var(--menu-ease) !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 /* dropdown rows glide in one after another */

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Custom Mobile Development Services — We design and build bespoke mobile and cloud products around your idea, from concept to launch and long-term support.">
-  <title>Services | Limons — We Build Apps</title>
+  <meta name="description" content="Custom Mobile Development Services | We design and build bespoke mobile and cloud products around your idea, from concept to launch and long-term support.">
+  <title>Services | Limons | We Build Apps</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -465,9 +465,9 @@
       max-width: 1420px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1.08fr;
+      grid-template-columns: 1.15fr 0.95fr;
       align-items: center;
-      gap: clamp(30px, 4.5vw, 80px);
+      gap: clamp(24px, 3.5vw, 60px);
     }
 
     /* Left Column */
@@ -495,21 +495,34 @@
     }
 
     .hero-title {
-      font-size: clamp(38px, 4.3vw, 62px);
+      font-size: clamp(28px, 3.4vw, 52px);
       font-weight: 700;
-      line-height: 1.15;
+      line-height: 1.14;
       letter-spacing: -0.025em;
       color: #ffffff;
       margin-bottom: 22px;
     }
 
+    .hero-title .title-top-line {
+      display: inline-block;
+      white-space: nowrap !important;
+    }
+
     .hero-title .highlight-red {
       display: inline-block;
+      white-space: nowrap !important;
       color: #ff4d68;
       background: linear-gradient(135deg, #ff5c77 0%, #ea2b64 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 0 35px rgba(255, 83, 97, 0.45);
+    }
+
+    @media (max-width: 520px) {
+      .hero-title .title-top-line,
+      .hero-title .highlight-red {
+        white-space: normal !important;
+      }
     }
 
     .hero-description {
@@ -581,23 +594,48 @@
       height: 52px;
       padding: 0 32px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #a71828 0%, #680202 100%);
-      border: 1.5px solid rgba(255, 95, 115, 0.55);
-      box-shadow: 0 0 28px rgba(234, 43, 100, 0.55), 0 0 55px rgba(234, 43, 100, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+      background: rgba(104, 2, 2, 0.35);
+      border: 1.5px solid #9A1E23;
+      box-shadow: 0 0 24px rgba(234, 43, 100, 0.25);
       color: #fff;
       font-size: 15px;
       font-weight: 600;
       text-decoration: none;
       letter-spacing: 0.01em;
-      transition: all 0.35s var(--ease);
+      transition: all 0.35s cubic-bezier(.16, 1, .3, 1);
       overflow: hidden;
+      isolation: isolate;
+    }
+
+    .btn-start-project::before {
+      content: "";
+      position: absolute;
+      left: -12%;
+      right: -12%;
+      bottom: -2px;
+      height: 0;
+      z-index: -1;
+      background: linear-gradient(0deg, #680202 0%, #ea2b64 100%);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      transition: height 0.55s cubic-bezier(.16, 1, .3, 1), border-radius 0.55s cubic-bezier(.16, 1, .3, 1);
+      pointer-events: none;
+    }
+
+    .btn-start-project:hover::before,
+    .btn-start-project:focus-visible::before {
+      height: 145%;
+      border-radius: 0;
     }
 
     .btn-start-project:hover {
-      background: linear-gradient(135deg, #bf1b3a 0%, #850508 100%);
       border-color: #ff5361;
-      box-shadow: 0 0 40px rgba(255, 83, 97, 0.75), 0 0 80px rgba(234, 43, 100, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 10px 32px rgba(255, 83, 97, 0.65), 0 0 60px rgba(234, 43, 100, 0.35);
       transform: translateY(-2px);
+    }
+
+    .btn-start-project > * {
+      position: relative;
+      z-index: 1;
     }
 
     .btn-start-project svg {
@@ -805,27 +843,54 @@
     }
 
     .btn-workflow-start {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       height: 36px;
       padding: 0 24px;
       border-radius: 999px;
-      background: linear-gradient(180deg, #8a0c20 0%, #58030f 100%);
+      background: rgba(104, 2, 2, 0.4);
       border: 1px solid rgba(255, 83, 97, 0.65);
-      box-shadow: 0 0 25px rgba(234, 43, 100, 0.45), 0 0 50px rgba(180, 20, 50, 0.25);
+      box-shadow: 0 0 25px rgba(234, 43, 100, 0.35);
       color: #ffffff;
       font-size: 13px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: all 0.35s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .btn-workflow-start::before {
+      content: "";
+      position: absolute;
+      left: -12%;
+      right: -12%;
+      bottom: -2px;
+      height: 0;
+      z-index: -1;
+      background: linear-gradient(0deg, #680202 0%, #ea2b64 100%);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      transition: height 0.55s cubic-bezier(.16, 1, .3, 1), border-radius 0.55s cubic-bezier(.16, 1, .3, 1);
+      pointer-events: none;
+    }
+
+    .btn-workflow-start:hover::before,
+    .btn-workflow-start:focus-visible::before {
+      height: 145%;
+      border-radius: 0;
     }
 
     .btn-workflow-start:hover {
-      background: linear-gradient(180deg, #a5122b 0%, #6d0515 100%);
       border-color: #ff5361;
       box-shadow: 0 0 32px rgba(255, 83, 97, 0.7), 0 0 60px rgba(234, 43, 100, 0.4);
       transform: translateY(-1px);
+    }
+
+    .btn-workflow-start > * {
+      position: relative;
+      z-index: 1;
     }
 
     /* Diagram Stage */
@@ -1047,7 +1112,7 @@
        =================================================================== */
     .apps-built-section {
       position: relative;
-      padding: 48px clamp(24px, 5vw, 80px) 90px;
+      padding: 48px clamp(24px, 5vw, 80px) 35px;
       margin-top: 0;
       z-index: 25;
       background: linear-gradient(180deg, transparent 0%, rgba(10, 3, 5, 0.5) 30%, transparent 100%);
@@ -1178,8 +1243,14 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: transparent;
-      border: none;
+      width: fit-content;
+      max-width: max-content;
+      align-self: flex-start;
+      background: transparent !important;
+      background-image: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none;
       padding: 0;
       color: #ff5361;
       font-size: 14px;
@@ -1190,7 +1261,11 @@
       text-decoration: none;
     }
 
-    .app-card-action:hover {
+    .app-card-action:hover,
+    .app-card-action:focus-visible {
+      background: transparent !important;
+      background-image: none !important;
+      box-shadow: none !important;
       color: #ff7582;
       transform: translateX(3px);
     }
@@ -1219,307 +1294,493 @@
     }
 
     /* ===================================================================
-       SECTION 4: INQUIRY & CONTACT FORM SECTION (Moved from Section 3)
+       SECTION 4: GET IN TOUCH / CONTACT SECTION (NuPhy Style + Limons Branding)
        =================================================================== */
     .services-inquiry-section {
       position: relative;
-      padding: 90px clamp(24px, 5vw, 80px) 100px;
+      padding: 48px clamp(24px, 5vw, 80px) 48px;
       z-index: 25;
+      background: radial-gradient(40% 50% at 20% 70%, rgba(104, 2, 2, 0.25), transparent 70%),
+                  radial-gradient(45% 45% at 85% 25%, rgba(154, 30, 35, 0.15), transparent 70%),
+                  #060203;
+      overflow: hidden;
     }
 
     .inquiry-container {
-      max-width: 1200px;
+      max-width: 1320px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1.25fr;
-      gap: clamp(40px, 5vw, 80px);
+      grid-template-columns: 1fr 1.08fr;
+      gap: clamp(32px, 5vw, 80px);
       align-items: start;
     }
 
-    .inquiry-info {
+    /* Left Column: Heading + Mechanical Keyboard Visual */
+    .inquiry-left {
       position: relative;
-    }
-
-    .inquiry-tag {
-      display: inline-block;
-      font-size: 12.5px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #ff5361;
-      margin-bottom: 14px;
-    }
-
-    .inquiry-title {
-      font-size: clamp(30px, 3.2vw, 44px);
-      font-weight: 700;
-      line-height: 1.2;
-      color: #fff;
-      margin-bottom: 20px;
-    }
-
-    .inquiry-desc {
-      font-size: 15.5px;
-      line-height: 1.7;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 34px;
-    }
-
-    .inquiry-perks {
       display: flex;
       flex-direction: column;
-      gap: 18px;
     }
 
-    .perk-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-
-    .perk-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: rgba(255, 83, 97, 0.12);
-      border: 1px solid rgba(255, 83, 97, 0.3);
-      display: grid;
-      place-items: center;
-      color: #ff5361;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .perk-icon svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-    }
-
-    .perk-text h5 {
-      font-size: 15px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 3px;
-    }
-
-    .perk-text p {
+    .contact-eyebrow {
       font-size: 13px;
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.55);
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 4px;
+      letter-spacing: 0.01em;
     }
 
-    /* Contact Card */
-    .contact-card {
-      background: rgba(18, 5, 8, 0.85);
-      border: 1px solid rgba(255, 83, 97, 0.28);
-      border-radius: 24px;
-      padding: clamp(28px, 4vw, 46px);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 83, 97, 0.12);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-    }
-
-    .form-heading {
-      font-size: 20px;
+    .contact-main-title {
+      font-size: clamp(30px, 3.2vw, 44px);
       font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-
-    .form-sub {
-      font-size: 13.5px;
-      color: rgba(255, 255, 255, 0.6);
-      margin-bottom: 28px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-group.full-width {
-      grid-column: 1 / -1;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 12.5px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.75);
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      line-height: 1.05;
       margin-bottom: 6px;
     }
 
-    .form-input,
-    .form-select,
-    .form-textarea {
+    .contact-visual-wrap {
+      position: relative;
       width: 100%;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 12px;
-      padding: 12px 16px;
-      color: #fff;
-      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-left: calc(-1 * clamp(230px, 21vw, 340px));
+      margin-top: -16px;
+    }
+
+    .contact-visual-glow {
+      position: absolute;
+      left: 24%;
+      top: 15%;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(234, 43, 100, 0.25) 0%, rgba(104, 2, 2, 0.12) 50%, transparent 70%);
+      filter: blur(55px);
+      pointer-events: none;
+      z-index: 1;
+      animation: pulseGlow 6s ease-in-out infinite alternate;
+    }
+
+    .contact-keyboard-img {
+      position: relative;
+      z-index: 2;
+      width: clamp(690px, 54vw, 840px);
+      max-width: none;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 35px rgba(234, 43, 100, 0.22));
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .contact-visual-wrap:hover .contact-keyboard-img {
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    /* Right Column: Question + Meta + Underline Form */
+    .inquiry-right {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding-top: 0;
+    }
+
+    .contact-question-title {
+      font-size: clamp(14px, 1.35vw, 17.5px);
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .contact-meta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .contact-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .contact-meta-label {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.01em;
+    }
+
+    .contact-meta-val {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .contact-mail-link {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .contact-mail-link:hover {
+      color: #ff5361;
+    }
+
+    /* Minimalist Underline Form Inputs (Matches Reference Screenshot) */
+    .contact-minimal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .contact-field-group {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .contact-field-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 0.01em;
+      transition: color 0.25s ease;
+    }
+
+    .contact-field-input,
+    .contact-field-textarea {
+      width: 100%;
+      background: transparent !important;
+      border: none !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important;
+      border-radius: 0 !important;
+      padding: 3px 0 6px 0;
       font-size: 14px;
-      transition: all 0.25s ease;
+      color: #ffffff;
+      font-family: inherit;
       outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .form-select option {
-      background: #0f0407;
-      color: #fff;
-    }
-
-    .form-input:focus,
-    .form-select:focus,
-    .form-textarea:focus {
-      border-color: #ff5361;
-      background: rgba(255, 83, 97, 0.06);
-      box-shadow: 0 0 16px rgba(255, 83, 97, 0.25);
-    }
-
-    .form-textarea {
-      min-height: 100px;
+    .contact-field-textarea {
+      min-height: 42px;
+      height: 42px;
       resize: vertical;
     }
 
-    .btn-send {
+    .contact-field-input:focus,
+    .contact-field-textarea:focus {
+      border-bottom-color: #ff5361 !important;
+      box-shadow: 0 1px 0 #ff5361, 0 8px 20px -8px rgba(255, 83, 97, 0.45) !important;
+    }
+
+    .contact-field-group:focus-within .contact-field-label {
+      color: #ff5361;
+    }
+
+    /* Submit Button (Pill shape, centered in form) */
+    .contact-submit-wrap {
+      margin-top: 10px;
       width: 100%;
-      height: 50px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #a71828 0%, #680202 100%);
-      border: 1px solid rgba(255, 83, 97, 0.5);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      cursor: pointer;
       display: flex;
+      justify-content: center;
+    }
+
+    .btn-send {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      width: fit-content !important;
+      max-width: fit-content !important;
+      display: inline-flex !important;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      transition: all 0.3s ease;
-      margin-top: 10px;
-      box-shadow: 0 8px 24px rgba(104, 2, 2, 0.45);
+      padding: 0 38px !important;
+      height: 44px;
+      border-radius: 999px !important;
+      background: rgba(104, 2, 2, 0.5);
+      border: 1px solid rgba(255, 83, 97, 0.45);
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(.16, 1, .3, 1);
+      box-shadow: 0 8px 24px rgba(104, 2, 2, 0.4);
+    }
+
+    .btn-send::before {
+      content: "";
+      position: absolute;
+      left: -12%;
+      right: -12%;
+      bottom: -2px;
+      height: 0;
+      z-index: -1;
+      background: linear-gradient(0deg, #9A1E23 0%, #ea2b64 100%);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      transition: height 0.55s cubic-bezier(.16, 1, .3, 1), border-radius 0.55s cubic-bezier(.16, 1, .3, 1);
+      pointer-events: none;
+    }
+
+    .btn-send:hover::before,
+    .btn-send:focus-visible::before {
+      height: 145%;
+      border-radius: 0;
     }
 
     .btn-send:hover {
-      background: linear-gradient(135deg, #bf1b3a 0%, #850508 100%);
       border-color: #ff5361;
-      box-shadow: 0 10px 32px rgba(255, 83, 97, 0.5);
+      box-shadow: 0 10px 32px rgba(255, 83, 97, 0.55);
       transform: translateY(-2px);
     }
 
-    .form-trust-note {
+    .btn-send > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 980px) {
+      .inquiry-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+      .contact-main-title {
+        margin-bottom: 24px;
+      }
+      .contact-keyboard-img {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .contact-meta-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+
+
+    /* ==========================================================
+       DATAWIZZ-INSPIRED LUXURY CTA & BRAND FOOTER (Limons Branding)
+    ========================================================== */
+    .limons-cta-footer {
+      position: relative;
+      background: #060203;
+      color: #ffffff;
+      padding: clamp(72px, 9vh, 120px) 0 clamp(32px, 4vh, 48px);
+      overflow: hidden;
+      z-index: 30;
+      border-top: 1px solid rgba(255, 83, 97, 0.18);
+    }
+
+    /* Ambient Diffuse Background Glow (Nebula lighting) */
+    .cta-footer-nebula {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background:
+        radial-gradient(circle at 75% 25%, rgba(104, 2, 2, 0.38) 0%, transparent 50%),
+        radial-gradient(circle at 50% 70%, rgba(154, 30, 35, 0.32) 0%, rgba(104, 2, 2, 0.16) 42%, transparent 68%),
+        radial-gradient(circle at 20% 40%, rgba(104, 2, 2, 0.22) 0%, transparent 45%);
+    }
+
+    .cta-footer-container {
+      position: relative;
+      z-index: 2;
+      width: min(1200px, 91vw);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top CTA Eyebrow: • Contact Us */
+    .cta-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: clamp(14px, 2vh, 22px);
+    }
+
+    .cta-eyebrow .cta-bullet {
+      color: #fa4b63;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    /* Big Headline */
+    .cta-headline {
+      font-size: clamp(32px, 3.8vw, 56px);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+      max-width: 880px;
+      margin: 0 0 clamp(44px, 6vh, 72px) 0;
+    }
+
+    /* Middle Row: Contact on Left, Nav on Right */
+    .cta-mid-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-bottom: clamp(60px, 8vh, 100px);
+    }
+
+    .cta-contact-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cta-contact-lbl {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.52);
+      letter-spacing: -0.01em;
+    }
+
+    .cta-email-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: clamp(19px, 1.8vw, 25px);
+      font-weight: 600;
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .cta-email-link .arrow-icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      transition: transform 0.25s ease;
+    }
+
+    .cta-email-link:hover {
+      color: #fa4b63;
+    }
+
+    .cta-email-link:hover .arrow-icon {
+      transform: translate(3px, -3px);
+    }
+
+    /* Right Nav Links */
+    .cta-nav-links {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-top: 16px;
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.45);
+      gap: clamp(20px, 2.5vw, 42px);
       flex-wrap: wrap;
-      gap: 10px;
     }
 
-
-
-    /* ---------- FOOTER (Identical to other pages) ---------- */
-    footer {
-      position: relative;
-      background: #040102;
-      padding: 70px clamp(24px, 4vw, 64px) 40px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      z-index: 30;
-    }
-
-    .footer-grid {
-      width: min(1200px, 92vw);
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr;
-      gap: 40px;
-    }
-
-    .footer-brand .footer-logo-img {
-      width: 150px;
-      height: auto;
-      margin-bottom: 16px;
-    }
-
-    .footer-brand p {
-      font-size: 13.5px;
-      line-height: 1.7;
-      color: rgba(255, 255, 255, 0.55);
-      max-width: 320px;
-    }
-
-    .footer-col h5 {
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #ff5361;
-      margin-bottom: 18px;
-    }
-
-    .footer-col a {
-      display: block;
-      font-size: 13.5px;
-      color: rgba(255, 255, 255, 0.68);
-      margin-bottom: 10px;
+    .cta-nav-links a {
+      font-size: clamp(14px, 1.1vw, 16px);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.82);
       text-decoration: none;
+      letter-spacing: -0.01em;
       transition: color 0.2s ease, transform 0.2s ease;
+      position: relative;
     }
 
-    .footer-col a:hover {
+    .cta-nav-links a:hover {
       color: #ffffff;
-      transform: translateX(3px);
+      transform: translateY(-1px);
     }
 
-    .footer-social-icons {
+    /* GIANT BRAND SIGNATURE (Datawizz style with Limons) */
+    .cta-brand-display {
+      position: relative;
+      width: 100%;
       display: flex;
-      gap: 12px;
-      margin-top: 12px;
+      justify-content: center;
+      align-items: center;
+      padding: clamp(20px, 3vh, 40px) 0 clamp(40px, 5vh, 65px);
     }
 
-    .footer-social-icons a {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.06);
-      display: grid;
-      place-items: center;
-      color: rgba(255, 255, 255, 0.75);
-      transition: all 0.25s ease;
-      text-decoration: none;
+    .cta-brand-ambient {
+      position: absolute;
+      width: min(850px, 85vw);
+      height: 240px;
+      background: radial-gradient(ellipse at center, rgba(168, 25, 45, 0.42) 0%, rgba(104, 2, 2, 0.2) 48%, transparent 72%);
+      filter: blur(55px);
+      pointer-events: none;
+      z-index: 1;
     }
 
-    .footer-social-icons a:hover {
-      background: #ff5361;
-      color: #fff;
-      transform: translateY(-2px);
+    .cta-brand-link {
+      display: block;
+      width: 100%;
+      max-width: 1140px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
     }
 
-    .footer-bottom {
-      width: min(1200px, 92vw);
-      max-width: 1200px;
-      margin: 48px auto 0;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    .cta-giant-logo {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 30px rgba(250, 75, 99, 0.16));
+      user-select: none;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+    }
+
+    .cta-giant-logo:hover {
+      transform: scale(1.012);
+      filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 45px rgba(250, 75, 99, 0.28));
+    }
+
+    /* Bottom Copyright & Socials Bar */
+    .cta-bottom-bar {
       display: flex;
       justify-content: space-between;
-      font-size: 12.5px;
-      color: rgba(255, 255, 255, 0.45);
+      align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 16px;
+      padding-top: clamp(20px, 2.5vh, 28px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .cta-socials {
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 2vw, 28px);
+    }
+
+    .cta-socials a {
+      color: rgba(255, 255, 255, 0.48);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s ease;
+    }
+
+    .cta-socials a:hover {
+      color: #fa4b63;
     }
 
     /* ---------- INTERACTIVE CASE STUDY QUICK-VIEW MODAL ---------- */
@@ -1669,6 +1930,9 @@
     }
 
     .btn-modal-inquire {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -1676,18 +1940,44 @@
       width: 100%;
       height: 48px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #a71828 0%, #680202 100%);
+      background: rgba(104, 2, 2, 0.45);
       border: 1px solid rgba(255, 83, 97, 0.5);
       color: #fff;
       font-size: 14.5px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: all 0.35s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .btn-modal-inquire::before {
+      content: "";
+      position: absolute;
+      left: -12%;
+      right: -12%;
+      bottom: -2px;
+      height: 0;
+      z-index: -1;
+      background: linear-gradient(0deg, #9A1E23 0%, #ea2b64 100%);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      transition: height 0.55s cubic-bezier(.16, 1, .3, 1), border-radius 0.55s cubic-bezier(.16, 1, .3, 1);
+      pointer-events: none;
+    }
+
+    .btn-modal-inquire:hover::before,
+    .btn-modal-inquire:focus-visible::before {
+      height: 145%;
+      border-radius: 0;
     }
 
     .btn-modal-inquire:hover {
-      background: linear-gradient(135deg, #bf1b3a 0%, #850508 100%);
-      box-shadow: 0 0 24px rgba(255, 83, 97, 0.5);
+      border-color: #ff5361;
+      box-shadow: 0 10px 30px rgba(255, 83, 97, 0.55);
+      transform: translateY(-2px);
+    }
+
+    .btn-modal-inquire > * {
+      position: relative;
+      z-index: 1;
     }
 
     /* Toast Notification */
@@ -1774,12 +2064,18 @@
       .inquiry-container {
         grid-template-columns: 1fr;
       }
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 30px;
+      .cta-mid-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
       }
-      .footer-brand {
-        grid-column: 1 / -1;
+      .cta-nav-links {
+        gap: 16px 24px;
+      }
+      .cta-bottom-bar {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 16px;
       }
     }
 
@@ -1930,24 +2226,16 @@
           </div>
         </div>
 
-        <a class="nav-link" href="product1.html#dashboard">Resources</a>
+        <a class="nav-link" href="resources.html">Resources</a>
         <a class="nav-link" href="about.html">About</a>
         <a class="mobile-contact nav-link" href="#contact-form">Get in Touch<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13L13 3M5 3h8v8"/></svg></a>
       </nav>
 
       <div class="header-actions">
         <div class="gh-hover">
-          <a class="gh-trigger" href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="Open Source on GitHub">
+          <a class="gh-trigger" href="https://github.com/appscend" target="_blank" rel="noopener noreferrer" aria-label="Open Source on GitHub">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.23 0 1.61-.01 2.91-.01 3.31 0 .32.22.7.83.58C20.56 22.1 24 17.6 24 12.3 24 5.67 18.63.3 12 .3z"/></svg>
           </a>
-          <div class="gh-modal" role="tooltip">
-            <h4>Open Source</h4>
-            <p>Check out our GitHub profile to explore our development tools, frameworks and open source contributions.</p>
-            <a class="gh-modal-btn" href="https://github.com" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.23 0 1.61-.01 2.91-.01 3.31 0 .32.22.7.83.58C20.56 22.1 24 17.6 24 12.3 24 5.67 18.63.3 12 .3z"/></svg>
-              View on Github
-            </a>
-          </div>
         </div>
         <a class="btn-contact" href="#contact-form">
           Get in Touch
@@ -1973,12 +2261,12 @@
         </div>
 
         <h1 class="hero-title mo-reveal mo-s1">
-          Have an app idea that<br>
+          <span class="title-top-line">Have an app idea that</span><br>
           <span class="highlight-red">doesn’t fit the box?</span>
         </h1>
 
         <p class="hero-description mo-reveal mo-s2">
-          We design and build custom mobile and cloud products around your idea — from concept to launch and long-term support.
+          We design and build custom mobile and cloud products around your idea, from concept to launch and long-term support.
         </p>
 
         <!-- 3 Feature Pills -->
@@ -2379,102 +2667,68 @@
   </section>
 
   <!-- ===================================================================
-       SECTION 4: PROJECT INQUIRY & CONSULTATION FORM (Moved from Section 3)
+       SECTION 4: GET IN TOUCH / CONTACT SECTION (NuPhy Style + Limons Branding)
        =================================================================== -->
   <section class="services-inquiry-section" id="contact-form">
+    <div id="contact" style="position: absolute; top: -90px; left: 0;"></div>
     <div class="inquiry-container">
       
-      <!-- Info Left -->
-      <div class="inquiry-info mo-reveal">
-        <span class="inquiry-tag">Let's Build Together</span>
-        <h2 class="inquiry-title">Ready to turn your vision into a standout product?</h2>
-        <p class="inquiry-desc">
-          Whether you need a full native iOS &amp; Android product, high-concurrency cloud backend, or custom media architecture, our senior team is ready to assist.
-        </p>
-
-        <div class="inquiry-perks">
-          <div class="perk-item">
-            <div class="perk-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div class="perk-text">
-              <h5>Strict NDA &amp; IP Protection</h5>
-              <p>Your idea and trade secrets remain 100% confidential under mutual non-disclosure.</p>
-            </div>
-          </div>
-
-          <div class="perk-item">
-            <div class="perk-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <div class="perk-text">
-              <h5>Direct Senior Engineer Access</h5>
-              <p>No account manager middle-men. Speak directly with experienced software architects.</p>
-            </div>
-          </div>
-
-          <div class="perk-item">
-            <div class="perk-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            </div>
-            <div class="perk-text">
-              <h5>Rapid Concept Prototyping</h5>
-              <p>Clear milestones and rapid feedback loops to get tangible results in your hands quickly.</p>
-            </div>
-          </div>
+      <!-- Left Column: Heading + Mechanical Keyboard Visual -->
+      <div class="inquiry-left mo-reveal">
+        <p class="contact-eyebrow">We're here to help.</p>
+        <h2 class="contact-main-title">Get In Touch</h2>
+        <div class="contact-visual-wrap">
+          <div class="contact-visual-glow" aria-hidden="true"></div>
+          <img src="assets/images/contact/Burgundy Accented Mechanical Keyboard.png" 
+               alt="Limons Engineering Mechanical Keyboard" 
+               class="contact-keyboard-img"
+               loading="lazy">
         </div>
       </div>
 
-      <!-- Form Card Right -->
-      <div class="contact-card mo-reveal mo-card">
-        <h3 class="form-heading">Start a Project</h3>
-        <p class="form-sub">Tell us briefly about your goals and receive an architectural consultation.</p>
+      <!-- Right Column: Question + Meta + Minimal Underline Form -->
+      <div class="inquiry-right mo-reveal mo-s1">
+        <h3 class="contact-question-title">Questions about project, custom app, or setup?</h3>
+        
+        <div class="contact-meta-row">
+          <div class="contact-meta-item">
+            <span class="contact-meta-label">Monday - Friday</span>
+            <span class="contact-meta-val">9:00 AM – 6:00 PM (GMT)</span>
+          </div>
+          <div class="contact-meta-item">
+            <span class="contact-meta-label">Get in Touch</span>
+            <a href="mailto:info@limons.com" class="contact-meta-val contact-mail-link">info@limons.com</a>
+          </div>
+        </div>
 
-        <form id="servicesProjectForm" onsubmit="handleInquirySubmit(event)">
-          <div class="form-grid">
-            
-            <div class="form-group">
-              <label for="c_name">Full Name *</label>
-              <input type="text" id="c_name" required placeholder="Alex Morgan" class="form-input">
-            </div>
-
-            <div class="form-group">
-              <label for="c_email">Work Email *</label>
-              <input type="email" id="c_email" required placeholder="alex@company.com" class="form-input">
-            </div>
-
-            <div class="form-group">
-              <label for="c_company">Company / Organization</label>
-              <input type="text" id="c_company" placeholder="Acme Studios" class="form-input">
-            </div>
-
-            <div class="form-group">
-              <label for="c_platform">Target Platform</label>
-              <select id="c_platform" class="form-select">
-                <option value="iOS & Android">iOS &amp; Android (Mobile)</option>
-                <option value="iOS Native">iOS Native (Swift / SwiftUI)</option>
-                <option value="Android Native">Android Native (Kotlin / Compose)</option>
-                <option value="Cross-Platform">Flutter / React Native</option>
-                <option value="Full Stack Cloud + Mobile">Full Stack (Cloud + Mobile)</option>
-                <option value="Other">Other / Unsure</option>
-              </select>
-            </div>
-
-            <div class="form-group full-width">
-              <label for="c_details">Project Overview &amp; Requirements</label>
-              <textarea id="c_details" class="form-textarea" placeholder="Describe your app concept, target users, timeline, or key technical challenges..."></textarea>
-            </div>
-
+        <form id="servicesProjectForm" class="contact-minimal-form" onsubmit="handleInquirySubmit(event)">
+          <div class="contact-field-group">
+            <label for="c_name" class="contact-field-label">Name</label>
+            <input type="text" id="c_name" name="name" required class="contact-field-input" autocomplete="name">
           </div>
 
-          <button type="submit" class="btn-send" id="submitInquiryBtn">
-            <span>Send Project Inquiry</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M10 4l4 4-4 4"/></svg>
-          </button>
+          <div class="contact-field-group">
+            <label for="c_email" class="contact-field-label">Email</label>
+            <input type="email" id="c_email" name="email" required class="contact-field-input" autocomplete="email">
+          </div>
 
-          <div class="form-trust-note">
-            <span>🔒 Confidential · Guaranteed 24hr response</span>
-            <span>Limons Engineering Guild</span>
+          <div class="contact-field-group">
+            <label for="c_phone" class="contact-field-label">Phone Number</label>
+            <input type="tel" id="c_phone" name="phone" class="contact-field-input" autocomplete="tel">
+          </div>
+
+          <div class="contact-field-group">
+            <label for="c_comment" class="contact-field-label">Comment</label>
+            <textarea id="c_comment" name="comment" required class="contact-field-textarea" rows="2"></textarea>
+          </div>
+
+          <div class="contact-submit-wrap">
+            <button type="submit" class="btn-send btn-submit-inquiry" id="submitInquiryBtn">
+              <span>Submit Inquiry</span>
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M3 13L13 3M5 3h8v8"/>
+              </svg>
+            </button>
           </div>
         </form>
       </div>
@@ -2484,60 +2738,63 @@
 
 
 
-  <!-- UNIFIED FOOTER (Matches Home and other pages) -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a class="footer-logo" href="index.html" aria-label="Limons Home">
-          <img src="assets/images/brand/Horizontal Logo.png" alt="Limons" class="footer-logo-img">
-        </a>
-        <p>Premium mobile applications, second screen entertainment architectures, and cloud solutions engineered for millions of users.</p>
+  <!-- ==========================================================
+       DATAWIZZ-INSPIRED LUXURY CTA & BRAND FOOTER (Limons Branding)
+  ========================================================== -->
+  <footer class="limons-cta-footer" id="contact">
+    <div class="cta-footer-nebula"></div>
+
+    <div class="cta-footer-container">
+      <!-- Top CTA Eyebrow & Query Headline -->
+      <div class="cta-top-block mo mo-fade">
+        <div class="cta-eyebrow">
+          <span class="cta-bullet">•</span> Contact Us
+        </div>
+        <h2 class="cta-headline">
+          Interested in working together, building custom apps, or simply learning more?
+        </h2>
       </div>
 
-      <div class="footer-col">
-        <h5>Products</h5>
-        <a href="product1.html">Social TV (Telly)</a>
-        <a href="product2.html">File Sync</a>
-        <a href="product3.html">On-Demand</a>
-        <a href="product4.html">Video Player (Veeplay)</a>
-      </div>
-
-      <div class="footer-col">
-        <h5>Services</h5>
-        <a href="services.html" style="color: #fff; font-weight: 600;">Services Overview</a>
-        <a href="#process">Process &amp; Workflow</a>
-        <a href="#portfolio">Apps We've Built</a>
-        <a href="#contact-form">Start a Project</a>
-      </div>
-
-      <div class="footer-col">
-        <h5>About</h5>
-        <a href="index.html#trust">Company</a>
-        <a href="index.html#trust">Partners</a>
-        <a href="index.html">Press Room</a>
-        <a href="#contact-form">Contact Us</a>
-      </div>
-
-      <div class="footer-col">
-        <h5>Connect</h5>
-        <p style="font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 8px;">Find us on:</p>
-        <div class="footer-social-icons">
-          <a href="#" aria-label="Facebook">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a href="#" aria-label="Twitter">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
-          </a>
-          <a href="#" aria-label="LinkedIn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      <!-- Middle Row: Contact on Left, Nav Links on Right -->
+      <div class="cta-mid-row mo mo-fade mo-d1">
+        <div class="cta-contact-block">
+          <span class="cta-contact-lbl">Contact Limons at:</span>
+          <a href="mailto:info@limons.com" class="cta-email-link">
+            info@limons.com
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
           </a>
         </div>
-      </div>
-    </div>
 
-    <div class="footer-bottom">
-      <span>© 2026 Limons (Appscend). All rights reserved.</span>
-      <span>Custom Mobile Development Services · Engineered for High Performance</span>
+        <nav class="cta-nav-links" aria-label="Footer Navigation">
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="#contact-form">Get in Touch</a>
+        </nav>
+      </div>
+
+      <!-- Giant Brand Signature Display (Datawizz Style) -->
+      <div class="cta-brand-display mo mo-fade mo-d2">
+        <div class="cta-brand-ambient"></div>
+        <a href="index.html" aria-label="Limons Home" class="cta-brand-link">
+          <img src="assets/images/brand/Horizontal Logo.png" alt="Limons" class="cta-giant-logo">
+        </a>
+      </div>
+
+      <!-- Bottom Row: Copyright & Socials -->
+      <div class="cta-bottom-bar">
+        <div class="cta-copyright">
+          © 2026 Limons. All rights reserved.
+        </div>
+        <div class="cta-socials">
+          <a href="https://www.linkedin.com/company/appscend" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://twitter.com/appscend" target="_blank" rel="noopener">Twitter</a>
+          <a href="https://www.facebook.com/Appscend/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://github.com/appscend" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
     </div>
   </footer>
 
