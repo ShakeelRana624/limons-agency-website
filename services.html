@@ -674,7 +674,7 @@
       100% { transform: scale(1.08); opacity: 1; }
     }
 
-    /* Hero Mockup Bottom-To-Top Curtain & Upward Glide Entrance (Matching Product Mockups) */
+    /* Hero Mockup Bottom-To-Top Reveal Animation (Exact Match to User Request) */
     .hero-mockup-reveal {
       position: relative;
       z-index: 2;
@@ -682,29 +682,16 @@
       display: flex;
       justify-content: center;
       opacity: 0;
-      clip-path: inset(100% 0 0 0);
-      -webkit-clip-path: inset(100% 0 0 0);
-      transform: translate3d(0, 110px, 0) scale(0.92);
-      will-change: opacity, transform, clip-path;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
+      transform: translateY(85px);
       transition:
-        opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.22s,
-        transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.22s,
-        clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.22s,
-        -webkit-clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.22s;
+        opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+        transform 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+      will-change: opacity, transform;
     }
 
     .hero-mockup-reveal.in {
       opacity: 1;
-      clip-path: inset(0 0 0 0);
-      -webkit-clip-path: inset(0 0 0 0);
-      transform: translate3d(0, 0, 0) scale(1);
-    }
-
-    .hero-mockup-reveal.in.mo-done {
-      clip-path: none !important;
-      -webkit-clip-path: none !important;
+      transform: translateY(0);
     }
 
     .hero-img-wrap {
@@ -2043,7 +2030,7 @@
       <!-- Right Column: Visual Graphic (Bottom-to-Top Reveal Animation) -->
       <div class="hero-visual">
         <div class="hero-glow-back"></div>
-        <div class="hero-mockup-reveal mo-mockup-reveal" id="servicesHeroMockup">
+        <div class="hero-mockup-reveal mo-reveal mo-mockup-reveal" id="servicesHeroMockup">
           <div class="hero-img-wrap">
             <img src="assets/images/services/Neon Red Mobile App Ecosystem.png" 
                  alt="Custom Mobile App Ecosystem with Strategy, Design, Build, Scale" 
@@ -2634,7 +2621,7 @@
             el.classList.add('mo-done');
           });
         }, 1600);
-      }, 70);
+      }, 140);
 
       // Mobile Menu Toggle
       const mobileToggle = $('#mobileToggle');

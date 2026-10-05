@@ -515,13 +515,13 @@
     /* SECTION 1: ABOUT HERO (Matches user uploaded image) */
     .about-hero-section {
       position: relative;
-      padding-top: clamp(140px, 14vw, 195px);
-      padding-bottom: clamp(70px, 7vw, 110px);
+      padding-top: clamp(120px, 12vw, 150px);
+      padding-bottom: clamp(60px, 6vw, 90px);
       width: 100%;
     }
 
     .about-container {
-      width: min(1280px, 91vw);
+      width: min(1080px, 92vw);
       margin: 0 auto;
       position: relative;
     }
@@ -531,12 +531,12 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: clamp(24px, 4vw, 64px);
-      margin-bottom: clamp(34px, 4.2vw, 56px);
+      gap: clamp(24px, 4vw, 50px);
+      margin-bottom: 28px;
     }
 
     .about-title {
-      font-size: clamp(48px, 5.8vw, 84px);
+      font-size: clamp(46px, 5.2vw, 70px);
       font-weight: 700;
       letter-spacing: -0.035em;
       line-height: 1.05;
@@ -546,49 +546,75 @@
     }
 
     .about-title-grad {
-      background: linear-gradient(135deg, #ff7e93 0%, #fa4b63 50%, #eb2b4f 100%);
+      color: #ea384d;
+      background: linear-gradient(135deg, #ff4d68 0%, #ea2b64 100%);
       -webkit-background-clip: text;
       background-clip: text;
-      color: transparent;
+      -webkit-text-fill-color: transparent;
       display: inline-block;
     }
 
     .about-lead {
-      max-width: 610px;
-      padding-top: clamp(6px, 1vw, 14px);
+      max-width: 440px;
+      padding-top: 6px;
     }
 
     .about-lead p {
-      font-size: clamp(16px, 1.25vw, 19.5px);
+      font-size: 15.5px;
       font-weight: 400;
-      line-height: 1.62;
+      line-height: 1.55;
       color: rgba(255, 255, 255, 0.88);
       margin: 0;
       letter-spacing: -0.01em;
     }
 
-    /* HERO IMAGE CARD (Matches uploaded image) */
+    .desktop-br {
+      display: inline;
+    }
+
+    /* HERO IMAGE CARD (Matches uploaded image with Bottom-To-Top Reveal) */
     .about-hero-card {
       position: relative;
       width: 100%;
-      border-radius: clamp(22px, 2.6vw, 38px);
+      border-radius: 24px;
       overflow: hidden;
       border: 1px solid rgba(255, 83, 97, 0.22);
-      box-shadow: 0 30px 85px rgba(0, 0, 0, 0.75), 0 0 50px rgba(104, 2, 2, 0.35);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.75), 0 0 45px rgba(104, 2, 2, 0.35);
       background: rgba(22, 6, 12, 0.6);
       transition: border-color 0.4s ease, box-shadow 0.4s ease;
     }
 
+    /* Bottom-to-Top Reveal Animation */
+    .about-hero-card.mo-reveal,
+    .about-hero-card.reveal-up {
+      opacity: 0;
+      transform: translateY(60px);
+      transition:
+        opacity 1.1s cubic-bezier(.16, 1, .3, 1) 0.15s,
+        transform 1.1s cubic-bezier(.16, 1, .3, 1) 0.15s,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+      will-change: opacity, transform;
+    }
+
+    .about-hero-card.mo-reveal.in,
+    .about-hero-card.reveal-up.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .about-hero-card:hover {
       border-color: rgba(255, 83, 97, 0.42);
-      box-shadow: 0 36px 100px rgba(0, 0, 0, 0.85), 0 0 70px rgba(255, 83, 97, 0.25);
+      box-shadow: 0 32px 85px rgba(0, 0, 0, 0.85), 0 0 60px rgba(255, 83, 97, 0.25);
     }
 
     .about-card-img {
       width: 100%;
-      height: auto;
+      aspect-ratio: 2.45 / 1;
+      max-height: 440px;
       display: block;
       object-fit: cover;
+      object-position: center 32%;
       border-radius: inherit;
       transition: transform 0.9s cubic-bezier(.16, 1, .3, 1);
     }
@@ -924,8 +950,15 @@
     }
 
     @keyframes nudgeX {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(6px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(6px);
+      }
     }
 
     .testimonials-progress-track {
@@ -1106,25 +1139,30 @@
       .testimonials-pin-wrapper {
         height: auto;
       }
+
       .testimonials-sticky {
         position: static;
         height: auto;
         padding: 50px 0;
       }
+
       .testimonials-track-container {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         padding-bottom: 20px;
       }
+
       .testimonials-track {
         transform: none !important;
         padding: 10px 20px;
       }
+
       .t-card {
         width: 300px;
         min-height: 340px;
         transform: none !important;
       }
+
       .testimonials-progress-wrap {
         display: none;
       }
@@ -1433,13 +1471,12 @@
         <div class="about-header-row mo mo-fade">
           <h1 class="about-title">About <span class="about-title-grad">Us</span></h1>
           <div class="about-lead">
-            <p>We are committed to creating simple and powerful products that transform ideas into real experiences. We
-              design, develop, and launch apps that people love.</p>
+            <p>We are committed to creating simple and powerful<br class="desktop-br">products that transform ideas into real experiences.<br class="desktop-br">We design, develop, and launch apps that people love.</p>
           </div>
         </div>
 
-        <!-- Team Collaboration Visual Card -->
-        <div class="about-hero-card mo mo-fade mo-d1">
+        <!-- Team Collaboration Visual Card (Bottom-to-Top Reveal Animation) -->
+        <div class="about-hero-card mo-reveal reveal-up">
           <img src="assets/images/about/Professional Discussion in a Burgundy Lounge.png"
             alt="About Limons - Team collaboration and discussion in our studio" class="about-card-img" loading="eager"
             decoding="async">
@@ -1486,7 +1523,8 @@
             <!-- Our Mission Block -->
             <div class="purpose-block">
               <h3>Our Mission</h3>
-              <p>To turn ideas into real products by building simple, beautiful, and high performing apps that create value
+              <p>To turn ideas into real products by building simple, beautiful, and high performing apps that create
+                value
                 for people and businesses around the world.</p>
             </div>
 
@@ -1496,7 +1534,8 @@
             <!-- Our Vision Block -->
             <div class="purpose-block">
               <h3>Our Vision</h3>
-              <p>To be a trusted global partner for app development, known for quality, creativity, and long term impact.</p>
+              <p>To be a trusted global partner for app development, known for quality, creativity, and long term
+                impact.</p>
             </div>
           </div>
         </div>
@@ -1521,8 +1560,9 @@
           <div class="testimonials-progress-wrap">
             <div class="testimonials-scroll-hint">
               <span>Scroll to Explore</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </div>
             <div class="testimonials-progress-track">
@@ -1539,12 +1579,15 @@
             <div class="t-card">
               <div class="t-card-top">
                 <svg class="t-card-quote-icon" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                  <path
+                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
                 <span class="t-card-badge">Media &amp; Direct</span>
               </div>
               <div class="t-card-body">
-                <p class="t-card-text">“Mobile communications these days are like Klondyke, everyone rushes after the gold. And many will try to profit without delivering quality. Appscend has built an app platform which is both full of features – and easy to build &amp; manage. This product is ready for the future.”</p>
+                <p class="t-card-text">“Mobile communications these days are like Klondyke, everyone rushes after the
+                  gold. And many will try to profit without delivering quality. Appscend has built an app platform which
+                  is both full of features – and easy to build &amp; manage. This product is ready for the future.”</p>
               </div>
               <div class="t-card-author-row">
                 <div class="t-card-avatar">ØS</div>
@@ -1560,12 +1603,14 @@
             <div class="t-card">
               <div class="t-card-top">
                 <svg class="t-card-quote-icon" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                  <path
+                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
                 <span class="t-card-badge">Startup Accelerator</span>
               </div>
               <div class="t-card-body">
-                <p class="t-card-text">“Appscend is an absolute game-changer for all the companies that develop apps, for themselves or for their customers. The speed and quality of deployment are unmatched.”</p>
+                <p class="t-card-text">“Appscend is an absolute game-changer for all the companies that develop apps,
+                  for themselves or for their customers. The speed and quality of deployment are unmatched.”</p>
               </div>
               <div class="t-card-author-row">
                 <div class="t-card-avatar">DR</div>
@@ -1581,12 +1626,15 @@
             <div class="t-card">
               <div class="t-card-top">
                 <svg class="t-card-quote-icon" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                  <path
+                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
                 <span class="t-card-badge">National Broadcaster</span>
               </div>
               <div class="t-card-body">
-                <p class="t-card-text">“Working with Appscend’s technology for both development &amp; app management has proven to be a crucial factor for our application’s success across multiple screens and national audiences.”</p>
+                <p class="t-card-text">“Working with Appscend’s technology for both development &amp; app management has
+                  proven to be a crucial factor for our application’s success across multiple screens and national
+                  audiences.”</p>
               </div>
               <div class="t-card-author-row">
                 <div class="t-card-avatar">CC</div>
@@ -1602,12 +1650,15 @@
             <div class="t-card">
               <div class="t-card-top">
                 <svg class="t-card-quote-icon" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                  <path
+                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
                 <span class="t-card-badge">Enterprise IT</span>
               </div>
               <div class="t-card-body">
-                <p class="t-card-text">“I evaluated features of different providers until I decided that Appscend is the best from my point of view. Appscend is user friendly, powerful and has a very nice looking end product. Customer service is also great.”</p>
+                <p class="t-card-text">“I evaluated features of different providers until I decided that Appscend is the
+                  best from my point of view. Appscend is user friendly, powerful and has a very nice looking end
+                  product. Customer service is also great.”</p>
               </div>
               <div class="t-card-author-row">
                 <div class="t-card-avatar">MM</div>
@@ -1623,12 +1674,15 @@
             <div class="t-card">
               <div class="t-card-top">
                 <svg class="t-card-quote-icon" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                  <path
+                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
                 <span class="t-card-badge">Broadcast Media &amp; News</span>
               </div>
               <div class="t-card-body">
-                <p class="t-card-text">“Developing mobile apps is a natural step in growing our Romania TV and RTV.NET businesses... As our audience studies show, people love our content on TVs as well as on mobile devices.”</p>
+                <p class="t-card-text">“Developing mobile apps is a natural step in growing our Romania TV and RTV.NET
+                  businesses... As our audience studies show, people love our content on TVs as well as on mobile
+                  devices.”</p>
               </div>
               <div class="t-card-author-row">
                 <div class="t-card-avatar">CI</div>
@@ -1644,12 +1698,15 @@
             <div class="t-card">
               <div class="t-card-top">
                 <svg class="t-card-quote-icon" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                  <path
+                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
                 <span class="t-card-badge">Digital Agency</span>
               </div>
               <div class="t-card-body">
-                <p class="t-card-text">“Mobile is becoming a huge opportunity for businesses everywhere. We’re excited to use Appscend’s technology for our customers due to its flexibility, complete feature set and reliable customer support.”</p>
+                <p class="t-card-text">“Mobile is becoming a huge opportunity for businesses everywhere. We’re excited
+                  to use Appscend’s technology for our customers due to its flexibility, complete feature set and
+                  reliable customer support.”</p>
               </div>
               <div class="t-card-author-row">
                 <div class="t-card-avatar">DH</div>
