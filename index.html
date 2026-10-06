@@ -602,12 +602,18 @@
 
     .start .start-shape {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
+      inset: 12%;
       display: block;
+      box-sizing: border-box;
+      border-radius: 50%;
+      border: calc(var(--u)*10) solid transparent;
+      background:
+        radial-gradient(circle at 50% 50%, #5c0410 0%, #6a0613 45%, #8a0c1d 75%, #a8152b 100%) padding-box,
+        linear-gradient(160deg, #ff6b83 0%, #ffa6b4 45%, #ff7a8f 100%) border-box;
+      box-shadow:
+        0 0 0 calc(var(--u)*3) #5a0410,
+        inset 0 0 0 calc(var(--u)*2) rgba(110, 8, 22, .7),
+        inset 0 calc(var(--u)*6) calc(var(--u)*18) rgba(255, 120, 140, .18);
       filter: drop-shadow(0 0 calc(var(--u)*14) rgba(255, 90, 120, .7));
       transition: filter .4s, transform .35s var(--ease)
     }
@@ -624,16 +630,20 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: calc(var(--u)*22);
+      font-size: calc(var(--u)*26);
       font-weight: 600;
       line-height: 1.15;
       text-align: center;
       letter-spacing: -.01em
     }
 
+    .start .t .p {
+      color: #f7a3b0
+    }
+
     .start .t .arr {
-      width: calc(var(--u)*14);
-      height: calc(var(--u)*14);
+      width: calc(var(--u)*18);
+      height: calc(var(--u)*18);
       margin-bottom: calc(var(--u)*9);
       opacity: .9;
       transition: transform .35s var(--ease)
@@ -1017,11 +1027,11 @@
         left: calc(var(--u)*30);
         top: calc(var(--u)*890);
         width: calc(var(--u)*215);
-        height: calc(var(--u)*210)
+        height: calc(var(--u)*215)
       }
 
       .start .t {
-        font-size: calc(var(--u)*17)
+        font-size: calc(var(--u)*20)
       }
 
       .star {
@@ -1226,9 +1236,12 @@
           </svg></div>
       </div>
 
-      <!-- Replace the existing #start CTA block with this -->
       <a class="abs start" id="start" href="contact.html" aria-label="Start your project">
-        <img class="start-shape" src="assets/images/home/CTA.png" alt="Start your project">
+        <span class="start-shape" aria-hidden="true"></span>
+        <span class="t"><svg class="arr" viewBox="0 0 14 14" fill="none" stroke="#f7a3b0" stroke-width="1.6"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12L12 2M4.5 2H12v7.5" />
+          </svg><span>Start your</span><span class="p">Project</span></span>
       </a>
 
       <svg class="abs star" id="star" viewBox="0 0 40 40">
