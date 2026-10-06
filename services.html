@@ -2160,34 +2160,149 @@
 
       /* Mobile process timeline adjustments */
       .process-pin-track {
-        height: auto;
+        position: relative !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
       .process-sticky-stage {
-        position: relative;
-        height: auto;
-        padding: 50px 20px 60px;
+        position: relative !important;
+        top: auto !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding: 50px 20px 70px !important;
+        overflow: visible !important;
+        display: block !important;
+      }
+      .process-inner-container {
+        width: 100% !important;
+        max-width: 540px !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+      }
+      .process-header {
+        margin-bottom: 24px !important;
+        text-align: center !important;
+      }
+      .process-title {
+        font-size: clamp(26px, 7vw, 36px) !important;
+        line-height: 1.2 !important;
+        margin-bottom: 8px !important;
+      }
+      .process-subtitle {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        margin: 0 auto 16px !important;
+        padding: 0 8px !important;
+      }
+      .btn-workflow-start {
+        height: 40px !important;
+        font-size: 13.5px !important;
+        padding: 0 24px !important;
       }
       .diagram-stage {
-        min-height: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 34px;
-        margin-top: 20px;
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 18px !important;
+        margin-top: 16px !important;
+        padding: 0 !important;
       }
       .diagram-svg-wrap {
-        display: none;
+        display: none !important;
+      }
+      .step-dot {
+        display: none !important;
+      }
+      .step-node.step-3::after {
+        display: none !important;
       }
       .step-node {
         position: relative !important;
         left: auto !important;
+        right: auto !important;
         top: auto !important;
+        bottom: auto !important;
         transform: none !important;
         width: 100% !important;
-        max-width: 480px;
-        margin: 0 auto;
+        max-width: 100% !important;
+        margin: 0 !important;
+        background: linear-gradient(135deg, rgba(35, 8, 16, 0.72) 0%, rgba(16, 3, 7, 0.82) 100%) !important;
+        border: 1px solid rgba(255, 83, 97, 0.22) !important;
+        border-radius: 20px !important;
+        padding: 24px 20px !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 0 18px rgba(255, 51, 102, 0.05) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        box-sizing: border-box !important;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+      }
+      .step-node.is-active,
+      .step-node:hover {
+        border-color: rgba(255, 83, 97, 0.55) !important;
+        box-shadow: 0 14px 38px rgba(0, 0, 0, 0.55), inset 0 0 22px rgba(255, 51, 102, 0.12) !important;
+      }
+      .step-top-row {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        margin-bottom: 12px !important;
+        width: 100% !important;
+      }
+      .step-num {
+        font-family: 'Poppins', system-ui, sans-serif !important;
+        font-size: 40px !important;
+        font-weight: 800 !important;
+        line-height: 1 !important;
+        color: rgba(255, 83, 97, 0.45) !important;
+        text-shadow: 0 0 20px rgba(255, 51, 102, 0.35) !important;
+        letter-spacing: -0.03em !important;
+        margin: 0 !important;
+      }
+      .step-icon-box {
+        width: 48px !important;
+        height: 48px !important;
+        border-radius: 14px !important;
+        background: radial-gradient(circle at 35% 30%, rgba(110, 16, 32, 0.95), rgba(30, 5, 10, 0.98)) !important;
+        border: 1.5px solid rgba(255, 83, 97, 0.55) !important;
+        box-shadow: 0 0 18px rgba(255, 51, 102, 0.38), inset 0 0 12px rgba(255, 51, 102, 0.22) !important;
+        display: grid !important;
+        place-items: center !important;
+        flex-shrink: 0 !important;
+      }
+      .step-icon {
+        width: 22px !important;
+        height: 22px !important;
+        stroke: #ffffff !important;
+      }
+      .step-text-block {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .step-heading {
+        font-size: 17.5px !important;
+        font-weight: 700 !important;
+        line-height: 1.35 !important;
+        color: #ffffff !important;
+        margin: 0 0 8px 0 !important;
+        letter-spacing: -0.01em !important;
+      }
+      .step-paragraph {
+        font-size: 13.5px !important;
+        line-height: 1.6 !important;
+        color: rgba(255, 255, 255, 0.78) !important;
+        max-width: 100% !important;
+        margin: 0 !important;
       }
       .scroll-guide-pill {
-        display: none;
+        display: none !important;
       }
       .modal-metrics {
         grid-template-columns: 1fr;
@@ -2195,6 +2310,35 @@
       }
       .form-grid {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .process-sticky-stage {
+        padding: 40px 14px 50px !important;
+      }
+      .step-node {
+        padding: 20px 16px !important;
+        border-radius: 18px !important;
+      }
+      .step-num {
+        font-size: 34px !important;
+      }
+      .step-icon-box {
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 12px !important;
+      }
+      .step-icon {
+        width: 20px !important;
+        height: 20px !important;
+      }
+      .step-heading {
+        font-size: 16px !important;
+      }
+      .step-paragraph {
+        font-size: 13px !important;
+        line-height: 1.55 !important;
       }
     }
   </style>
@@ -2745,8 +2889,9 @@
         </div>
 
         <nav class="cta-nav-links" aria-label="Footer Navigation">
-          <a href="services.html">Services</a>
           <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="resources.html">Resources</a>
           <a href="contact.html">Get in Touch</a>
         </nav>
       </div>
@@ -2759,10 +2904,15 @@
         </a>
       </div>
 
-      <!-- Bottom Row: Copyright & Socials -->
+      <!-- Bottom Row: Copyright, Legal Links & Socials -->
       <div class="cta-bottom-bar">
-        <div class="cta-copyright">
-          © 2026 Limons. All rights reserved.
+        <div class="cta-bottom-left">
+          <span class="cta-copyright">© 2026 Limons. All rights reserved.</span>
+          <div class="cta-legal-links">
+            <a href="terms.html">Terms of Service</a>
+            <span class="cta-legal-sep">·</span>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
         </div>
         <div class="cta-socials">
           <a href="https://www.linkedin.com/company/appscend" target="_blank" rel="noopener">LinkedIn</a>

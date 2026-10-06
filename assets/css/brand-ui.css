@@ -568,5 +568,38 @@ html body .cta-giant-logo {
   transform: translate3d(0, 26px, 0) scale(0.97) !important;
 }
 
+/* =====================================================================
+   LEGAL LINKS IN FOOTER (Terms of Service & Privacy Policy)
+   ===================================================================== */
+.cta-bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
 
+.cta-legal-links,
+.footer-legal-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.cta-legal-links a,
+.footer-legal-links a {
+  color: rgba(255, 255, 255, 0.48) !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  transition: color 0.2s ease !important;
+}
+
+.cta-legal-links a:hover,
+.footer-legal-links a:hover {
+  color: #fa4b63 !important;
+}
+
+.cta-legal-sep,
+.footer-legal-sep {
+  color: rgba(255, 255, 255, 0.25) !important;
+  font-size: 12px !important;
+}
