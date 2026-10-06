@@ -469,32 +469,45 @@
 
     /* Hero Section */
     .res-hero-section {
-      padding-top: clamp(140px, 18vh, 180px);
-      padding-bottom: clamp(40px, 6vh, 60px);
+      padding-top: clamp(140px, 16vh, 180px);
+      padding-bottom: clamp(50px, 6vh, 80px);
       position: relative;
     }
 
-    .res-hero-top {
-      max-width: 920px;
-      margin: 0 auto;
-      text-align: center;
+    .res-hero-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: clamp(32px, 5vw, 64px);
+      width: 100%;
+    }
+
+    .res-hero-left {
+      flex: 1 1 560px;
+      max-width: 620px;
+    }
+
+    .res-hero-right {
+      flex: 1 1 420px;
+      max-width: 480px;
+      padding-top: clamp(8px, 1.8vw, 36px);
     }
 
     .res-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #fa4b63;
-      padding: 7px 18px;
+      padding: 6px 16px;
       border-radius: 99px;
       background: rgba(104, 2, 2, 0.45);
       border: 1px solid rgba(250, 75, 99, 0.32);
       box-shadow: 0 4px 20px rgba(104, 2, 2, 0.35);
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .res-eyebrow .bullet {
@@ -507,38 +520,41 @@
     }
 
     .res-title {
-      font-size: clamp(38px, 4.8vw, 68px);
+      font-size: clamp(38px, 4.4vw, 62px);
       font-weight: 700;
-      line-height: 1.12;
+      line-height: 1.1;
       letter-spacing: -0.035em;
       color: #ffffff;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      text-align: left;
     }
 
     .res-title-grad {
       background: linear-gradient(135deg, #ffffff 15%, #ff5361 55%, #ea2b64 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 2px 24px rgba(250, 75, 99, 0.35));
     }
 
     .res-subtitle {
-      font-size: clamp(16px, 1.25vw, 19px);
+      font-size: clamp(15px, 1.1vw, 17.5px);
       font-weight: 300;
-      color: rgba(255, 255, 255, 0.72);
-      line-height: 1.65;
-      max-width: 820px;
-      margin: 0 auto 34px;
+      color: rgba(255, 255, 255, 0.76);
+      line-height: 1.7;
+      margin: 0;
+      text-align: left;
+      letter-spacing: -0.005em;
     }
 
     /* Jump Tabs Navigation */
     .res-tabs-bar {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       gap: 14px;
       flex-wrap: wrap;
-      margin: 0 auto;
+      margin: 0;
     }
 
     .res-tab-btn {
@@ -621,108 +637,60 @@
     }
 
     /* ==========================================================
-       PINNED HORIZONTAL SCROLL SECTIONS (Exact Testimonials Style)
-       Cards flow smoothly from right to left while viewport is locked!
+       CLEAN RESPONSIVE SECTIONS & CARDS (Simple Natural Grid)
     ========================================================== */
-    .res-pin-wrapper {
+    .res-section {
       position: relative;
       width: 100%;
-      height: 440vh; /* Generous scroll track height for smooth travel */
+      padding: clamp(50px, 6vw, 80px) 0;
       box-sizing: border-box;
     }
 
-    .res-pin-wrapper.case-studies-wrap {
-      height: 380vh;
+    .res-section.case-studies-wrap {
+      padding-top: clamp(20px, 3vw, 40px);
+      padding-bottom: clamp(70px, 8vw, 110px);
     }
 
-    .res-sticky {
-      position: absolute;
-      top: 0;
-      bottom: auto;
-      left: 0;
-      right: 0;
-      width: 100%;
-      height: 100vh;
-      height: 100dvh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      padding: 0;
-      box-sizing: border-box;
-      z-index: 20;
-    }
-
-    /* Pinned States for viewport locking */
-    .res-sticky.pin-before {
-      position: absolute;
-      top: 0;
-      bottom: auto;
-      left: 0;
-      right: 0;
-    }
-
-    .res-sticky.pin-fixed {
-      position: fixed;
-      top: 0;
-      bottom: auto;
-      left: 0;
-      right: 0;
-      width: 100%;
-    }
-
-    .res-sticky.pin-after {
-      position: absolute;
-      top: auto;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-
-    /* Ambient backdrop glow inside sticky section */
     .res-glow-backdrop {
       position: absolute;
       inset: 0;
       pointer-events: none;
       z-index: -1;
       background:
-        radial-gradient(circle at 75% 45%, rgba(154, 30, 35, 0.22), transparent 45%),
-        radial-gradient(circle at 20% 70%, rgba(104, 2, 2, 0.25), transparent 40%);
+        radial-gradient(circle at 75% 45%, rgba(154, 30, 35, 0.16), transparent 45%),
+        radial-gradient(circle at 20% 70%, rgba(104, 2, 2, 0.18), transparent 40%);
     }
 
-    /* Header above the horizontal cards track */
     .res-header-bar {
-      width: min(1280px, 91vw);
-      margin: 0 auto;
-      padding: clamp(20px, 3.5vh, 40px) clamp(8px, 1.5vw, 20px) 0;
+      width: 100%;
+      margin: 0 0 clamp(24px, 3vw, 36px) 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 12px;
-      flex-shrink: 0;
+      align-items: flex-start;
+      text-align: left;
       position: relative;
       z-index: 5;
     }
 
     .res-heading-area {
       max-width: 800px;
-      text-align: center;
+      text-align: left;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
     }
 
     .res-section-eyebrow {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       font-size: 11.5px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: #fa4b63;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       gap: 6px;
     }
 
@@ -733,7 +701,7 @@
       letter-spacing: -0.03em;
       color: #ffffff;
       margin: 0;
-      text-align: center;
+      text-align: left;
     }
 
     .res-section-title .t-grad {
@@ -744,104 +712,41 @@
       display: inline-block;
     }
 
-    /* Progress bar & scroll hint centered */
-    .res-progress-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 4px;
-    }
-
-    .res-scroll-hint {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.55);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .res-scroll-hint svg {
-      width: 14px;
-      height: 14px;
-      stroke: #fa4b63;
-      animation: nudgeX 1.8s infinite ease-in-out;
-    }
-
-    @keyframes nudgeX {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(6px); }
-    }
-
-    .res-progress-track {
-      width: clamp(120px, 14vw, 180px);
-      height: 3px;
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .res-progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #ff7e93, #fa4b63);
-      border-radius: 999px;
-      transition: width 0.08s ease-out;
-    }
-
-    /* Horizontal Cards Track: Centered vertically in remaining space for equal top and bottom gaps */
-    .res-track-container {
+    /* Cards Grid (Simple, Clean, Responsive) */
+    .res-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: clamp(22px, 2.5vw, 32px);
       width: 100%;
-      overflow: visible;
       position: relative;
-      flex: 1;
-      display: flex;
-      align-items: center;
+      z-index: 5;
     }
 
-    .res-track {
-      display: flex;
-      gap: clamp(24px, 2.5vw, 36px);
-      padding: 0;
-      will-change: transform;
-      width: max-content;
-    }
-
-    /* INDIVIDUAL HORIZONTAL CARD (White Papers & Case Studies) */
+    /* INDIVIDUAL CARD (Clean modern layout, no tilts, no scroll animations) */
     .h-card {
-      width: clamp(350px, 30vw, 440px);
-      height: clamp(370px, 43vh, 460px);
+      width: 100%;
+      min-height: 380px;
       background: linear-gradient(155deg, rgba(28, 8, 16, 0.88) 0%, rgba(14, 4, 8, 0.94) 100%);
       border: 1px solid rgba(255, 83, 97, 0.22);
       border-radius: 24px;
       padding: clamp(24px, 2.2vw, 32px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(104, 2, 2, 0.18);
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55), 0 0 25px rgba(104, 2, 2, 0.14);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      flex-shrink: 0;
       position: relative;
       overflow: hidden;
-      transform: rotate(var(--card-tilt, 0deg));
-      transition: transform 0.4s var(--ease), border-color 0.35s ease, box-shadow 0.35s ease;
-    }
-
-    .h-card:nth-child(even) {
-      --card-tilt: 0.8deg;
-    }
-
-    .h-card:nth-child(odd) {
-      --card-tilt: -0.8deg;
+      transform: none !important;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      box-sizing: border-box;
     }
 
     .h-card:hover {
-      transform: translateY(-8px) scale(1.018) rotate(0deg) !important;
+      transform: translateY(-6px) !important;
       border-color: rgba(255, 83, 97, 0.65);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 50px rgba(255, 83, 97, 0.25);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 40px rgba(255, 83, 97, 0.22);
     }
 
     /* Subtle top card glow line */
@@ -1217,47 +1122,27 @@
     }
 
     /* Responsive Queries */
+    @media (max-width: 900px) {
+      .res-hero-row {
+        flex-direction: column;
+        gap: 24px;
+      }
+      .res-hero-right {
+        padding-top: 0;
+        max-width: 100%;
+      }
+    }
+
     @media (max-width: 768px) {
-      .res-pin-wrapper,
-      .res-pin-wrapper.case-studies-wrap {
-        height: auto !important;
-        padding-bottom: 60px;
-      }
-
-      .res-sticky {
-        position: relative !important;
-        height: auto !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-      }
-
-      .res-header-bar {
-        padding-top: 24px;
-        margin-bottom: 20px;
-      }
-
-      .res-track-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding: 10px 20px 24px;
-        scrollbar-width: none;
-      }
-
-      .res-track-container::-webkit-scrollbar {
-        display: none;
-      }
-
-      .res-track {
-        transform: none !important;
+      .res-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
 
       .h-card {
-        width: 82vw;
-        height: auto;
-        min-height: 380px;
-        transform: none !important;
+        width: 100% !important;
+        min-height: auto;
+        padding: 24px 20px;
       }
 
       .cta-bottom-bar {
@@ -1516,45 +1401,27 @@
     <!-- HERO SECTION -->
     <section class="res-hero-section">
       <div class="res-container">
-        <div class="res-hero-top mo mo-fade">
-          <div class="res-eyebrow">
-            <span class="bullet"></span> Limons Knowledge &amp; Research Base
+        <div class="res-hero-row mo mo-fade">
+          <div class="res-hero-left">
+            <h1 class="res-title">
+              Engineered Insights<br>&amp; <span class="res-title-grad">Resources</span>
+            </h1>
           </div>
-          <h1 class="res-title">
-            Engineered Insights &amp; <span class="res-title-grad">Resources</span>
-          </h1>
-          <p class="res-subtitle">
-            Explore our technical white papers, platform benchmarks, and real-world enterprise case studies demonstrating how our mobile architectures power high-concurrency broadcast media, synchronized second screens, and mission-critical apps worldwide.
-          </p>
 
-          <!-- Quick Anchor Navigation Tabs -->
-          <div class="res-tabs-bar">
-            <a href="#whitepapersSection" class="res-tab-btn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-              </svg>
-              White Papers <span class="res-tab-count">5</span>
-            </a>
-            <a href="#casestudiesSection" class="res-tab-btn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-              </svg>
-              Case Studies <span class="res-tab-count">4</span>
-            </a>
+          <div class="res-hero-right">
+            <p class="res-subtitle">
+              Explore our technical white papers, platform benchmarks, and real-world enterprise case studies demonstrating how our mobile architectures power high-concurrency broadcast media, synchronized second screens, and mission-critical apps worldwide.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ==========================================================
-         SECTION 1: PINNED HORIZONTAL WHITE PAPERS SCROLL
-         (glides right to left, pinned to viewport until cards complete!)
+         SECTION 1: TECHNICAL WHITE PAPERS
     ========================================================== -->
-    <section class="res-pin-wrapper" id="whitepapersSection">
-      <div class="res-sticky" id="whitepapersSticky">
+    <section class="res-section" id="whitepapersSection">
+      <div class="res-container">
         <div class="res-glow-backdrop"></div>
 
         <!-- Section Header Bar -->
@@ -1569,24 +1436,10 @@
             </div>
             <h2 class="res-section-title">Technical <span class="t-grad">White Papers</span></h2>
           </div>
-
-          <div class="res-progress-wrap">
-            <div class="res-scroll-hint">
-              <span>Scroll to Explore</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </div>
-            <div class="res-progress-track">
-              <div class="res-progress-fill" id="whitepapersProgressBar"></div>
-            </div>
-          </div>
         </div>
 
-        <!-- Horizontal Cards Track -->
-        <div class="res-track-container">
-          <div class="res-track" id="whitepapersTrack">
+        <!-- Cards Grid -->
+        <div class="res-cards-grid">
 
             <!-- Card 1: Benchmark Report -->
             <article class="h-card">
@@ -1772,16 +1625,13 @@
 
           </div>
         </div>
-
-      </div>
-    </section>
+      </section>
 
     <!-- ==========================================================
-         SECTION 2: PINNED HORIZONTAL CASE STUDIES SCROLL
-         (glides right to left, pinned to viewport until cards complete!)
+         SECTION 2: CLIENT CASE STUDIES
     ========================================================== -->
-    <section class="res-pin-wrapper case-studies-wrap" id="casestudiesSection">
-      <div class="res-sticky" id="casestudiesSticky">
+    <section class="res-section case-studies-wrap" id="casestudiesSection">
+      <div class="res-container">
         <div class="res-glow-backdrop"></div>
 
         <!-- Section Header Bar -->
@@ -1795,25 +1645,10 @@
             </div>
             <h2 class="res-section-title">Client <span class="t-grad">Case Studies</span></h2>
           </div>
-
-          <div class="res-progress-wrap">
-            <div class="res-scroll-hint">
-              <span>Scroll to Explore</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </div>
-            <div class="res-progress-track">
-              <div class="res-progress-fill" id="casestudiesProgressBar"></div>
-            </div>
-          </div>
         </div>
 
-        <!-- Horizontal Cards Track -->
-        <div class="res-track-container">
-          <div class="res-track" id="casestudiesTrack">
-
+        <!-- Cards Grid -->
+        <div class="res-cards-grid">
             <!-- Case 1: ProTV Romania's Got Talent -->
             <article class="h-card">
               <div class="h-card-top">
@@ -1918,47 +1753,10 @@
               </div>
             </article>
 
-            <!-- Case 4: 0-100.ro Publishing -->
-            <article class="h-card">
-              <div class="h-card-top">
-                <span class="h-card-badge">Automotive Publishing</span>
-                <div class="h-card-icon-box" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="1" y="3" width="15" height="13"></rect>
-                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
-                  </svg>
-                </div>
-              </div>
-              <div class="h-card-body">
-                <h3 class="h-card-title">Mobile Apps for Publishers – 0-100.ro Case Study</h3>
-                <p class="h-card-desc">
-                  Using Appscend’s visual design studio, the team from 0-100.ro developed and deployed a cross-platform automotive application available for iOS (iPhone and iPad) in a matter of hours. The studio delivered a code-free solution enabling rapid editorial release cycles without writing code.
-                </p>
-              </div>
-              <div class="h-card-footer">
-                <div class="h-card-meta">
-                  <svg viewBox="0 0 24 24">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                  </svg>
-                  Rapid Studio Deploy
-                </div>
-                <a class="h-card-btn" href="https://appscend.com/resources/casestudies/Appscend - Mobile Apps for Publishers in the Auto Segment Case Study.pdf" target="_blank" rel="noopener noreferrer">
-                  Read Case Study
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
-                </a>
-              </div>
-            </article>
 
           </div>
         </div>
-
-      </div>
-    </section>
+      </section>
 
   </main>
 
@@ -1993,8 +1791,9 @@
         </div>
 
         <nav class="cta-nav-links" aria-label="Footer Navigation">
-          <a href="services.html">Services</a>
           <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="resources.html">Resources</a>
           <a href="contact.html">Get in Touch</a>
         </nav>
       </div>
@@ -2007,10 +1806,15 @@
         </a>
       </div>
 
-      <!-- Bottom Row: Copyright & Socials -->
+      <!-- Bottom Row: Copyright, Legal Links & Socials -->
       <div class="cta-bottom-bar">
-        <div class="cta-copyright">
-          © 2026 Limons. All rights reserved.
+        <div class="cta-bottom-left">
+          <span class="cta-copyright">© 2026 Limons. All rights reserved.</span>
+          <div class="cta-legal-links">
+            <a href="terms.html">Terms of Service</a>
+            <span class="cta-legal-sep">·</span>
+            <a href="privacy.html">Privacy Policy</a>
+          </div>
         </div>
         <div class="cta-socials">
           <a href="https://www.linkedin.com/company/appscend" target="_blank" rel="noopener">LinkedIn</a>
@@ -2033,107 +1837,6 @@
           mobileToggle.classList.toggle('open');
         });
       }
-
-      // PINNED HORIZONTAL SCROLL CONTROLLER FOR RESOURCES
-      // Locks viewport and glides cards smoothly from right to left!
-      function createPinnedHorizontalScroll(pinWrapperId, stickyElId, trackId, progressBarId) {
-        const pinWrapper = document.getElementById(pinWrapperId);
-        const stickyEl = document.getElementById(stickyElId);
-        const track = document.getElementById(trackId);
-        const progressBar = document.getElementById(progressBarId);
-
-        if (!pinWrapper || !stickyEl || !track) return null;
-
-        return function updateScroll() {
-          if (window.innerWidth <= 768) {
-            stickyEl.classList.remove('pin-fixed', 'pin-after');
-            stickyEl.classList.add('pin-before');
-            track.style.transform = 'none';
-            if (progressBar) progressBar.style.width = '100%';
-            return;
-          }
-
-          const wrapperRect = pinWrapper.getBoundingClientRect();
-          const wrapperTop = wrapperRect.top + window.scrollY;
-          const windowH = window.innerHeight;
-          const windowW = window.innerWidth;
-          const totalScrollable = pinWrapper.offsetHeight - windowH;
-
-          if (totalScrollable <= 0) return;
-
-          const currentScroll = window.scrollY;
-          const scrolledInside = currentScroll - wrapperTop;
-
-          // 1. Viewport Pinning States
-          if (scrolledInside < 0) {
-            stickyEl.classList.remove('pin-fixed', 'pin-after');
-            stickyEl.classList.add('pin-before');
-          } else if (scrolledInside >= 0 && scrolledInside <= totalScrollable) {
-            stickyEl.classList.remove('pin-before', 'pin-after');
-            stickyEl.classList.add('pin-fixed');
-          } else {
-            stickyEl.classList.remove('pin-before', 'pin-fixed');
-            stickyEl.classList.add('pin-after');
-          }
-
-          // 2. Scroll Progress (0 to 1)
-          const progress = Math.max(0, Math.min(1, scrolledInside / totalScrollable));
-
-          // 3. Horizontal Translation:
-          // Starts from right side with teaser peek visible
-          const peekWidth = Math.min(60, windowW * 0.05);
-          const startX = windowW - peekWidth;
-
-          // Track scroll width containing all cards
-          const trackWidth = track.scrollWidth || 2200;
-
-          // Align last card in view with right margin
-          const rightMargin = Math.min(80, Math.max(36, windowW * 0.06));
-          const endX = windowW - rightMargin - trackWidth;
-
-          const totalDistance = startX - endX;
-
-          // Glide across 0.0 to 0.88, then rest until 1.0 before unpinning
-          const motionProgress = Math.min(1, progress / 0.88);
-          const currentX = startX - (motionProgress * totalDistance);
-          track.style.transform = `translate3d(${currentX}px, 0, 0)`;
-
-          if (progressBar) {
-            progressBar.style.width = `${progress * 100}%`;
-          }
-        };
-      }
-
-      const updateWhitePapers = createPinnedHorizontalScroll(
-        'whitepapersSection',
-        'whitepapersSticky',
-        'whitepapersTrack',
-        'whitepapersProgressBar'
-      );
-
-      const updateCaseStudies = createPinnedHorizontalScroll(
-        'casestudiesSection',
-        'casestudiesSticky',
-        'casestudiesTrack',
-        'casestudiesProgressBar'
-      );
-
-      let ticking = false;
-      function onScroll() {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            if (updateWhitePapers) updateWhitePapers();
-            if (updateCaseStudies) updateCaseStudies();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
-      onScroll();
-      setTimeout(onScroll, 120);
     })();
   </script>
   <script src="assets/js/lenis.min.js"></script>
