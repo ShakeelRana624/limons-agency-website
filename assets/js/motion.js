@@ -564,10 +564,60 @@
     initButtons();
     initCards();
     initFooterReveal();
+    initGitHubModal();
 
     // Scroll reveals must run AFTER all dynamic classes are added
     requestAnimationFrame(() => {
       initScrollReveals();
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     18. GITHUB MODAL HOVER & CLICK SUPPORT
+  ------------------------------------------------------------------ */
+  function initGitHubModal() {
+    const hovers = document.querySelectorAll('.gh-hover');
+    hovers.forEach(container => {
+      const trigger = container.querySelector('.gh-trigger');
+      const modal = container.querySelector('.gh-modal');
+      if (!trigger || !modal) return;
+
+      let closeTimer = null;
+
+      const openModal = () => {
+        if (closeTimer) {
+          clearTimeout(closeTimer);
+          closeTimer = null;
+        }
+        container.classList.add('is-open');
+      };
+
+      const closeModal = () => {
+        closeTimer = setTimeout(() => {
+          container.classList.remove('is-open');
+        }, 180);
+      };
+
+      container.addEventListener('mouseenter', openModal);
+      container.addEventListener('mouseleave', closeModal);
+      trigger.addEventListener('focus', openModal);
+      trigger.addEventListener('blur', (e) => {
+        if (!modal.contains(e.relatedTarget)) closeModal();
+      });
+      modal.addEventListener('focusin', openModal);
+      modal.addEventListener('focusout', (e) => {
+        if (!container.contains(e.relatedTarget)) closeModal();
+      });
+
+      // Mobile/touch support: tap icon opens modal first
+      trigger.addEventListener('click', (e) => {
+        if (window.matchMedia('(hover: none)').matches) {
+          if (!container.classList.contains('is-open')) {
+            e.preventDefault();
+            openModal();
+          }
+        }
+      });
     });
   }
 

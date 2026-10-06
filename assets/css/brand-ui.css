@@ -193,10 +193,23 @@ html body .dropdown-menu {
     visibility var(--menu-time) var(--menu-ease) !important;
 }
 html body .gh-modal {
-  display: none !important;
-  visibility: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
   opacity: 0 !important;
+  visibility: hidden !important;
   pointer-events: none !important;
+  transform: translateY(10px) !important;
+  transition: opacity .35s ease, transform .35s ease, visibility .35s !important;
+}
+
+html body .gh-hover:hover .gh-modal,
+html body .gh-hover:focus-within .gh-modal,
+html body .gh-hover.is-open .gh-modal,
+html body .gh-modal:hover {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
 }
 
 /* dropdown rows glide in one after another */
@@ -422,6 +435,23 @@ body[data-mo-entrance] .header-right { animation-delay: .65s; }
     width: 150px !important;
     height: 46px !important;
   }
+}
+
+/* ---- Footer Giant Brand Signature Display Sizing (Refined & balanced) ---- */
+html body .cta-brand-display {
+  padding: clamp(16px, 2.5vh, 28px) 0 clamp(24px, 3.5vh, 40px) !important;
+}
+html body .cta-brand-ambient {
+  width: min(520px, 75vw) !important;
+  height: 150px !important;
+}
+html body .cta-brand-link {
+  max-width: clamp(260px, 34vw, 460px) !important;
+  margin: 0 auto !important;
+}
+html body .cta-giant-logo {
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 /* =====================================================================

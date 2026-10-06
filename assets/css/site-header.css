@@ -41,6 +41,8 @@
 }
 .nav-link:hover,
 .nav-link.on { background: rgba(243, 165, 173, .09); }
+.nav-link::after,
+.nav-link.on::after { display: none !important; }
 /* ---- Products dropdown: temporarily hidden across all pages (toggle to visible whenever needed) ---- */
 .nav-item-dropdown,
 #productsDropdown {
@@ -119,23 +121,120 @@
   filter: none !important;
 }
 
-/* ---- GitHub modal (disabled across all pages) ---- */
-.gh-modal,
-.gh-hover:hover .gh-modal,
-.gh-hover:focus-within .gh-modal {
-  display: none !important;
-  visibility: hidden !important;
+/* ---- GitHub Modal Card (Active on hover/focus across all pages) ---- */
+.gh-hover {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.gh-modal {
+  position: absolute !important;
+  top: calc(100% + 12px) !important;
+  right: 0 !important;
+  width: 320px !important;
+  background: rgba(18, 5, 8, 0.97) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(255, 83, 97, 0.28) !important;
+  border-radius: 20px !important;
+  padding: 24px 26px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(154, 30, 35, 0.25) !important;
   opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(10px) !important;
+  transition: opacity .35s ease, transform .35s ease, visibility .35s !important;
+  z-index: 9999 !important;
   pointer-events: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  text-align: left !important;
+}
+
+.gh-modal::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -20px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 24px !important;
+  background: transparent !important;
+}
+
+.gh-hover:hover .gh-modal,
+.gh-hover:focus-within .gh-modal,
+.gh-hover.is-open .gh-modal,
+.gh-trigger:hover + .gh-modal,
+.gh-modal:hover {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+.gh-modal h4,
+.gh-modal .gh-modal-title {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.25 !important;
+}
+
+.gh-modal p {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  margin: 0 0 6px 0 !important;
+  font-weight: 400 !important;
+}
+
+.gh-modal-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 10px 18px !important;
+  border-radius: 12px !important;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  text-decoration: none !important;
+  width: fit-content !important;
+  transition: all .25s ease !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+}
+
+.gh-modal-btn:hover {
+  background: rgba(255, 83, 97, 0.22) !important;
+  border-color: rgba(255, 83, 97, 0.5) !important;
+  box-shadow: 0 4px 18px rgba(234, 43, 100, 0.35) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+}
+
+.gh-modal-btn svg {
+  width: 18px !important;
+  height: 18px !important;
+  fill: #ffffff !important;
+  flex-shrink: 0 !important;
 }
 
 /* ---- curved bottom -> top hover fill for every button ---- */
-.cta, .btn-contact, .gh-modal-btn, .mobile-contact, .gh-trigger, .res-tab-btn {
+.cta, .btn-contact, .mobile-contact, .gh-trigger, .res-tab-btn {
   position: relative;
   overflow: hidden;
   isolation: isolate;
 }
-.cta::before, .btn-contact::before, .gh-modal-btn::before, .mobile-contact::before, .gh-trigger::after, .res-tab-btn::before {
+.cta::before, .btn-contact::before, .mobile-contact::before, .gh-trigger::after, .res-tab-btn::before {
   content: "";
   position: absolute;
   left: -12%; right: -12%; bottom: -2px;
@@ -149,7 +248,6 @@
 .gh-trigger::after { z-index: 0; }
 .cta:hover::before, .cta:focus-visible::before,
 .btn-contact:hover::before, .btn-contact:focus-visible::before,
-.gh-modal-btn:hover::before, .gh-modal-btn:focus-visible::before,
 .mobile-contact:hover::before, .mobile-contact:focus-visible::before,
 .res-tab-btn:hover::before, .res-tab-btn:focus-visible::before,
 .gh-hover:hover .gh-trigger::after, .gh-trigger:focus-visible::after {
@@ -198,9 +296,16 @@
     margin-top: 10px;
   }
 
-  .header-right, .header-actions { left: auto !important; right: 16px !important; top: 12px !important; }
-  .header-right .gh-hover, .header-actions .gh-hover { display: none !important; }
+  .header-right, .header-actions {
+    left: auto !important;
+    right: 68px !important;
+    top: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .header-right .gh-hover, .header-actions .gh-hover { display: inline-flex !important; }
   .cta, .btn-contact { display: none !important; }
+  .gh-modal { right: -40px !important; width: min(320px, calc(100vw - 32px)) !important; }
 
   .mobile-toggle {
     position: fixed !important;

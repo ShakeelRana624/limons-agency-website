@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get In Touch with Limons | Have questions about project architecture, custom mobile app development, or technical setup? Contact our team.">
+  <title>Get In Touch | Limons | We Build Apps</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --u: min(100vw / 1672, 100vh / 941);
+      --maroon: #680202;
+      --brand-red: #9A1E23;
+      --neon-red: #ff3366;
+      --neon-pink: #ff5361;
+      --neon-glow: rgba(255, 51, 102, 0.45);
+      --pink: #F3A5AD;
+      --ink: #060203;
+      --paper: #F7F4F1;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #060203;
+      color: #fff;
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+      scrollbar-width: thin;
+      scrollbar-color: #9A1E23 #0a0304;
+    }
+
+    ::-webkit-scrollbar { width: 9px; height: 9px; }
+    ::-webkit-scrollbar-track { background: #0a0304; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(#c2244a, #680202);
+      border-radius: 99px;
+      border: 2px solid #0a0304;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: linear-gradient(#ff3d6e, #9A1E23); }
+
+    body {
+      background: #060203;
+      color: #fff;
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ---------- GLOBAL AURORA & NOISE ---------- */
+    .bg-aurora-wrap {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    @keyframes auroraA {
+      0% { transform: translate3d(-3%, -2%, 0) rotate(0deg) scale(1); }
+      50% { transform: translate3d(3%, 3%, 0) rotate(6deg) scale(1.08); }
+      100% { transform: translate3d(-2%, 3%, 0) rotate(-5deg) scale(1.03); }
+    }
+
+    @keyframes auroraB {
+      0% { transform: translate3d(2%, 3%, 0) rotate(0deg) scale(1.04); }
+      50% { transform: translate3d(-3%, -2%, 0) rotate(-7deg) scale(1.12); }
+      100% { transform: translate3d(2%, -2%, 0) rotate(5deg) scale(1); }
+    }
+
+    .aurora-layer-1 {
+      position: absolute;
+      inset: -25%;
+      background:
+        radial-gradient(38% 40% at 20% 28%, rgba(154, 30, 35, .58), transparent 70%),
+        radial-gradient(34% 36% at 80% 20%, rgba(104, 2, 2, .85), transparent 70%),
+        radial-gradient(36% 38% at 70% 75%, rgba(154, 30, 35, .38), transparent 70%),
+        linear-gradient(120deg, #1A0A0B 0%, #2a0709 50%, #1A0A0B 100%);
+      animation: auroraA 30s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    .aurora-layer-2 {
+      position: absolute;
+      inset: -25%;
+      background:
+        radial-gradient(28% 30% at 32% 72%, rgba(243, 165, 173, .12), transparent 70%),
+        radial-gradient(32% 32% at 62% 38%, rgba(104, 2, 2, .65), transparent 70%),
+        radial-gradient(40% 40% at 85% 85%, rgba(154, 30, 35, .3), transparent 70%);
+      animation: auroraB 36s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    .aurora-shade {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 42% 38% at 10% 5%, rgba(6, 2, 3, .85), rgba(6, 2, 3, .45) 55%, transparent 80%),
+        linear-gradient(180deg, rgba(6, 2, 3, .2) 0%, transparent 45%, rgba(6, 2, 3, .75) 100%);
+    }
+
+    .aurora-noise {
+      position: absolute;
+      inset: 0;
+      opacity: .055;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ---------- SHARED HEADER / NAVBAR ---------- */
+    .site-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 150;
+      background: transparent;
+      border: 0;
+    }
+
+    .header-inner {
+      position: relative;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      height: 108px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0;
+    }
+
+    .brand-logo,
+    .logo {
+      position: absolute;
+      left: calc(var(--u)*64);
+      top: calc(var(--u)*6);
+      display: flex;
+      align-items: center;
+      z-index: 100;
+      text-decoration: none;
+    }
+
+    .brand-logo img,
+    .logo img {
+      height: calc(var(--u)*104);
+      width: calc(var(--u)*104);
+      display: block;
+      object-fit: cover;
+      object-position: 5% center;
+      border-radius: 50%;
+      clip-path: circle(46% at 50% 50%);
+    }
+
+    .nav-menu {
+      position: absolute;
+      top: calc(var(--u)*36);
+      left: calc(var(--u)*470);
+      width: calc(var(--u)*740);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(var(--u)*32);
+      z-index: 90;
+      pointer-events: auto;
+    }
+
+    .nav-link {
+      font-size: calc(var(--u)*19.5);
+      color: rgba(255, 255, 255, .72);
+      text-decoration: none;
+      transition: color .35s ease, background .35s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: calc(var(--u)*6);
+      cursor: pointer;
+    }
+
+    .nav-link:hover,
+    .nav-link.on {
+      color: #fff;
+    }
+
+    .drop-arrow {
+      width: calc(var(--u)*10);
+      height: calc(var(--u)*6);
+      transition: transform .5s var(--ease);
+      stroke: currentColor;
+    }
+
+    .nav-item-dropdown {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: calc(var(--u)*8) 0;
+    }
+
+    .nav-item-dropdown:hover .drop-arrow {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(12px);
+      width: calc(var(--u)*360);
+      min-width: 290px;
+      background: rgba(12, 4, 7, 0.96);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 83, 97, 0.35);
+      border-radius: calc(var(--u)*18);
+      padding: calc(var(--u)*10);
+      box-shadow: 0 calc(var(--u)*24) calc(var(--u)*60) rgba(0, 0, 0, 0.8), 0 0 calc(var(--u)*30) rgba(255, 83, 97, 0.18);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity .45s var(--ease), transform .55s var(--ease), visibility .45s;
+      z-index: 120;
+    }
+
+    .nav-item-dropdown:hover .dropdown-menu,
+    .nav-item-dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--u)*12);
+      padding: calc(var(--u)*10) calc(var(--u)*14);
+      border-radius: calc(var(--u)*12);
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      transition: all .35s var(--ease);
+    }
+
+    .dropdown-item:hover {
+      background: rgba(255, 83, 97, 0.18);
+      color: #fff;
+      transform: translateX(calc(var(--u)*4));
+    }
+
+    .drop-badge {
+      width: calc(var(--u)*34);
+      height: calc(var(--u)*34);
+      border-radius: calc(var(--u)*10);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: grid;
+      place-items: center;
+      color: var(--pink);
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .drop-badge svg {
+      width: calc(var(--u)*18);
+      height: calc(var(--u)*18);
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .dropdown-item:hover .drop-badge {
+      background: linear-gradient(135deg, #ff5361, #ea2b64);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 0 calc(var(--u)*14) rgba(255, 83, 97, 0.45);
+    }
+
+    .drop-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .drop-title {
+      font-size: calc(var(--u)*14.5);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .drop-desc {
+      font-size: calc(var(--u)*11);
+      color: rgba(255, 255, 255, 0.52);
+      margin-top: calc(var(--u)*2);
+      line-height: 1.2;
+    }
+
+    .header-actions {
+      position: absolute;
+      left: calc(var(--u)*1286);
+      top: calc(var(--u)*20);
+      display: flex;
+      align-items: center;
+      gap: calc(var(--u)*16);
+      z-index: 110;
+    }
+
+    .gh-trigger {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .gh-trigger svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .gh-trigger:hover {
+      background: rgba(255, 83, 97, 0.22);
+      border-color: rgba(255, 83, 97, 0.5);
+      box-shadow: 0 0 16px rgba(255, 83, 97, 0.4);
+    }
+
+    .btn-contact {
+      position: relative;
+      width: calc(var(--u)*172);
+      height: calc(var(--u)*54);
+      border: calc(var(--u)*1.6) solid #c04057;
+      border-radius: 99px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: calc(var(--u)*9);
+      font-size: calc(var(--u)*18.5);
+      font-weight: 500;
+      color: #fff;
+      text-decoration: none;
+      background: rgba(80, 10, 20, .25);
+      transition: background .35s, box-shadow .35s, transform .2s;
+      white-space: nowrap;
+    }
+
+    .btn-contact:hover,
+    .btn-contact.on {
+      background: rgba(192, 64, 87, .35);
+      box-shadow: 0 0 calc(var(--u)*30) rgba(192, 64, 87, .45);
+      border-color: #ff5361;
+      transform: translateY(-1px);
+    }
+
+    .btn-contact svg {
+      width: calc(var(--u)*15);
+      height: calc(var(--u)*15);
+    }
+
+    .mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 330;
+    }
+
+    .mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* ===================================================================
+       DEDICATED CONTACT / GET IN TOUCH HERO SECTION
+       =================================================================== */
+    .services-inquiry-section {
+      position: relative;
+      padding: clamp(130px, 15vh, 175px) clamp(24px, 5vw, 80px) clamp(70px, 9vh, 110px);
+      z-index: 25;
+      background: radial-gradient(45% 55% at 20% 60%, rgba(104, 2, 2, 0.28), transparent 70%),
+                  radial-gradient(50% 50% at 85% 25%, rgba(154, 30, 35, 0.18), transparent 70%),
+                  #060203;
+      overflow: hidden;
+      min-height: calc(100vh - 460px);
+      display: flex;
+      align-items: center;
+    }
+
+    .inquiry-container {
+      max-width: 1320px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.08fr;
+      gap: clamp(32px, 5vw, 80px);
+      align-items: start;
+    }
+
+    /* Left Column: Heading + Mechanical Keyboard Visual */
+    .inquiry-left {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-eyebrow {
+      font-size: 14px;
+      font-weight: 500;
+      color: #ff5361;
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .contact-main-title {
+      font-size: clamp(36px, 4.2vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      line-height: 1.08;
+      margin-bottom: 12px;
+    }
+
+    .contact-visual-wrap {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-left: calc(-1 * clamp(200px, 18vw, 300px));
+      margin-top: -10px;
+    }
+
+    .contact-visual-glow {
+      position: absolute;
+      left: 24%;
+      top: 15%;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(234, 43, 100, 0.28) 0%, rgba(104, 2, 2, 0.14) 50%, transparent 70%);
+      filter: blur(55px);
+      pointer-events: none;
+      z-index: 1;
+      animation: pulseGlow 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(0.92); opacity: 0.55; }
+      100% { transform: scale(1.08); opacity: 0.85; }
+    }
+
+    .contact-keyboard-img {
+      position: relative;
+      z-index: 2;
+      width: clamp(690px, 54vw, 840px);
+      max-width: none;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 35px rgba(234, 43, 100, 0.22));
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .contact-visual-wrap:hover .contact-keyboard-img {
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    /* Right Column: Question + Meta + Underline Form */
+    .inquiry-right {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding-top: 10px;
+    }
+
+    .contact-question-title {
+      font-size: clamp(16px, 1.4vw, 20px);
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .contact-meta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-meta-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 0.02em;
+    }
+
+    .contact-meta-val {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .contact-mail-link {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .contact-mail-link:hover {
+      color: #ff5361;
+    }
+
+    /* Minimalist Underline Form Inputs */
+    .contact-minimal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .contact-field-group {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-field-label {
+      font-size: 12.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.01em;
+      transition: color 0.25s ease;
+    }
+
+    .contact-field-input,
+    .contact-field-textarea {
+      width: 100%;
+      background: transparent !important;
+      border: none !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+      border-radius: 0 !important;
+      padding: 6px 0 8px 0;
+      font-size: 14.5px;
+      color: #ffffff;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-field-textarea {
+      min-height: 52px;
+      height: 52px;
+      resize: vertical;
+    }
+
+    .contact-field-input:focus,
+    .contact-field-textarea:focus {
+      border-bottom-color: #ff5361 !important;
+      box-shadow: 0 1px 0 #ff5361, 0 8px 20px -8px rgba(255, 83, 97, 0.45) !important;
+    }
+
+    .contact-field-group:focus-within .contact-field-label {
+      color: #ff5361;
+    }
+
+    /* Submit Button (Pill shape, centered in form) */
+    .contact-submit-wrap {
+      margin-top: 16px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn-send {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      width: fit-content !important;
+      max-width: fit-content !important;
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 42px !important;
+      height: 48px;
+      border-radius: 999px !important;
+      background: rgba(104, 2, 2, 0.5);
+      border: 1px solid rgba(255, 83, 97, 0.45);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(.16, 1, .3, 1);
+      box-shadow: 0 8px 24px rgba(104, 2, 2, 0.4);
+    }
+
+    .btn-send::before {
+      content: "";
+      position: absolute;
+      left: -12%;
+      right: -12%;
+      bottom: -2px;
+      height: 0;
+      z-index: -1;
+      background: linear-gradient(0deg, #9A1E23 0%, #ea2b64 100%);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      transition: height 0.55s cubic-bezier(.16, 1, .3, 1), border-radius 0.55s cubic-bezier(.16, 1, .3, 1);
+      pointer-events: none;
+    }
+
+    .btn-send:hover::before,
+    .btn-send:focus-visible::before {
+      height: 145%;
+      border-radius: 0;
+    }
+
+    .btn-send:hover {
+      border-color: #ff5361;
+      box-shadow: 0 10px 32px rgba(255, 83, 97, 0.55);
+      transform: translateY(-2px);
+    }
+
+    .btn-send > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Toast Notification */
+    .toast-popup {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: rgba(18, 5, 8, 0.95);
+      border: 1.5px solid #ff4d6d;
+      border-radius: 16px;
+      padding: 18px 24px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.8), 0 0 25px rgba(255, 51, 102, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 9999;
+      transform: translateY(100px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s var(--ease);
+      backdrop-filter: blur(20px);
+    }
+
+    .toast-popup.show {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .toast-check {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff5361, #ea2b64);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .toast-check svg {
+      width: 16px;
+      height: 16px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    .toast-content h6 {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .toast-content p {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* ==========================================================
+       LUXURY CTA & BRAND FOOTER (Limons Branding)
+    ========================================================== */
+    .limons-cta-footer {
+      position: relative;
+      background: #060203;
+      color: #ffffff;
+      padding: clamp(72px, 9vh, 120px) 0 clamp(32px, 4vh, 48px);
+      overflow: hidden;
+      z-index: 30;
+      border-top: 1px solid rgba(255, 83, 97, 0.18);
+    }
+
+    .cta-footer-nebula {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background:
+        radial-gradient(circle at 75% 25%, rgba(104, 2, 2, 0.38) 0%, transparent 50%),
+        radial-gradient(circle at 50% 70%, rgba(154, 30, 35, 0.32) 0%, rgba(104, 2, 2, 0.16) 42%, transparent 68%),
+        radial-gradient(circle at 20% 40%, rgba(104, 2, 2, 0.22) 0%, transparent 45%);
+    }
+
+    .cta-footer-container {
+      position: relative;
+      z-index: 2;
+      width: min(1200px, 91vw);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cta-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: clamp(14px, 2vh, 22px);
+    }
+
+    .cta-eyebrow .cta-bullet {
+      color: #fa4b63;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .cta-headline {
+      font-size: clamp(32px, 3.8vw, 56px);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+      max-width: 880px;
+      margin: 0 0 clamp(44px, 6vh, 72px) 0;
+    }
+
+    .cta-mid-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-bottom: clamp(60px, 8vh, 100px);
+    }
+
+    .cta-contact-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cta-contact-lbl {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.52);
+      letter-spacing: -0.01em;
+    }
+
+    .cta-email-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: clamp(19px, 1.8vw, 25px);
+      font-weight: 600;
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .cta-email-link .arrow-icon {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      transition: transform 0.25s ease;
+    }
+
+    .cta-email-link:hover {
+      color: #fa4b63;
+    }
+
+    .cta-email-link:hover .arrow-icon {
+      transform: translate(3px, -3px);
+    }
+
+    .cta-nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(20px, 2.5vw, 42px);
+      flex-wrap: wrap;
+    }
+
+    .cta-nav-links a {
+      font-size: clamp(14px, 1.1vw, 16px);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease, transform 0.2s ease;
+      position: relative;
+    }
+
+    .cta-nav-links a:hover,
+    .cta-nav-links a.on {
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .cta-brand-display {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: clamp(20px, 3vh, 40px) 0 clamp(40px, 5vh, 65px);
+    }
+
+    .cta-brand-ambient {
+      position: absolute;
+      width: min(520px, 75vw);
+      height: 150px;
+      background: radial-gradient(ellipse at center, rgba(168, 25, 45, 0.42) 0%, rgba(104, 2, 2, 0.2) 48%, transparent 72%);
+      filter: blur(55px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .cta-brand-link {
+      display: block;
+      width: 100%;
+      max-width: clamp(260px, 34vw, 460px);
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-giant-logo {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 30px rgba(250, 75, 99, 0.16));
+      user-select: none;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+    }
+
+    .cta-giant-logo:hover {
+      transform: scale(1.012);
+      filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 45px rgba(250, 75, 99, 0.28));
+    }
+
+    .cta-bottom-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: clamp(20px, 2.5vh, 28px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .cta-socials {
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 2vw, 28px);
+    }
+
+    .cta-socials a {
+      color: rgba(255, 255, 255, 0.48);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s ease;
+    }
+
+    .cta-socials a:hover {
+      color: #fa4b63;
+    }
+
+    @media (max-width: 980px) {
+      .inquiry-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .contact-main-title {
+        margin-bottom: 20px;
+      }
+      .contact-visual-wrap {
+        margin-left: 0;
+        justify-content: center;
+      }
+      .contact-keyboard-img {
+        max-width: 480px;
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .contact-meta-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .contact-visual-wrap {
+        margin-left: 0;
+      }
+      .contact-keyboard-img {
+        max-width: 320px;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="assets/css/site-header.css">
+  <link rel="stylesheet" href="assets/css/motion.css">
+  <link rel="stylesheet" href="assets/css/brand-ui.css">
+</head>
+<body class="mo-no-body-fade">
+
+  <!-- DYNAMIC AURORA & BRAND AMBIENT BACKGROUND -->
+  <div class="bg-aurora-wrap" aria-hidden="true">
+    <div class="aurora-layer-1"></div>
+    <div class="aurora-layer-2"></div>
+    <div class="aurora-shade"></div>
+    <div class="aurora-noise"></div>
+  </div>
+
+  <!-- SHARED HEADER (Same as Home & Services Page) -->
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand-logo" href="index.html" aria-label="Limons Home">
+        <img src="assets/images/brand/Horizontal Logo.png" alt="Limons">
+      </a>
+
+      <!-- UNIFIED NAVIGATION -->
+      <nav class="nav-menu" id="mainNav" aria-label="Primary navigation">
+        <a class="nav-link" href="services.html">Services</a>
+
+        <!-- Products dropdown -->
+        <div class="nav-item-dropdown" id="productsDropdown">
+          <a class="nav-link nav-drop-trigger" href="javascript:void(0)" aria-haspopup="true" aria-expanded="false">
+            Products
+            <svg class="drop-arrow" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
+          </a>
+          <div class="dropdown-menu" role="menu">
+            <a class="dropdown-item" href="product1.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="13" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">Social TV</span>
+                <span class="drop-desc">Interactive engagement platform</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="product2.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3L20 8"/><path d="M20 4v4h-4"/><path d="M20 12a8 8 0 0 1-14 5.3L4 16"/><path d="M4 20v-4h4"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">File Sync</span>
+                <span class="drop-desc">Real-time mobile file synchronization</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="product3.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">On-Demand</span>
+                <span class="drop-desc">Real-time matching &amp; dispatch</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="product4.html">
+              <span class="drop-badge"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><polygon points="10,9 15,12 10,15" fill="currentColor"/></svg></span>
+              <div class="drop-text">
+                <span class="drop-title">Video Player</span>
+                <span class="drop-desc">Monetization &amp; streaming SDK</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <a class="nav-link" href="resources.html">Resources</a>
+        <a class="nav-link" href="about.html">About</a>
+        <a class="mobile-contact nav-link on" href="contact.html">Get in Touch<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13L13 3M5 3h8v8"/></svg></a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="gh-hover">
+          <a class="gh-trigger" href="https://github.com/appscend" target="_blank" rel="noopener noreferrer" aria-label="Open Source on GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.23 0 1.61-.01 2.91-.01 3.31 0 .32.22.7.83.58C20.56 22.1 24 17.6 24 12.3 24 5.67 18.63.3 12 .3z"/></svg>
+          </a>
+          <div class="gh-modal" role="tooltip">
+            <h4>Open Source</h4>
+            <p>Check out our GitHub profile to explore our development tools, frameworks and open source contributions.</p>
+            <a class="gh-modal-btn" href="https://github.com/appscend" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.23 0 1.61-.01 2.91-.01 3.31 0 .32.22.7.83.58C20.56 22.1 24 17.6 24 12.3 24 5.67 18.63.3 12 .3z"/></svg>
+              View on Github
+            </a>
+          </div>
+        </div>
+        <a class="btn-contact on" href="contact.html">
+          Get in Touch
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13L13 3M5 3h8v8"/></svg>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       GET IN TOUCH / CONTACT SECTION (Dedicated Page Presentation)
+       =================================================================== -->
+  <main>
+    <section class="services-inquiry-section" id="contact-form">
+      <div class="inquiry-container">
+        
+        <!-- Left Column: Heading + Mechanical Keyboard Visual -->
+        <div class="inquiry-left mo-reveal">
+          <p class="contact-eyebrow">We're here to help.</p>
+          <h1 class="contact-main-title">Get In Touch</h1>
+          <div class="contact-visual-wrap">
+            <div class="contact-visual-glow" aria-hidden="true"></div>
+            <img src="assets/images/contact/Burgundy Accented Mechanical Keyboard.png" 
+                 alt="Limons Engineering Mechanical Keyboard" 
+                 class="contact-keyboard-img"
+                 loading="lazy">
+          </div>
+        </div>
+
+        <!-- Right Column: Question + Meta + Minimal Underline Form -->
+        <div class="inquiry-right mo-reveal mo-s1">
+          <h2 class="contact-question-title">Questions about project, custom app, or setup?</h2>
+          
+          <div class="contact-meta-row">
+            <div class="contact-meta-item">
+              <span class="contact-meta-label">Monday - Friday</span>
+              <span class="contact-meta-val">9:00 AM – 6:00 PM (GMT)</span>
+            </div>
+            <div class="contact-meta-item">
+              <span class="contact-meta-label">Get in Touch</span>
+              <a href="mailto:info@limons.com" class="contact-meta-val contact-mail-link">info@limons.com</a>
+            </div>
+          </div>
+
+          <form id="servicesProjectForm" class="contact-minimal-form" onsubmit="handleInquirySubmit(event)">
+            <div class="contact-field-group">
+              <label for="c_name" class="contact-field-label">Name</label>
+              <input type="text" id="c_name" name="name" required class="contact-field-input" autocomplete="name">
+            </div>
+
+            <div class="contact-field-group">
+              <label for="c_email" class="contact-field-label">Email</label>
+              <input type="email" id="c_email" name="email" required class="contact-field-input" autocomplete="email">
+            </div>
+
+            <div class="contact-field-group">
+              <label for="c_phone" class="contact-field-label">Phone Number</label>
+              <input type="tel" id="c_phone" name="phone" class="contact-field-input" autocomplete="tel">
+            </div>
+
+            <div class="contact-field-group">
+              <label for="c_comment" class="contact-field-label">Comment</label>
+              <textarea id="c_comment" name="comment" required class="contact-field-textarea" rows="2"></textarea>
+            </div>
+
+            <div class="contact-submit-wrap">
+              <button type="submit" class="btn-send btn-submit-inquiry" id="submitInquiryBtn">
+                <span>Submit Inquiry</span>
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M3 13L13 3M5 3h8v8"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================
+       DATAWIZZ-INSPIRED LUXURY CTA & BRAND FOOTER (Limons Branding)
+  ========================================================== -->
+  <footer class="limons-cta-footer" id="contact">
+    <div class="cta-footer-nebula"></div>
+
+    <div class="cta-footer-container">
+      <!-- Top CTA Eyebrow & Query Headline -->
+      <div class="cta-top-block mo mo-fade">
+        <div class="cta-eyebrow">
+          <span class="cta-bullet">•</span> Contact Us
+        </div>
+        <h2 class="cta-headline">
+          Interested in working together, building custom apps, or simply learning more?
+        </h2>
+      </div>
+
+      <!-- Middle Row: Contact on Left, Nav Links on Right -->
+      <div class="cta-mid-row mo mo-fade mo-d1">
+        <div class="cta-contact-block">
+          <span class="cta-contact-lbl">Contact Limons at:</span>
+          <a href="mailto:info@limons.com" class="cta-email-link">
+            info@limons.com
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <nav class="cta-nav-links" aria-label="Footer Navigation">
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="contact.html" class="on">Get in Touch</a>
+        </nav>
+      </div>
+
+      <!-- Giant Brand Signature Display (Datawizz Style) -->
+      <div class="cta-brand-display mo mo-fade mo-d2">
+        <div class="cta-brand-ambient"></div>
+        <a href="index.html" aria-label="Limons Home" class="cta-brand-link">
+          <img src="assets/images/brand/Horizontal Logo.png" alt="Limons" class="cta-giant-logo">
+        </a>
+      </div>
+
+      <!-- Bottom Row: Copyright & Socials -->
+      <div class="cta-bottom-bar">
+        <div class="cta-copyright">
+          © 2026 Limons. All rights reserved.
+        </div>
+        <div class="cta-socials">
+          <a href="https://www.linkedin.com/company/appscend" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://twitter.com/appscend" target="_blank" rel="noopener">Twitter</a>
+          <a href="https://www.facebook.com/Appscend/" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://github.com/appscend" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Feedback -->
+  <div class="toast-popup" id="inquiryToast">
+    <div class="toast-check">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="toast-content">
+      <h6>Inquiry Received!</h6>
+      <p>Thank you. An engineer will reach out within 24 hours.</p>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      // Mobile Menu Toggle
+      const mobileToggle = document.getElementById('mobileToggle');
+      const mainNav = document.getElementById('mainNav');
+      if (mobileToggle && mainNav) {
+        mobileToggle.addEventListener('click', () => {
+          mainNav.classList.toggle('open');
+          mobileToggle.classList.toggle('open');
+        });
+      }
+    })();
+
+    // Form Handling
+    function handleInquirySubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitInquiryBtn');
+      const origText = btn.innerHTML;
+      btn.innerHTML = '<span>Processing...</span>';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = '<span>Inquiry Sent! ✓</span>';
+        const toast = document.getElementById('inquiryToast');
+        if (toast) {
+          toast.classList.add('show');
+          setTimeout(() => {
+            toast.classList.remove('show');
+            btn.innerHTML = origText;
+            btn.disabled = false;
+            document.getElementById('servicesProjectForm').reset();
+          }, 4500);
+        }
+      }, 700);
+    }
+  </script>
+
+  <script src="assets/js/lenis.min.js"></script>
+  <script src="assets/js/motion.js"></script>
+</body>
+</html>

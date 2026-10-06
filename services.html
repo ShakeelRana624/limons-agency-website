@@ -343,57 +343,89 @@
 
     .gh-modal {
       position: absolute;
-      top: 100%;
+      top: calc(100% + 12px);
       right: 0;
-      width: 280px;
-      background: rgba(15, 5, 8, 0.96);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 83, 97, 0.35);
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+      width: 320px;
+      background: rgba(18, 5, 8, 0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 83, 97, 0.28);
+      border-radius: 20px;
+      padding: 24px 26px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(154, 30, 35, 0.25);
       opacity: 0;
       visibility: hidden;
       transform: translateY(10px);
-      transition: all 0.3s ease;
-      z-index: 200;
+      transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+      z-index: 9999;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
     }
 
-    .gh-hover:hover .gh-modal {
+    .gh-modal::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: 0;
+      right: 0;
+      height: 24px;
+      background: transparent;
+    }
+
+    .gh-hover:hover .gh-modal,
+    .gh-hover:focus-within .gh-modal,
+    .gh-hover.is-open .gh-modal,
+    .gh-trigger:hover + .gh-modal,
+    .gh-modal:hover {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
+      pointer-events: auto;
     }
 
     .gh-modal h4 {
-      font-size: 15px;
+      font-size: 24px;
+      font-weight: 700;
       color: #fff;
-      margin-bottom: 6px;
+      margin: 0;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
     }
 
     .gh-modal p {
-      font-size: 12px;
-      line-height: 1.45;
-      color: rgba(255, 255, 255, 0.6);
-      margin-bottom: 12px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.72);
+      margin: 0 0 6px 0;
+      font-weight: 400;
     }
 
     .gh-modal-btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 7px 14px;
-      border-radius: 99px;
-      font-size: 12px;
-      font-weight: 500;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
       color: #fff;
-      background: #ff5361;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       text-decoration: none;
-      transition: background 0.2s ease;
+      width: fit-content;
+      transition: all 0.25s ease;
+      cursor: pointer;
     }
 
     .gh-modal-btn:hover {
-      background: #ff3366;
+      background: rgba(255, 83, 97, 0.22);
+      border-color: rgba(255, 83, 97, 0.5);
+      box-shadow: 0 4px 18px rgba(234, 43, 100, 0.35);
+      color: #fff;
+      transform: translateY(-1px);
     }
 
     .btn-contact {
@@ -1721,8 +1753,8 @@
 
     .cta-brand-ambient {
       position: absolute;
-      width: min(850px, 85vw);
-      height: 240px;
+      width: min(520px, 75vw);
+      height: 150px;
       background: radial-gradient(ellipse at center, rgba(168, 25, 45, 0.42) 0%, rgba(104, 2, 2, 0.2) 48%, transparent 72%);
       filter: blur(55px);
       pointer-events: none;
@@ -1732,7 +1764,8 @@
     .cta-brand-link {
       display: block;
       width: 100%;
-      max-width: 1140px;
+      max-width: clamp(260px, 34vw, 460px);
+      margin: 0 auto;
       text-align: center;
       position: relative;
       z-index: 2;
@@ -2228,7 +2261,7 @@
 
         <a class="nav-link" href="resources.html">Resources</a>
         <a class="nav-link" href="about.html">About</a>
-        <a class="mobile-contact nav-link" href="#contact-form">Get in Touch<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13L13 3M5 3h8v8"/></svg></a>
+        <a class="mobile-contact nav-link" href="contact.html">Get in Touch<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13L13 3M5 3h8v8"/></svg></a>
       </nav>
 
       <div class="header-actions">
@@ -2236,8 +2269,16 @@
           <a class="gh-trigger" href="https://github.com/appscend" target="_blank" rel="noopener noreferrer" aria-label="Open Source on GitHub">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.23 0 1.61-.01 2.91-.01 3.31 0 .32.22.7.83.58C20.56 22.1 24 17.6 24 12.3 24 5.67 18.63.3 12 .3z"/></svg>
           </a>
+          <div class="gh-modal" role="tooltip">
+            <h4>Open Source</h4>
+            <p>Check out our GitHub profile to explore our development tools, frameworks and open source contributions.</p>
+            <a class="gh-modal-btn" href="https://github.com/appscend" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.23 0 1.61-.01 2.91-.01 3.31 0 .32.22.7.83.58C20.56 22.1 24 17.6 24 12.3 24 5.67 18.63.3 12 .3z"/></svg>
+              View on Github
+            </a>
+          </div>
         </div>
-        <a class="btn-contact" href="#contact-form">
+        <a class="btn-contact" href="contact.html">
           Get in Touch
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 13L13 3M5 3h8v8"/></svg>
         </a>
@@ -2303,7 +2344,7 @@
 
         <!-- CTA Buttons -->
         <div class="hero-cta-row mo-reveal mo-s3">
-          <a href="#contact-form" class="btn-start-project">
+          <a href="contact.html" class="btn-start-project">
             <span>Start a Project</span>
             <svg viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           </a>
@@ -2345,7 +2386,7 @@
           <div class="process-badge">How It Works</div>
           <h2 class="process-title">Our process and workflow</h2>
           <p class="process-subtitle">A clear 4 step journey from idea to launch and long term support.</p>
-          <a href="#contact-form" class="btn-workflow-start">Start Your Project</a>
+          <a href="contact.html" class="btn-workflow-start">Start Your Project</a>
         </div>
 
         <!-- Interactive Curved Timeline Diagram -->
@@ -2666,75 +2707,7 @@
     </div>
   </section>
 
-  <!-- ===================================================================
-       SECTION 4: GET IN TOUCH / CONTACT SECTION (NuPhy Style + Limons Branding)
-       =================================================================== -->
-  <section class="services-inquiry-section" id="contact-form">
-    <div id="contact" style="position: absolute; top: -90px; left: 0;"></div>
-    <div class="inquiry-container">
-      
-      <!-- Left Column: Heading + Mechanical Keyboard Visual -->
-      <div class="inquiry-left mo-reveal">
-        <p class="contact-eyebrow">We're here to help.</p>
-        <h2 class="contact-main-title">Get In Touch</h2>
-        <div class="contact-visual-wrap">
-          <div class="contact-visual-glow" aria-hidden="true"></div>
-          <img src="assets/images/contact/Burgundy Accented Mechanical Keyboard.png" 
-               alt="Limons Engineering Mechanical Keyboard" 
-               class="contact-keyboard-img"
-               loading="lazy">
-        </div>
-      </div>
 
-      <!-- Right Column: Question + Meta + Minimal Underline Form -->
-      <div class="inquiry-right mo-reveal mo-s1">
-        <h3 class="contact-question-title">Questions about project, custom app, or setup?</h3>
-        
-        <div class="contact-meta-row">
-          <div class="contact-meta-item">
-            <span class="contact-meta-label">Monday - Friday</span>
-            <span class="contact-meta-val">9:00 AM – 6:00 PM (GMT)</span>
-          </div>
-          <div class="contact-meta-item">
-            <span class="contact-meta-label">Get in Touch</span>
-            <a href="mailto:info@limons.com" class="contact-meta-val contact-mail-link">info@limons.com</a>
-          </div>
-        </div>
-
-        <form id="servicesProjectForm" class="contact-minimal-form" onsubmit="handleInquirySubmit(event)">
-          <div class="contact-field-group">
-            <label for="c_name" class="contact-field-label">Name</label>
-            <input type="text" id="c_name" name="name" required class="contact-field-input" autocomplete="name">
-          </div>
-
-          <div class="contact-field-group">
-            <label for="c_email" class="contact-field-label">Email</label>
-            <input type="email" id="c_email" name="email" required class="contact-field-input" autocomplete="email">
-          </div>
-
-          <div class="contact-field-group">
-            <label for="c_phone" class="contact-field-label">Phone Number</label>
-            <input type="tel" id="c_phone" name="phone" class="contact-field-input" autocomplete="tel">
-          </div>
-
-          <div class="contact-field-group">
-            <label for="c_comment" class="contact-field-label">Comment</label>
-            <textarea id="c_comment" name="comment" required class="contact-field-textarea" rows="2"></textarea>
-          </div>
-
-          <div class="contact-submit-wrap">
-            <button type="submit" class="btn-send btn-submit-inquiry" id="submitInquiryBtn">
-              <span>Submit Inquiry</span>
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M3 13L13 3M5 3h8v8"/>
-              </svg>
-            </button>
-          </div>
-        </form>
-      </div>
-
-    </div>
-  </section>
 
 
 
@@ -2771,7 +2744,7 @@
         <nav class="cta-nav-links" aria-label="Footer Navigation">
           <a href="services.html">Services</a>
           <a href="about.html">About</a>
-          <a href="#contact-form">Get in Touch</a>
+          <a href="contact.html">Get in Touch</a>
         </nav>
       </div>
 
@@ -2839,22 +2812,11 @@
       </div>
 
       <div class="modal-actions">
-        <a href="#contact-form" class="btn-modal-inquire" onclick="closeAppModal()">
+        <a href="contact.html" class="btn-modal-inquire" onclick="closeAppModal()">
           <span>Inquire About A Similar App</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8h12M10 4l4 4-4 4"/></svg>
         </a>
       </div>
-    </div>
-  </div>
-
-  <!-- Toast Notification Feedback -->
-  <div class="toast-popup" id="inquiryToast">
-    <div class="toast-check">
-      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-    </div>
-    <div class="toast-content">
-      <h6>Inquiry Received!</h6>
-      <p>Thank you. An engineer will reach out within 24 hours.</p>
     </div>
   </div>
 
@@ -3159,29 +3121,6 @@
     window.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeAppModal();
     });
-
-    // Form Handling
-    function handleInquirySubmit(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submitInquiryBtn');
-      const origText = btn.innerHTML;
-      btn.innerHTML = '<span>Processing...</span>';
-      btn.disabled = true;
-
-      setTimeout(() => {
-        btn.innerHTML = '<span>Inquiry Sent! ✓</span>';
-        const toast = document.getElementById('inquiryToast');
-        if (toast) {
-          toast.classList.add('show');
-          setTimeout(() => {
-            toast.classList.remove('show');
-            btn.innerHTML = origText;
-            btn.disabled = false;
-            document.getElementById('servicesProjectForm').reset();
-          }, 4500);
-        }
-      }, 700);
-    }
   </script>
   
   <script src="assets/js/lenis.min.js"></script>
